@@ -10,7 +10,9 @@
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="TradeScreen" Height="800" Width="800">
+        Title="TradeScreen" Height="800" Width="800"
+        Background="Gold" ResizeMode="NoResize"
+        BorderBrush="Black" BorderThickness="2">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -38,7 +40,8 @@
                   HeadersVisibility="Column"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
-                  VerticalScrollBarVisibility="Auto">
+                  VerticalScrollBarVisibility="Auto"
+                  Background="LemonChiffon">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description"
                                     IsReadOnly="True"
@@ -70,7 +73,8 @@
                   HeadersVisibility="Column"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
-                  VerticalScrollBarVisibility="Auto">
+                  VerticalScrollBarVisibility="Auto"
+                  Background="LemonChiffon">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Description"
                                     IsReadOnly="True"

@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Title="RPG" Height="800" Width="800"
         Style="{StaticResource CustomFont}" FontSize="24"
-        WindowState="Maximized" WindowStyle="ThreeDBorderWindow">
+        WindowState="Maximized" WindowStyle="ThreeDBorderWindow"
+        ResizeMode="NoResize">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
