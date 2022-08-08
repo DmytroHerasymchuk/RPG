@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "RPG\RPG.csproj", "{6E90220D-2BEE-4A00-BE65-3B8677BD0944}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E90220D-2BEE-4A00-BE65-3B8677BD0944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E90220D-2BEE-4A00-BE65-3B8677BD0944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E90220D-2BEE-4A00-BE65-3B8677BD0944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E90220D-2BEE-4A00-BE65-3B8677BD0944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F129693-C938-49AB-A333-55A4C41A597C}
+	EndGlobalSection
+EndGlobal
