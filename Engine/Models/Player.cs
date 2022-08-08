@@ -50,15 +50,12 @@ namespace Engine.Models
             }
         }
         public ObservableCollection<QuestStatus> Quests { get; set; }
-        public Player(string name, string characterClass, int hitPoints, int experiencePoints, int level, int gold)
-        {
-            this.Name = name;
-            this.CharacterClass = characterClass;
-            this.MaxHitPoints = hitPoints;
-            this.CurrentHitPoints = hitPoints;
+        public Player(string name, string characterClass, int maxHitPoints, int currentHitPoints, int experiencePoints, int level, int gold) : 
+            base(name, maxHitPoints, currentHitPoints, gold)
+        {           
+            this.CharacterClass = characterClass;            
             this.ExperiencePoints = experiencePoints;
             this.Level = level;
-            this.Gold = gold;
             this.Quests = new ObservableCollection<QuestStatus>();          
         }
         public bool HasAllTheseItems(List<ItemQuantity> items)

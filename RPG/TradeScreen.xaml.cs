@@ -32,7 +32,7 @@ namespace RPG
             GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
             if(groupedInventoryItem != null)
             {
-                Session.CurrentPlayer.Gold += groupedInventoryItem.Item.Price;
+                Session.CurrentPlayer.ReceiveGold(groupedInventoryItem.Item.Price);
                 Session.CurrentTrader.AddItemToInventory(groupedInventoryItem.Item);
                 Session.CurrentPlayer.RemoveItemToInventory(groupedInventoryItem.Item);
             }
@@ -43,7 +43,7 @@ namespace RPG
             GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
             if (groupedInventoryItem != null)
             {
-                Session.CurrentPlayer.Gold -= groupedInventoryItem.Item.Price;
+                Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
                 Session.CurrentTrader.RemoveItemToInventory(groupedInventoryItem.Item);
                 Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
             }
