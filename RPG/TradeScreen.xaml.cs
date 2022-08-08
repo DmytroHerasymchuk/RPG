@@ -29,23 +29,23 @@ namespace RPG
 
         private void OnClickSell(object sender, RoutedEventArgs e)
         {
-            GameItem item = ((FrameworkElement)sender).DataContext as GameItem;
-            if(item != null)
+            GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
+            if(groupedInventoryItem != null)
             {
-                Session.CurrentPlayer.Gold += item.Price;
-                Session.CurrentTrader.AddItemToInventory(item);
-                Session.CurrentPlayer.RemoveItemToInventory(item);
+                Session.CurrentPlayer.Gold += groupedInventoryItem.Item.Price;
+                Session.CurrentTrader.AddItemToInventory(groupedInventoryItem.Item);
+                Session.CurrentPlayer.RemoveItemToInventory(groupedInventoryItem.Item);
             }
         }
 
         private void OnClickBuy(object sender, RoutedEventArgs e)
         {
-            GameItem item = ((FrameworkElement)sender).DataContext as GameItem;
-            if (item != null)
+            GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
+            if (groupedInventoryItem != null)
             {
-                Session.CurrentPlayer.Gold -= item.Price;
-                Session.CurrentTrader.RemoveItemToInventory(item);
-                Session.CurrentPlayer.AddItemToInventory(item);
+                Session.CurrentPlayer.Gold -= groupedInventoryItem.Item.Price;
+                Session.CurrentTrader.RemoveItemToInventory(groupedInventoryItem.Item);
+                Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
             }
             else
             {

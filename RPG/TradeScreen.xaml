@@ -10,7 +10,7 @@
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="TradeScreen" Height="800" Width="800"
+        Title="TradeScreen" Height="800" Width="1000"
         Background="Gold" ResizeMode="NoResize"
         BorderBrush="Black" BorderThickness="2">
     <Grid Margin="10">
@@ -35,7 +35,7 @@
                Content="Trader's Inventory"/>
         <DataGrid Grid.Row="2" Grid.Column="0"
                   Margin="10"
-                  ItemsSource="{Binding CurrentPlayer.Inventory}"
+                  ItemsSource="{Binding CurrentPlayer.GroupedInventory}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
                   CanUserAddRows="False"
@@ -46,20 +46,24 @@
                 <DataGridTextColumn Header="Description"
                                     IsReadOnly="True"
                                     Width="2*"
-                                    Binding="{Binding Path=Name}"/>
+                                    Binding="{Binding Item.Name}"/>
                 <DataGridTextColumn Header="Rarity"
                                     IsReadOnly="True"
-                                    Width="*"
-                                    Binding="{Binding Path=Rarity}"/>
+                                    Width="2*"
+                                    Binding="{Binding Item.Rarity}"/>
+                <DataGridTextColumn Header="Quantity"
+                                    IsReadOnly="True"
+                                    Width="1.7*"
+                                    Binding="{Binding Quantity}"/>
                 <DataGridTextColumn Header="Price"
                                     IsReadOnly="True"
-                                    Width="Auto"
-                                    Binding="{Binding Path=Price}"/>
+                                    Width="1.2*"
+                                    Binding="{Binding Item.Price}"/>
                 <DataGridTemplateColumn MinWidth="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="40"
-                                    Content="Sell"
+                            <Button Width="55"
+                                    Content="Sell 1"
                                     Click="OnClickSell"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -68,7 +72,7 @@
         </DataGrid>
         <DataGrid Grid.Row="2" Grid.Column="1"
                   Margin="10"
-                  ItemsSource="{Binding CurrentTrader.Inventory}"
+                  ItemsSource="{Binding CurrentTrader.GroupedInventory}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
                   CanUserAddRows="False"
@@ -79,20 +83,24 @@
                 <DataGridTextColumn Header="Description"
                                     IsReadOnly="True"
                                     Width="2*"
-                                    Binding="{Binding Path=Name}"/>
+                                    Binding="{Binding Item.Name}"/>
                 <DataGridTextColumn Header="Rarity"
                                     IsReadOnly="True"
-                                    Width="*"
-                                    Binding="{Binding Path=Rarity}"/>
+                                    Width="2*"
+                                    Binding="{Binding Item.Rarity}"/>
+                <DataGridTextColumn Header="Quantity"
+                                    IsReadOnly="True"
+                                    Width="1.7*"
+                                    Binding="{Binding Quantity}"/>
                 <DataGridTextColumn Header="Price"
                                     IsReadOnly="True"
-                                    Width="Auto"
-                                    Binding="{Binding Path=Price}"/>
+                                    Width="1.2*"
+                                    Binding="{Binding Item.Price}"/>
                 <DataGridTemplateColumn MinWidth="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="40"
-                                    Content="Buy"
+                            <Button Width="55"
+                                    Content="Buy 1"
                                     Click="OnClickBuy"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

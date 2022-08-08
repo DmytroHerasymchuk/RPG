@@ -13,17 +13,20 @@ namespace Engine.Models
         public int Price { get; set; }
         public string Rarity { get; set; }
 
-        public GameItem(int itemTypeId, string name, int price, string rarity)
+        public bool IsUnique { get; set; }
+
+        public GameItem(int itemTypeId, string name, int price, string rarity, bool isUnique = false)
         {
             ItemTypeId = itemTypeId;
             Name = name;
             Price = price;
             Rarity = rarity;
+            IsUnique = isUnique;
         }
 
         public GameItem Clone()
         {
-            return new GameItem(ItemTypeId, Name, Price, Rarity);
+            return new GameItem(ItemTypeId, Name, Price, Rarity, IsUnique);
         }
     }
 }

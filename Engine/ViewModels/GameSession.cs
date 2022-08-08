@@ -93,8 +93,7 @@ namespace Engine.ViewModels
             CurrentWorld = WorldFactory.CreateWorld();
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
             
-            CurrentPlayer.Inventory.Add(GameItemFactory.CreateGameItem(10001));
-            //CurrentPlayer.Inventory.Add(GameItemFactory.CreateGameItem(10002));
+            CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10001));
 
             if (!CurrentPlayer.Weapons.Any())
             {
