@@ -25,11 +25,13 @@ namespace Engine.ViewModels
             {
                 if (_currentPlayer != null)
                 {
+                    _currentPlayer.OnLeveledUp -= OnCurrentPlayerLeveledUp;
                     _currentPlayer.OnKilled -= OnCurrentPlayerKilled;
                 }
                 _currentPlayer = value;
                 if (_currentPlayer != null)
                 {
+                    _currentPlayer.OnLeveledUp += OnCurrentPlayerLeveledUp;
                     _currentPlayer.OnKilled += OnCurrentPlayerKilled;
                 }
             }
@@ -115,7 +117,7 @@ namespace Engine.ViewModels
        
         public GameSession()
         {
-            CurrentPlayer = new Player("Katya", "Fairy", 20, 20, 0, 1, 100);
+            CurrentPlayer = new Player("Katya", "Fairy", 20, 20, 0, 100);
             CurrentWorld = WorldFactory.CreateWorld();
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
             
@@ -175,16 +177,15 @@ namespace Engine.ViewModels
                         }
                         RaiseMessage("");
                         RaiseMessage($"You completed the '{quest.Name}' quest!");
-                        CurrentPlayer.ExperiencePoints += quest.RewardExperiencePoints;
                         RaiseMessage($"You receive {quest.RewardExperiencePoints} experience points.");
-                        CurrentPlayer.ReceiveGold(quest.RewardGold);
+                        CurrentPlayer.AddExperience(quest.RewardExperiencePoints);
                         RaiseMessage($"You receive {quest.RewardGold} gold.");
+                        CurrentPlayer.ReceiveGold(quest.RewardGold);
                         foreach(ItemQuantity itemQuantity in quest.RewardItems)
                         {
                             GameItem rewardItem = GameItemFactory.CreateGameItem(itemQuantity.ItemId);
-                            CurrentPlayer.AddItemToInventory(rewardItem);
                             RaiseMessage($"You receive {rewardItem.Name} ({rewardItem.Rarity})");
-                            
+                            CurrentPlayer.AddItemToInventory(rewardItem);                            
                         }
                         questToComplete.IsCompleted = true;
                     }
@@ -274,7 +275,7 @@ namespace Engine.ViewModels
             RaiseMessage("");
             RaiseMessage($"You defeated {CurrentMonster.Name}!");
             RaiseMessage($"You receive {CurrentMonster.RewardExperiencePoints} experience points.");
-            CurrentPlayer.ExperiencePoints += CurrentMonster.RewardExperiencePoints;
+            CurrentPlayer.AddExperience(CurrentMonster.RewardExperiencePoints);
             RaiseMessage($"You receive {CurrentMonster.Gold} gold.");
             CurrentPlayer.ReceiveGold(CurrentMonster.Gold);
             foreach (GameItem gameItem in CurrentMonster.Inventory)
@@ -282,6 +283,11 @@ namespace Engine.ViewModels
                 RaiseMessage($"You receive one {gameItem.Name} ({gameItem.Rarity})");
                 CurrentPlayer.AddItemToInventory(gameItem);
             }
+        }
+
+        private void OnCurrentPlayerLeveledUp(object sender, System.EventArgs eventArgs)
+        {
+            RaiseMessage($"You are now level {CurrentPlayer.Level}!");
         }
         private void RaiseMessage(string message)
         {
