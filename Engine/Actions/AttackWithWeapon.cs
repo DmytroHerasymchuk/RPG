@@ -7,7 +7,7 @@ using Engine.Models;
 
 namespace Engine.Actions
 {
-    public class AttackWithWeapon
+    public class AttackWithWeapon : IAction
     {
         private readonly int _minDamage;
         private readonly int _maxDamage;

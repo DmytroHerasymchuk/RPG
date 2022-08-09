@@ -20,10 +20,10 @@ namespace Engine.Models
         public int Price { get; }
         public string Rarity { get; }
         public bool IsUnique { get; }
-        public AttackWithWeapon Action { get; set; }
+        public IAction Action { get; set; }
 
         public GameItem(ItemCategory category, int itemTypeId, string name, int price, string rarity,
-            bool isUnique = false, AttackWithWeapon action = null)
+            bool isUnique = false, IAction action = null)
         {
             Category = category;
             ItemTypeId = itemTypeId;
