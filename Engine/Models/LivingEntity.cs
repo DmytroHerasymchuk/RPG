@@ -14,9 +14,11 @@ namespace Engine.Models
         private int _currentHitPoints;
         private int _gold;
         private int _level;
+        private GameItem _currentWeapon;
 
         public bool IsDead => CurrentHitPoints <= 0;
         public event EventHandler OnKilled;
+        public event EventHandler<string> OnActionPerformed;
         public ObservableCollection<GameItem> Inventory { get; }
         public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; }
         public List<GameItem> Weapons => Inventory.Where(i => i.Category == GameItem.ItemCategory.Weapon).ToList();
@@ -85,6 +87,28 @@ namespace Engine.Models
             }
         }
 
+        public GameItem CurrentWeapon
+        {
+            get
+            {
+                return _currentWeapon;
+            }
+            set
+            {
+                if (_currentWeapon != null)
+                {
+                    _currentWeapon.Action.OnActionPerformed -= RaiseActionPerformedEvent;
+                }
+
+                _currentWeapon = value;
+                if (_currentWeapon != null)
+                {
+                    _currentWeapon.Action.OnActionPerformed += RaiseActionPerformedEvent;
+                }
+                OnPropertyChanged();
+            }
+        }
+
         protected LivingEntity(string name, int maxHitPoint, int currentHitPoints, int gold, int level = 1)
         {
             Name = name;
@@ -96,6 +120,10 @@ namespace Engine.Models
             GroupedInventory = new ObservableCollection<GroupedInventoryItem>();
         }
 
+        public void UseCurrentWeaponOn(LivingEntity target)
+        {
+            CurrentWeapon.PerformAction(this, target);
+        }
         public void TakeDamage(int hitPointsOfDamage)
         {
             CurrentHitPoints -= hitPointsOfDamage;
@@ -174,6 +202,11 @@ namespace Engine.Models
         private void RaiseOnKilledEvent()
         {
             OnKilled?.Invoke(this, new System.EventArgs());
+        }
+
+        private void RaiseActionPerformedEvent(object sender, string result)
+        {
+            OnActionPerformed?.Invoke(this, result);
         }
     }
 }
