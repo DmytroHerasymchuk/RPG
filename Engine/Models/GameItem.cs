@@ -8,12 +8,12 @@ namespace Engine.Models
 {
     public class GameItem
     {
-        public int ItemTypeId { get; set; }
-        public string Name { get; set; }
-        public int Price { get; set; }
-        public string Rarity { get; set; }
+        public int ItemTypeId { get; }
+        public string Name { get; }
+        public int Price { get; }
+        public string Rarity { get; }
 
-        public bool IsUnique { get; set; }
+        public bool IsUnique { get; }
 
         public GameItem(int itemTypeId, string name, int price, string rarity, bool isUnique = false)
         {

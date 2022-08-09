@@ -17,8 +17,8 @@ namespace Engine.Models
 
         public bool IsDead => CurrentHitPoints <= 0;
         public event EventHandler OnKilled;
-        public ObservableCollection<GameItem> Inventory { get; set; }
-        public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; set; }
+        public ObservableCollection<GameItem> Inventory { get; }
+        public ObservableCollection<GroupedInventoryItem> GroupedInventory { get; }
         public List<GameItem> Weapons => Inventory.Where(i => i is Weapon).ToList();
         public string Name
         {
@@ -29,7 +29,7 @@ namespace Engine.Models
             private set
             {
                 _name = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged();
             }
         }
 
@@ -42,7 +42,7 @@ namespace Engine.Models
             protected set
             {
                 _maxHitPoints = value;
-                OnPropertyChanged(nameof(MaxHitPoints));
+                OnPropertyChanged();
             }
         }
 
@@ -55,7 +55,7 @@ namespace Engine.Models
             private set
             {
                 _currentHitPoints = value;
-                OnPropertyChanged(nameof(CurrentHitPoints));
+                OnPropertyChanged();
             }
         }
 
@@ -68,7 +68,7 @@ namespace Engine.Models
             private set
             {
                 _gold = value;
-                OnPropertyChanged(nameof(Gold));
+                OnPropertyChanged();
             }
         }
 
@@ -81,7 +81,7 @@ namespace Engine.Models
             set
             {
                 _level = value;
-                OnPropertyChanged(nameof(Level));
+                OnPropertyChanged();
             }
         }
 

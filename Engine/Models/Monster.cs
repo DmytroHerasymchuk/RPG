@@ -9,11 +9,11 @@ namespace Engine.Models
 {
     public class Monster : LivingEntity
     {
-        public string ImageName { get; set; }
+        public string ImageName { get; }
 
-        public int MaxDamage { get; set; }
-        public int MinDamage { get; set; }
-        public int RewardExperiencePoints { get; private set; }
+        public int MaxDamage { get; }
+        public int MinDamage { get; }
+        public int RewardExperiencePoints { get; }
 
         public Monster( string name, string imageName, int maxHitPoints, int currentHitPoints, int maxDamage, int minDamage, int rewardExperiencePoints, int gold) :
              base(name, maxHitPoints, currentHitPoints, gold)

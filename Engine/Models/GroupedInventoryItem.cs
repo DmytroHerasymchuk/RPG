@@ -19,7 +19,7 @@ namespace Engine.Models
             set 
             {
                 _item = value;
-                OnPropertyChanged(nameof(Item));
+                OnPropertyChanged();
             }
         }
         public int Quantity
@@ -31,7 +31,7 @@ namespace Engine.Models
             set
             {
                 _quantity = value;
-                OnPropertyChanged(nameof(Quantity));
+                OnPropertyChanged();
             }
         }
 

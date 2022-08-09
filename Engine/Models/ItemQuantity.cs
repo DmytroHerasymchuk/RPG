@@ -8,8 +8,8 @@ namespace Engine.Models
 {
     public class ItemQuantity
     {
-        public int ItemId { get; set; }
-        public int Quantity { get; set; }
+        public int ItemId { get; }
+        public int Quantity { get; }
 
         public ItemQuantity(int itemId, int quantity)
         {
