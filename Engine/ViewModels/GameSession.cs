@@ -117,7 +117,7 @@ namespace Engine.ViewModels
        
         public GameSession()
         {
-            CurrentPlayer = new Player("Katya", "Fairy", 20, 20, 0, 100);
+            CurrentPlayer = new Player("Katya", "Fairy", 10, 10, 0, 100);
             CurrentWorld = WorldFactory.CreateWorld();
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
             
@@ -265,7 +265,7 @@ namespace Engine.ViewModels
         private void OnCurrentPlayerKilled(object sender, System.EventArgs eventArgs)
         {
             RaiseMessage("");
-            RaiseMessage($"The {CurrentMonster.Name} killed you.");
+            RaiseMessage($"You was killed");
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
             CurrentPlayer.FullHeal();
         }

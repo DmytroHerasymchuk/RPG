@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "RPG\RPG.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEngine", "TestEngine\TestEngine.csproj", "{AFC02F47-E477-4297-BEDD-9DBC933BE9FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E22E8E88-2C00-42FE-8903-71B5E4FD4C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC02F47-E477-4297-BEDD-9DBC933BE9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC02F47-E477-4297-BEDD-9DBC933BE9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC02F47-E477-4297-BEDD-9DBC933BE9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC02F47-E477-4297-BEDD-9DBC933BE9FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
