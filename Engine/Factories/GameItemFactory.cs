@@ -26,9 +26,6 @@ namespace Engine.Factories
             BuildWeapon(10009, "Crossbow", 20, "Common", 0, 11);
             BuildWeapon(10010, "Staff", 10, "Common", 2, 4);
 
-            // Monsters weapons
-            BuildWeapon(30001, "Troll Club", 0, "Common", 7, 9);
-
             // Different items
             BuildMiscellaneous(20001, "Troll Tooth", 2, "Common");
             BuildMiscellaneous(20002, "Stick", 1, "Common"); // палка
@@ -47,8 +44,16 @@ namespace Engine.Factories
             BuildMiscellaneous(20014, "Butterfly wing", 1, "Common"); // крыло бабочки
             BuildMiscellaneous(20015, "Hop", 1, "Common"); // хмель
 
-
             BuildMiscellaneous(21001, "Glowing Mushroom", 2, "Uncommon");
+
+            // Monsters weapons
+            BuildWeapon(30001, "Troll Club", 0, "Common", 7, 9);
+
+            //Consumables
+            BuildHealingItem(40001, "Small heal potion", 10, "Common", 10);
+            BuildHealingItem(40002, "Heal potion", 20, "Uncommon", 30);
+            BuildHealingItem(40003, "Big heal potion", 50, "Rare", 70);
+            BuildHealingItem(40004, "Great heal potion", 100, "Epic", 150);
         }
 
         public static GameItem CreateGameItem(int itemTypeId)
@@ -64,6 +69,13 @@ namespace Engine.Factories
             GameItem weapon = new GameItem(GameItem.ItemCategory.Weapon, id, name, price, rarity, true);
             weapon.Action = new AttackWithWeapon(weapon, minDamage, maxDamage);
             _standartGameItem.Add(weapon);
+        }
+
+        private static void BuildHealingItem(int id, string name, int price, string rarity, int pointsToHeal)
+        {
+            GameItem item = new GameItem(GameItem.ItemCategory.Consumable, id, name, price, rarity);
+            item.Action = new Heal(item, pointsToHeal);
+            _standartGameItem.Add(item);
         }
     }
 }

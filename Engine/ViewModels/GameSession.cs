@@ -177,7 +177,7 @@ namespace Engine.ViewModels
                         {
                             for(int i = 0; i < itemQuantity.Quantity; ++i)
                             {
-                                CurrentPlayer.RemoveItemToInventory(CurrentPlayer.Inventory.First(item => item.ItemTypeId == itemQuantity.ItemId));
+                                CurrentPlayer.RemoveItemFromInventory(CurrentPlayer.Inventory.First(item => item.ItemTypeId == itemQuantity.ItemId));
                             }
                         }
                         RaiseMessage("");
@@ -245,6 +245,11 @@ namespace Engine.ViewModels
             {
                 CurrentMonster.UseCurrentWeaponOn(CurrentPlayer);
             }
+        }
+
+        public void UseCurrentConsumable()
+        {
+            CurrentPlayer.UseCurrentConsumable();
         }
         private void OnCurrentPlayerPerformedAction(object sender, string result)
         {

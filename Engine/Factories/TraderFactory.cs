@@ -14,6 +14,9 @@ namespace Engine.Factories
         {
             Trader mark = new Trader("Mark");
             mark.AddItemToInventory(GameItemFactory.CreateGameItem(10004));
+            mark.AddItemToInventory(GameItemFactory.CreateGameItem(40001));
+            mark.AddItemToInventory(GameItemFactory.CreateGameItem(40002));
+            mark.AddItemToInventory(GameItemFactory.CreateGameItem(40003));
             //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20003));
             //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20004));
             //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20005));

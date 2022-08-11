@@ -148,23 +148,39 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0"
-                  VerticalAlignment="Top" Margin="5"
-                  Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}">
+            <Grid Grid.Column="0" Grid.Row="0"
+                  VerticalAlignment="Top" Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Column="0" Grid.Row="1" 
+                          Margin="5"
+                          Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                           ItemsSource="{Binding CurrentPlayer.Weapons}"
                           SelectedItem="{Binding CurrentPlayer.CurrentWeapon}"
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="Id"/>
-                <Button Grid.Column="2"
+                          DisplayMemberPath="Name"/>
+                <Button Grid.Row="1" Grid.Column="2"
+                        Margin="5"
+                        Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                         Content="Attack"
                         Click="OnCLickAttackMonster"/>
+                <ComboBox Grid.Column="0" Grid.Row="0" 
+                          Margin="5"
+                          Visibility="{Binding CurrentPlayer.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
+                          ItemsSource="{Binding CurrentPlayer.Consumables}"
+                          SelectedItem="{Binding CurrentPlayer.CurrentConsumable}"
+                          DisplayMemberPath="Name"/>
+                <Button Grid.Row="0" Grid.Column="2"
+                        Margin="5"
+                        Visibility="{Binding CurrentPlayer.HasConsumable, Converter={StaticResource BooleanToVisibility}}"
+                        Content="Use"
+                        Click="OnCLickUseCurrentConsumable"/>
             </Grid>
             
             <Grid Grid.Column="1">

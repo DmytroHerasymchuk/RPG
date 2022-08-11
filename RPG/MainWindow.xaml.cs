@@ -62,6 +62,11 @@ namespace RPG
             _gameSession.AttackCurrentMonster();
         }
 
+        private void OnCLickUseCurrentConsumable(object sender, RoutedEventArgs e)
+        {
+            _gameSession.UseCurrentConsumable();
+        }
+
         private void OnClickDisplayTradeScreen(object sender, RoutedEventArgs e)
         {
             TradeScreen tradeScreen = new TradeScreen();

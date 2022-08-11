@@ -34,7 +34,7 @@ namespace RPG
             {
                 Session.CurrentPlayer.ReceiveGold(groupedInventoryItem.Item.Price);
                 Session.CurrentTrader.AddItemToInventory(groupedInventoryItem.Item);
-                Session.CurrentPlayer.RemoveItemToInventory(groupedInventoryItem.Item);
+                Session.CurrentPlayer.RemoveItemFromInventory(groupedInventoryItem.Item);
             }
         }
 
@@ -44,7 +44,7 @@ namespace RPG
             if (groupedInventoryItem != null)
             {
                 Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
-                Session.CurrentTrader.RemoveItemToInventory(groupedInventoryItem.Item);
+                Session.CurrentTrader.RemoveItemFromInventory(groupedInventoryItem.Item);
                 Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
             }
             else
