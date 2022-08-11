@@ -14,7 +14,8 @@ namespace Engine.Factories
             switch (monsterId)
             {
                 case 1:
-                    Monster troll = new Monster("Troll", "troll.png", 20, 15, 7, 5, 50, 5);
+                    Monster troll = new Monster("Troll", "troll.png", 20, 20, 50, 5);
+                    troll.CurrentWeapon = GameItemFactory.CreateGameItem(30001);
                     AddLootItem(troll, 20001, 85);
                     AddLootItem(troll, 10004, 10);
                     return troll;

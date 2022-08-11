@@ -14,6 +14,17 @@ namespace Engine.Factories
         {
             Trader mark = new Trader("Mark");
             mark.AddItemToInventory(GameItemFactory.CreateGameItem(10004));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20003));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20004));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20005));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20006));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20007));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20008));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20009));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20010));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20011));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20012));
+            //mark.AddItemToInventory(GameItemFactory.CreateGameItem(20013));
             AddTraderToList(mark);
         }
 
