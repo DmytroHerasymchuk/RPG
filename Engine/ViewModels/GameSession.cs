@@ -123,8 +123,6 @@ namespace Engine.ViewModels
         public GameSession()
         {
             CurrentPlayer = new Player("Katya", "Fairy", 10, 10, 0, 100);
-            CurrentWorld = WorldFactory.CreateWorld();
-            CurrentLocation = CurrentWorld.LocationAt(0, 0);
             
             CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10001));
             CurrentPlayer.LearnRecipe(RecipeFactory.RecipeById(1));
@@ -132,6 +130,8 @@ namespace Engine.ViewModels
             {
                 CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10003));
             }
+            CurrentWorld = WorldFactory.CreateWorld();
+            CurrentLocation = CurrentWorld.LocationAt(0, 0);
 
         }
 

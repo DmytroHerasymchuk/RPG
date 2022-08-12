@@ -187,7 +187,7 @@ namespace Engine.Models
         {
             if (amountOfGold > Gold)
             {
-                throw new ArgumentOutOfRangeException($"You have only {Gold} gold, and cannot spend {amountOfGold} gold");
+                throw new ArgumentOutOfRangeException($"You have only {Gold} gold, and cannot spend {amountOfGold} gold");             
             }
             Gold -= amountOfGold;
         }

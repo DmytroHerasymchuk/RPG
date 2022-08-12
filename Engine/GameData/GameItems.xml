@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-16" ?> 
+<GameItems>
+  <Weapons>
+    <!--Player weapons-->
+    <Weapon ID="10001" Name="Broken sword" Price="1" Rarity="Common" MinDamage="1" MaxDamage="3"/>
+    <Weapon ID="10002" Name="Short sword" Price="15" Rarity="Common" MinDamage="3" MaxDamage="5"/>
+    <Weapon ID="10003" Name="Long sword" Price="17" Rarity="Common" MinDamage="4" MaxDamage="7"/>
+    <Weapon ID="10004" Name="Greatsword" Price="23" Rarity="Common" MinDamage="8" MaxDamage="10"/>
+    <Weapon ID="10005" Name="Dagger" Price="15" Rarity="Common" MinDamage="2" MaxDamage="6"/>
+    <Weapon ID="10006" Name="Spear" Price="13" Rarity="Common" MinDamage="3" MaxDamage="6"/>
+    <Weapon ID="10007" Name="Cudgel" Price="10" Rarity="Common" MinDamage="2" MaxDamage="5"/>
+    <Weapon ID="10008" Name="Bow" Price="10" Rarity="Common" MinDamage="0" MaxDamage="7"/>
+    <Weapon ID="10009" Name="Crossbow" Price="20" Rarity="Common" MinDamage="0" MaxDamage="11"/>
+    <Weapon ID="10010" Name="Staff" Price="10" Rarity="Common" MinDamage="2" MaxDamage="4"/>
+    <!--Enemy weapons-->
+    <Weapon ID="30001" Name="Troll Club" Price="0" Rarity="Common" MinDamage="7" MaxDamage="9"/>
+  </Weapons>
+  <HealingItems>
+    <HealingItem ID="40001" Name="Small heal potion" Price="10" Rarity="Common" HitPointsToHeal="10"/>
+    <HealingItem ID="40002" Name="Heal potion" Price="20" Rarity="Uncommon" HitPointsToHeal="30"/>
+    <HealingItem ID="40003" Name="Big heal potion" Price="50" Rarity="Rare" HitPointsToHeal="70"/>
+    <HealingItem ID="40004" Name="Great heal potion" Price="100" Rarity="Epic" HitPointsToHeal="150"/>
+  </HealingItems>
+  <Miscellaneous>
+    <MiscellaneousItem ID="20001" Name="Troll tooth" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20002" Name="Stick" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20003" Name="Thistle" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20004" Name="Sagebrush" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20005" Name="Fly agaric" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20006" Name="Dandelion" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20007" Name="Сhamomile" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20008" Name="Thyme" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20009" Name="Juniper" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20010" Name="Rose hip" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20011" Name="Ginseng" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20012" Name="Nettle" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20013" Name="Firefly" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20014" Name="Worm" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20015" Name="Butterfly" Price="2" Rarity="Common"/>
+    <MiscellaneousItem ID="20016" Name="Hop" Price="2" Rarity="Common"/>
+  </Miscellaneous>
+</GameItems>

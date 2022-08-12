@@ -82,5 +82,10 @@
   <ItemGroup>
     <Resource Include="Images\Monsters\troll.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="GameData\GameItems.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
