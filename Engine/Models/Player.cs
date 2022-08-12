@@ -50,18 +50,7 @@ namespace Engine.Models
             this.Quests = new ObservableCollection<QuestStatus>();
             this.Recipes = new ObservableCollection<Recipe>();
         }
-        public bool HasAllTheseItems(List<ItemQuantity> items)
-        {
-            foreach(ItemQuantity item in items)
-            {
-                if (Inventory.Count(i => i.ItemTypeId == item.ItemId) < item.Quantity)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        
         public void AddExperience(int expPoints)
         {
             ExperiencePoints += expPoints;

@@ -173,13 +173,7 @@ namespace Engine.ViewModels
                 {
                     if (CurrentPlayer.HasAllTheseItems(quest.ItemsToComplete))
                     {
-                        foreach(ItemQuantity itemQuantity in quest.ItemsToComplete)
-                        {
-                            for(int i = 0; i < itemQuantity.Quantity; ++i)
-                            {
-                                CurrentPlayer.RemoveItemFromInventory(CurrentPlayer.Inventory.First(item => item.ItemTypeId == itemQuantity.ItemId));
-                            }
-                        }
+                        CurrentPlayer.RemoveItemsFromInventory(quest.ItemsToComplete);
                         RaiseMessage("");
                         RaiseMessage($"You completed the '{quest.Name}' quest!");
                         RaiseMessage($"You receive {quest.RewardExperiencePoints} experience points.");
@@ -228,7 +222,30 @@ namespace Engine.ViewModels
             CurrentMonster = CurrentLocation.GetMonster();
         }
 
-
+        public void CraftItem(Recipe recipe)
+        {
+            if (CurrentPlayer.HasAllTheseItems(recipe.Ingredients))
+            {
+                CurrentPlayer.RemoveItemsFromInventory(recipe.Ingredients);
+                foreach(ItemQuantity itemQuantity in recipe.OutputItems)
+                {
+                    for(int i = 0; i < itemQuantity.Quantity; ++i)
+                    {
+                        GameItem outputItem = GameItemFactory.CreateGameItem(itemQuantity.ItemId);
+                        CurrentPlayer.AddItemToInventory(outputItem);
+                        RaiseMessage($"You craft 1 {outputItem.Name}");
+                    }
+                }
+            }
+            else
+            {
+                RaiseMessage("You do not have the requaired ingredients:");
+                foreach(ItemQuantity itemQuantity in recipe.Ingredients)
+                {
+                    RaiseMessage($"     {itemQuantity.Quantity} {GameItemFactory.GetItemName(itemQuantity.ItemId)}");
+                }
+            }
+        }
         public void AttackCurrentMonster()
         {
             if (CurrentPlayer.CurrentWeapon == null)

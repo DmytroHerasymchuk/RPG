@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Engine.ViewModels;
 using Engine.EventArgs;
+using Engine.Models;
 
 namespace RPG
 {
@@ -67,6 +68,12 @@ namespace RPG
             _gameSession.UseCurrentConsumable();
         }
 
+        private void OnCLickCraft(object sender, RoutedEventArgs e)
+        {
+            Recipe recipe = ((FrameworkElement)sender).DataContext as Recipe;
+            _gameSession.CraftItem(recipe);
+
+        }
         private void OnClickDisplayTradeScreen(object sender, RoutedEventArgs e)
         {
             TradeScreen tradeScreen = new TradeScreen();
