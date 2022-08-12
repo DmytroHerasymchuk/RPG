@@ -24,9 +24,11 @@ namespace RPG
     public partial class MainWindow : Window
     {
         private readonly GameSession _gameSession;
+        private readonly Dictionary<Key, Action> _userInputActions = new Dictionary<Key, Action>();
         public MainWindow()
         {
             InitializeComponent();
+            InitializeUserInputActions();
             _gameSession = new GameSession();
             _gameSession.OnMessageRaised += OnGameMessageRaised;
             DataContext = _gameSession;
@@ -76,10 +78,49 @@ namespace RPG
         }
         private void OnClickDisplayTradeScreen(object sender, RoutedEventArgs e)
         {
-            TradeScreen tradeScreen = new TradeScreen();
-            tradeScreen.Owner = this;
-            tradeScreen.DataContext = _gameSession;
-            tradeScreen.ShowDialog();
+            if (_gameSession.CurrentTrader != null)
+            {
+                TradeScreen tradeScreen = new TradeScreen();
+                tradeScreen.Owner = this;
+                tradeScreen.DataContext = _gameSession;
+                tradeScreen.ShowDialog();
+            }
+        }
+
+        private void InitializeUserInputActions()
+        {
+            _userInputActions.Add(Key.W, () => _gameSession.GoToNorth());
+            _userInputActions.Add(Key.A, () => _gameSession.GoToWest());
+            _userInputActions.Add(Key.S, () => _gameSession.GoToSouth());
+            _userInputActions.Add(Key.D, () => _gameSession.GoToEast());
+            _userInputActions.Add(Key.Z, () => _gameSession.AttackCurrentMonster());
+            _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
+            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
+            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
+            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
+            _userInputActions.Add(Key.T, () => OnClickDisplayTradeScreen(this, new RoutedEventArgs()));
+
+        }
+        private void MainWindowOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (_userInputActions.ContainsKey(e.Key)){
+                _userInputActions[e.Key].Invoke();
+            }
+        }
+
+        private void SetTabFocusTo(string tabName)
+        {
+            foreach(object item in PlayerDataTabControl.Items)
+            {
+                if(item is TabItem tabItem)
+                {
+                    if(tabItem.Name == tabName)
+                    {
+                        tabItem.IsSelected = true;
+                        return;
+                    }
+                }
+            }
         }
     }
 }
