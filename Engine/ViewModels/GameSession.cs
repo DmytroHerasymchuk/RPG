@@ -127,7 +127,7 @@ namespace Engine.ViewModels
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
             
             CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10001));
-
+            CurrentPlayer.LearnRecipe(RecipeFactory.RecipeById(1));
             if (!CurrentPlayer.Weapons.Any())
             {
                 CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10003));

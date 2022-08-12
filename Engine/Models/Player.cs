@@ -41,12 +41,14 @@ namespace Engine.Models
         }
         
         public ObservableCollection<QuestStatus> Quests { get; }
+        public ObservableCollection<Recipe> Recipes { get; }
         public Player(string name, string characterClass, int maxHitPoints, int currentHitPoints, int experiencePoints, int gold) : 
             base(name, maxHitPoints, currentHitPoints, gold)
         {           
             this.CharacterClass = characterClass;            
             this.ExperiencePoints = experiencePoints;
-            this.Quests = new ObservableCollection<QuestStatus>();          
+            this.Quests = new ObservableCollection<QuestStatus>();
+            this.Recipes = new ObservableCollection<Recipe>();
         }
         public bool HasAllTheseItems(List<ItemQuantity> items)
         {
@@ -63,6 +65,14 @@ namespace Engine.Models
         public void AddExperience(int expPoints)
         {
             ExperiencePoints += expPoints;
+        }
+
+        public void LearnRecipe(Recipe recipe)
+        {
+            if (!Recipes.Any(r => r.Id == recipe.Id))
+            {
+                Recipes.Add(recipe);
+            }
         }
 
         private void SetLevelAndMaxHitPoints()
