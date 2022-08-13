@@ -19,7 +19,7 @@ namespace Engine.Factories
             itemsToComplete.Add(new ItemQuantity(20001, 3));
             rewardItems.Add(new ItemQuantity(10002, 1));
             // Create the quest
-            _quests.Add(new Quest(1, "Creepy Trolls", "Kill trolls in a cave", itemsToComplete, 50, 20, rewardItems));
+            _quests.Add(new Quest(1, "Creepy Trolls", "Kill trolls in a mine", itemsToComplete, 50, 20, rewardItems));
         }
 
         internal static Quest GetQuestById(int id)

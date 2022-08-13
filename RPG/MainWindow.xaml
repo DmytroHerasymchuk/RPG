@@ -80,7 +80,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Name}"/>
-                    <Image Grid.Row="1" Source ="{Binding CurrentLocation.ImageName}" />
+                    <Image Grid.Row="1" Source ="{Binding CurrentLocation.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
                     <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}"/>
                 </Grid>
             </Border>

@@ -43,13 +43,16 @@ namespace RPG
             GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
             if (groupedInventoryItem != null)
             {
-                Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
-                Session.CurrentTrader.RemoveItemFromInventory(groupedInventoryItem.Item);
-                Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
-            }
-            else
-            {
-                MessageBox.Show("You don't have enough gold");
+                if (Session.CurrentPlayer.Gold < groupedInventoryItem.Item.Price)
+                {
+                    MessageBox.Show("You don't have enough gold");
+                }
+                else
+                {
+                    Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
+                    Session.CurrentTrader.RemoveItemFromInventory(groupedInventoryItem.Item);
+                    Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
+                }   
             }
         }
 

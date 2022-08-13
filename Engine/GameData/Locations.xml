@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Locations RootImagePath="/Images/Locations/">
+  <Location X="0" Y="0" Name="Tavern" ImageName="Tavern.jpg">
+    <Description><![CDATA[Very lively place in a small town]]></Description>
+  </Location>
+  <Location X="0" Y="1" Name="Lane" ImageName="Town.jpg">
+    <Description><![CDATA[Small Street]]></Description>
+  </Location>
+  <Location X="0" Y="2" Name="Market" ImageName="Market.jpg">
+    <Description><![CDATA[Market of all sorts of things]]></Description>
+    <Trader Name="Mark"/>
+  </Location>
+  <Location X="-1" Y="2" Name="Armory store" ImageName="Armory.jpg">
+    <Description><![CDATA[Small armory shop]]></Description>
+  </Location>
+  <Location X="1" Y="2" Name="Storehouse" ImageName="Storehouse.jpg">
+    <Description><![CDATA[Large place with rats]]></Description>
+    <!--<Monsters>
+      <Monster ID="1" Percent="50"/>
+    </Monsters>-->
+  </Location>
+  <Location X="0" Y="3" Name="Scaffold" ImageName="Execution.jpg">
+    <Description><![CDATA[Place for last wish for all sorts of villains]]></Description>  
+  </Location>
+  <Location X="0" Y="4" Name="Town Square" ImageName="TownSquare.jpg">
+    <Description><![CDATA[A center of a town]]></Description>
+  </Location>
+  <Location X="0" Y="5" Name="Lane" ImageName="Town1.jpg">
+    <Description><![CDATA[Small Street]]></Description>
+  </Location>
+  <Location X="-1" Y="5" Name="Path to castle of a king" ImageName="ToTheCastle.jpg">
+    <Description><![CDATA[Nice view of the king's castle]]></Description>
+  </Location>
+  <Location X="-2" Y="5" Name="King's chamber" ImageName="King.jpg">
+    <Description><![CDATA[Kneel before the king]]></Description>
+    <Quests>
+      <Quest ID="1"/>
+    </Quests>
+  </Location>
+  <Location X="-1" Y="6" Name="Mountain path" ImageName="WayToTheMine.jpg">
+    <Description><![CDATA[Sunny highlands]]></Description>
+  </Location>
+  <Location X="-1" Y="7" Name="Gold mine" ImageName="GoldMine.jpg">
+    <Description><![CDATA[Mine full of gold]]></Description>
+    <Monsters>
+      <Monster ID="1" Percent="100"/>
+    </Monsters>
+  </Location>
+</Locations>
