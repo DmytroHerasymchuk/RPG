@@ -11,7 +11,7 @@ using Engine.Shared;
 
 namespace Engine.Factories
 {
-    internal static class WorldFactory
+    public static class WorldFactory
     {
         private const string GAME_DATA_FILENAME = ".\\GameData\\Locations.xml";
         internal static World CreateWorld()
@@ -87,9 +87,8 @@ namespace Engine.Factories
             }
 
             location.TraderHere =
-                    TraderFactory.GetTraderByName(trader.AttributeAsString("Name"));
+                    TraderFactory.GetTraderById(trader.AttributeAsInt("ID"));
                     
-            
         }
     }
 }

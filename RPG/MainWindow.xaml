@@ -92,7 +92,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding CurrentMonster.Name}"/>
-                    <Image Grid.Row="1" Source ="{Binding CurrentMonster.ImageName}" />
+                    <Image Grid.Row="1" Source ="{Binding CurrentMonster.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
                     <StackPanel Grid.Row="2" Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal">

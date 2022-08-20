@@ -64,7 +64,8 @@ namespace Engine.Models
                 }
             }
 
-            return MonsterFactory.GetMonster(MonstersHere.Last().MonsterId);
+            return null;
+            //MonsterFactory.GetMonster(MonstersHere.Last().MonsterId);
         }
     }
 }

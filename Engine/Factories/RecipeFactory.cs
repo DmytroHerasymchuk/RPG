@@ -4,23 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Engine.Models;
+using System.IO;
+using System.Xml;
+using Engine.Shared;
 
 namespace Engine.Factories
 {
     public static class RecipeFactory
     {
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Recipes.xml";
         private static readonly List<Recipe> _recipes = new List<Recipe>();
 
         static RecipeFactory()
         {
-            Recipe healPotion = new Recipe(1, "Small heal potion");
-            healPotion.AddIngredient(20006, 1);
-            healPotion.AddIngredient(20007, 1);
-            healPotion.AddIngredient(20009, 1);
-            healPotion.AddOutputItem(40001, 1);
-            _recipes.Add(healPotion);
+            if (File.Exists(GAME_DATA_FILENAME))
+            {
+                XmlDocument data = new XmlDocument();
+                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
+                LoadRecipesFromNodes(data.SelectNodes("/Recipes/Recipe"));
+            }
+            else
+            {
+                throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
+            }
         }
 
+        private static void LoadRecipesFromNodes(XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                Recipe recipe = new Recipe(node.AttributeAsInt("ID"),
+                                           node.SelectSingleNode("./Name")?.InnerText ?? "");
+                foreach (XmlNode childNode in node.SelectNodes("./Ingredients/Item"))
+                {
+                    recipe.AddIngredient(childNode.AttributeAsInt("ID"),
+                                         childNode.AttributeAsInt("Quantity"));
+                }
+                foreach (XmlNode childNode in node.SelectNodes("./OutputItems/Item"))
+                {
+                    recipe.AddOutputItem(childNode.AttributeAsInt("ID"),
+                                         childNode.AttributeAsInt("Quantity"));
+                }
+                _recipes.Add(recipe);   
+            }
+        }
         public static Recipe RecipeById(int id)
         {
             return _recipes.FirstOrDefault(x => x.Id == id);

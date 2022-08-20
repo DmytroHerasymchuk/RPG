@@ -8,7 +8,7 @@
   </Location>
   <Location X="0" Y="2" Name="Market" ImageName="Market.jpg">
     <Description><![CDATA[Market of all sorts of things]]></Description>
-    <Trader Name="Mark"/>
+    <Trader ID="1"/>
   </Location>
   <Location X="-1" Y="2" Name="Armory store" ImageName="Armory.jpg">
     <Description><![CDATA[Small armory shop]]></Description>
@@ -16,7 +16,7 @@
   <Location X="1" Y="2" Name="Storehouse" ImageName="Storehouse.jpg">
     <Description><![CDATA[Large place with rats]]></Description>
     <!--<Monsters>
-      <Monster ID="1" Percent="50"/>
+      <Monster ID="2" Percent="50"/>
     </Monsters>-->
   </Location>
   <Location X="0" Y="3" Name="Scaffold" ImageName="Execution.jpg">
@@ -43,7 +43,8 @@
   <Location X="-1" Y="7" Name="Gold mine" ImageName="GoldMine.jpg">
     <Description><![CDATA[Mine full of gold]]></Description>
     <Monsters>
-      <Monster ID="1" Percent="100"/>
+      <Monster ID="2" Percent="90"/>
+      <Monster ID="1" Percent="10"/>
     </Monsters>
   </Location>
 </Locations>
