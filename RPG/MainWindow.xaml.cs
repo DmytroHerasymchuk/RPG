@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 using Engine.ViewModels;
 using Engine.EventArgs;
 using Engine.Models;
+using Engine.Services;
 
 namespace RPG
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
         private readonly GameSession _gameSession;
         private readonly Dictionary<Key, Action> _userInputActions = new Dictionary<Key, Action>();
         public MainWindow()
@@ -30,9 +29,9 @@ namespace RPG
             InitializeComponent();
             InitializeUserInputActions();
             _gameSession = new GameSession();
-            _gameSession.OnMessageRaised += OnGameMessageRaised;
+            _messageBroker.OnMessageRaised += OnGameMessageRaised;
             DataContext = _gameSession;
-        }
+        }   
 
         private void OnClickGoNorth(object sender, RoutedEventArgs e)
         {
