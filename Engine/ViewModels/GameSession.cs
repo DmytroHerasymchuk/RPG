@@ -126,7 +126,7 @@ namespace Engine.ViewModels
             
             CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10001));
             CurrentPlayer.LearnRecipe(RecipeFactory.RecipeById(1));
-            if (!CurrentPlayer.Weapons.Any())
+            if (!CurrentPlayer.Inventory.Weapons.Any())
             {
                 CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10003));
             }
@@ -171,7 +171,7 @@ namespace Engine.ViewModels
                     CurrentPlayer.Quests.FirstOrDefault(q => q.PlayerQuest.Id == quest.Id && !q.IsCompleted);
                 if(questToComplete != null)
                 {
-                    if (CurrentPlayer.HasAllTheseItems(quest.ItemsToComplete))
+                    if (CurrentPlayer.Inventory.HasAllTheseItems(quest.ItemsToComplete))
                     {
                         CurrentPlayer.RemoveItemsFromInventory(quest.ItemsToComplete);
                         RaiseMessage("");
@@ -224,7 +224,7 @@ namespace Engine.ViewModels
 
         public void CraftItem(Recipe recipe)
         {
-            if (CurrentPlayer.HasAllTheseItems(recipe.Ingredients))
+            if (CurrentPlayer.Inventory.HasAllTheseItems(recipe.Ingredients))
             {
                 CurrentPlayer.RemoveItemsFromInventory(recipe.Ingredients);
                 foreach(ItemQuantity itemQuantity in recipe.OutputItems)
@@ -300,7 +300,7 @@ namespace Engine.ViewModels
             CurrentPlayer.AddExperience(CurrentMonster.RewardExperiencePoints);
             RaiseMessage($"You receive {CurrentMonster.Gold} gold.");
             CurrentPlayer.ReceiveGold(CurrentMonster.Gold);
-            foreach (GameItem gameItem in CurrentMonster.Inventory)
+            foreach (GameItem gameItem in CurrentMonster.Inventory.Items)
             {
                 RaiseMessage($"You receive one {gameItem.Name} ({gameItem.Rarity})");
                 CurrentPlayer.AddItemToInventory(gameItem);
