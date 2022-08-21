@@ -15,10 +15,8 @@ namespace Engine.Models
         public event EventHandler OnLeveledUp;
         public string CharacterClass
         {
-            get
-            {
-                return _characterClass;
-            }
+            get => _characterClass;
+
             set
             {
                 _characterClass = value;
@@ -28,10 +26,8 @@ namespace Engine.Models
 
         public int ExperiencePoints
         {
-            get
-            {
-                return _experiencePoints;
-            }
+            get => _experiencePoints;
+
             private set
             {
                 _experiencePoints = value;
@@ -42,8 +38,8 @@ namespace Engine.Models
         
         public ObservableCollection<QuestStatus> Quests { get; }
         public ObservableCollection<Recipe> Recipes { get; }
-        public Player(string name, string characterClass, int maxHitPoints, int currentHitPoints, int experiencePoints, int gold) : 
-            base(name, maxHitPoints, currentHitPoints, gold)
+        public Player(string name, string characterClass, int maxHitPoints, int currentHitPoints, int dexterity, int experiencePoints, int gold) : 
+            base(name, maxHitPoints, currentHitPoints, dexterity, gold)
         {           
             this.CharacterClass = characterClass;            
             this.ExperiencePoints = experiencePoints;

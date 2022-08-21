@@ -44,9 +44,10 @@ namespace Engine.Factories
                     node.AttributeAsString("Name"),
                     $".{rootImagePath}{node.AttributeAsString("ImageName")}",
                     node.AttributeAsInt("MaxHitPoints"),
+                    Convert.ToInt32(node.SelectSingleNode("./Dexterity").InnerText),
                     GameItemFactory.CreateGameItem(node.AttributeAsInt("WeaponId")),
                     node.AttributeAsInt("RewardXP"),
-                    node.AttributeAsInt("Gold"));
+                    node.AttributeAsInt("Gold")); ;
                 XmlNodeList lootItemNodes = node.SelectNodes("./LootItems/LootItem");
                 if(lootItemNodes != null)
                 {

@@ -9,8 +9,8 @@
     <Weapon ID="10005" Name="Dagger" Price="15" Rarity="Common" MinDamage="2" MaxDamage="6"/>
     <Weapon ID="10006" Name="Spear" Price="13" Rarity="Common" MinDamage="3" MaxDamage="6"/>
     <Weapon ID="10007" Name="Cudgel" Price="10" Rarity="Common" MinDamage="2" MaxDamage="5"/>
-    <Weapon ID="10008" Name="Bow" Price="10" Rarity="Common" MinDamage="0" MaxDamage="7"/>
-    <Weapon ID="10009" Name="Crossbow" Price="20" Rarity="Common" MinDamage="0" MaxDamage="11"/>
+    <Weapon ID="10008" Name="Bow" Price="10" Rarity="Common" MinDamage="1" MaxDamage="7"/>
+    <Weapon ID="10009" Name="Crossbow" Price="20" Rarity="Common" MinDamage="1" MaxDamage="11"/>
     <Weapon ID="10010" Name="Staff" Price="10" Rarity="Common" MinDamage="2" MaxDamage="4"/>
     <!--Enemy weapons-->
     <Weapon ID="30001" Name="Troll club" Price="0" Rarity="Common" MinDamage="7" MaxDamage="9"/>
