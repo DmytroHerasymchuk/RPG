@@ -1,0 +1,45 @@
+﻿{
+  "Name": "My First Game",
+  "Version": "0.1.000",
+  "PlayerAttributes": [
+    {
+      "Key": "STR",
+      "DisplayName": "Strength"
+    },
+    {
+      "Key": "INT",
+      "DisplayName": "Intelligence"
+    },
+    {
+      "Key": "WIS",
+      "DisplayName": "Wisdom"
+    },
+    {
+      "Key": "CON",
+      "DisplayName": "Constitution"
+    },
+    {
+      "Key": "DEX",
+      "DisplayName": "Dexterity"
+    },
+    {
+      "Key": "CHA",
+      "DisplayName": "Charisma"
+    }
+  ],
+  "Classes": [
+    {
+      "Key": "WARRIOR",
+      "DisplayName": "Warrior"
+    },
+    {
+      "Key": "MAGE",
+      "DisplayName": "Mage"
+    },
+    {
+      "Key": "THIEF",
+      "DisplayName": "Thief"
+    }
+  ]
+
+}

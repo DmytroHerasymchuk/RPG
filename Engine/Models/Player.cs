@@ -36,15 +36,13 @@ namespace Engine.Models
             }
         }
         
-        public ObservableCollection<QuestStatus> Quests { get; }
-        public ObservableCollection<Recipe> Recipes { get; }
+        public ObservableCollection<QuestStatus> Quests { get; } = new ObservableCollection<QuestStatus>();
+        public ObservableCollection<Recipe> Recipes { get; } = new ObservableCollection<Recipe>();
         public Player(string name, string characterClass, int maxHitPoints, int currentHitPoints, int dexterity, int experiencePoints, int gold) : 
             base(name, maxHitPoints, currentHitPoints, dexterity, gold)
         {           
             this.CharacterClass = characterClass;            
-            this.ExperiencePoints = experiencePoints;
-            this.Quests = new ObservableCollection<QuestStatus>();
-            this.Recipes = new ObservableCollection<Recipe>();
+            this.ExperiencePoints = experiencePoints; 
         }
         
         public void AddExperience(int expPoints)

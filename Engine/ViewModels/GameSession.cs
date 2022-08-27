@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using Engine.Models;
 using Engine.Factories;
 using Engine.EventArgs;
 using Engine.Actions;
 using Engine.Services;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Engine.ViewModels
 {
@@ -20,9 +22,20 @@ namespace Engine.ViewModels
         private Location _currentLocation;
         private Monster _currentMonster;
         private Trader _currentTrader;
+        private GameDetails _gameDetails;
         public string Version { get; } = "0.1.000";
         [JsonIgnore]
         public World CurrentWorld { get; }
+        [JsonIgnore]
+        public GameDetails GameDetails
+        {
+            get => _gameDetails;
+            set
+            {
+                _gameDetails = value;
+                OnPropertyChanged();
+            }
+        }
         public Player CurrentPlayer 
         {
             get 
@@ -123,6 +136,7 @@ namespace Engine.ViewModels
        
         public GameSession()
         {
+            PopulateGameDetails();
             CurrentWorld = WorldFactory.CreateWorld();
             int dexterity = RandomNumberGenerator.NumberBetween(1, 20);
             CurrentPlayer = new Player("Katya", "Fairy", 10, 10, dexterity, 0, 100);
@@ -138,6 +152,7 @@ namespace Engine.ViewModels
         }
         public GameSession(Player player, int xCoordinate, int yCoordinate)
         {
+            PopulateGameDetails();
             CurrentWorld = WorldFactory.CreateWorld();
             CurrentPlayer = player;
             CurrentLocation = CurrentWorld.LocationAt(xCoordinate, yCoordinate);
@@ -276,6 +291,11 @@ namespace Engine.ViewModels
         private void OnCurrentPlayerLeveledUp(object sender, System.EventArgs eventArgs)
         {
             _messageBroker.RaiseMessage($"You are now level {CurrentPlayer.Level}!");
+        }
+
+        private void PopulateGameDetails()
+        {
+            GameDetails = GameDetailsService.ReadGameDetails();
         }
 
     }

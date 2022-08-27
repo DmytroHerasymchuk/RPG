@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
         d:DataContext="{d:DesignInstance viewModels:GameSession}"
         mc:Ignorable="d"
-        Title="RPG" Height="800" Width="1200"
+        Title="{Binding GameDetails.Name}" Height="800" Width="1200"
         Style="{StaticResource CustomFont}" FontSize="24"
         WindowState="Maximized" WindowStyle="ThreeDBorderWindow"
         ResizeMode="NoResize"
