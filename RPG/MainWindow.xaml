@@ -11,7 +11,8 @@
         Style="{StaticResource CustomFont}" FontSize="24"
         WindowState="Maximized" WindowStyle="ThreeDBorderWindow"
         ResizeMode="NoResize"
-        KeyDown="MainWindowOnKeyDown">
+        KeyDown="MainWindowOnKeyDown"
+        Closing="MainWindowOnClosing">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>

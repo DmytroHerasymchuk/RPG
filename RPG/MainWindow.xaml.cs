@@ -16,6 +16,7 @@ using Engine.ViewModels;
 using Engine.EventArgs;
 using Engine.Models;
 using Engine.Services;
+using System.ComponentModel;
 
 namespace RPG
 {
@@ -28,7 +29,7 @@ namespace RPG
         {
             InitializeComponent();
             InitializeUserInputActions();
-            _gameSession = new GameSession();
+            _gameSession = SaveGameService.LoadLastSaveOrCreateNew();
             _messageBroker.OnMessageRaised += OnGameMessageRaised;
             DataContext = _gameSession;
         }   
@@ -120,6 +121,11 @@ namespace RPG
                     }
                 }
             }
+        }
+
+        private void MainWindowOnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveGameService.Save(_gameSession);
         }
     }
 }

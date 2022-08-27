@@ -8,6 +8,7 @@ using Engine.Factories;
 using Engine.EventArgs;
 using Engine.Actions;
 using Engine.Services;
+using Newtonsoft.Json;
 
 namespace Engine.ViewModels
 {
@@ -19,6 +20,8 @@ namespace Engine.ViewModels
         private Location _currentLocation;
         private Monster _currentMonster;
         private Trader _currentTrader;
+        public string Version { get; } = "0.1.000";
+        [JsonIgnore]
         public World CurrentWorld { get; }
         public Player CurrentPlayer 
         {
@@ -61,10 +64,11 @@ namespace Engine.ViewModels
                 
             }
         }
-
+        [JsonIgnore]
         public bool HasMonster => CurrentMonster!= null;
-
+        [JsonIgnore]
         public bool HasTrader => CurrentTrader!= null;
+        [JsonIgnore]
         public Monster CurrentMonster
         {
             get
@@ -88,7 +92,7 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(HasMonster));
             }
         }
-
+        [JsonIgnore]
         public Trader CurrentTrader 
         {
             get
@@ -103,22 +107,23 @@ namespace Engine.ViewModels
                 
             }
         }
-
+        [JsonIgnore]
         public bool HasLocationToNorth => 
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
-       
+        [JsonIgnore]
         public bool HasLocationToSouth =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate - 1) != null;
- 
+        [JsonIgnore]
         public bool HasLocationToWest => 
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate - 1, CurrentLocation.YCoordinate) != null;
-
+        [JsonIgnore]
         public bool HasLocationToEast =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null;
 
        
         public GameSession()
         {
+            CurrentWorld = WorldFactory.CreateWorld();
             int dexterity = RandomNumberGenerator.NumberBetween(1, 20);
             CurrentPlayer = new Player("Katya", "Fairy", 10, 10, dexterity, 0, 100);
             
@@ -127,10 +132,15 @@ namespace Engine.ViewModels
             if (!CurrentPlayer.Inventory.Weapons.Any())
             {
                 CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10003));
-            }
-            CurrentWorld = WorldFactory.CreateWorld();
+            }          
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
 
+        }
+        public GameSession(Player player, int xCoordinate, int yCoordinate)
+        {
+            CurrentWorld = WorldFactory.CreateWorld();
+            CurrentPlayer = player;
+            CurrentLocation = CurrentWorld.LocationAt(xCoordinate, yCoordinate);
         }
 
         public void GoToNorth()
