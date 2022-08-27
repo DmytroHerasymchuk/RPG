@@ -28,7 +28,20 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue">
+            <MenuItem Header="File">
+                <MenuItem Header="Start New Game"
+                          Click="OnClickStartNewGame"/>
+                <Separator/>
+                <MenuItem Header="Save Game"
+                          Click="OnClickSaveGame"/>
+                <MenuItem Header="Load Game"
+                          Click="OnClickLoadGame"/>
+                <Separator/>
+                <MenuItem Header="Exit"
+                          Click="OnClickExit"/>
+            </MenuItem>
+        </Menu>
         <Grid Grid.Row="1" Grid.Column="0" Background="Crimson">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
