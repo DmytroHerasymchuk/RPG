@@ -133,23 +133,6 @@ namespace Engine.ViewModels
         public bool HasLocationToEast =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null;
 
-       
-        public GameSession()
-        {
-            PopulateGameDetails();
-            CurrentWorld = WorldFactory.CreateWorld();
-            int dexterity = RandomNumberGenerator.NumberBetween(1, 20);
-            CurrentPlayer = new Player("Katya", "Fairy", 10, 10, dexterity, 0, 100);
-            
-            CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10001));
-            CurrentPlayer.LearnRecipe(RecipeFactory.RecipeById(1));
-            if (!CurrentPlayer.Inventory.Weapons.Any())
-            {
-                CurrentPlayer.AddItemToInventory(GameItemFactory.CreateGameItem(10003));
-            }          
-            CurrentLocation = CurrentWorld.LocationAt(0, 0);
-
-        }
         public GameSession(Player player, int xCoordinate, int yCoordinate)
         {
             PopulateGameDetails();

@@ -16,10 +16,10 @@ namespace Engine.Models
         private int _currentHitPoints;
         private int _gold;
         private int _level;
-        private int _dexterity;
         private GameItem _currentWeapon;
         private GameItem _currentConsumable;
         private Inventory _inventory;
+        public ObservableCollection<PlayerAttribute> Attributes { get; } = new ObservableCollection<PlayerAttribute>();
         [JsonIgnore]
         public bool IsAlive => CurrentHitPoints > 0;
         [JsonIgnore]
@@ -38,16 +38,6 @@ namespace Engine.Models
             }
         }
 
-        public int Dexterity
-        {
-            get => _dexterity;
-
-            private set
-            {
-                _dexterity = value;
-                OnPropertyChanged();
-            }
-        }
         public int MaxHitPoints
         {
             get => _maxHitPoints;
@@ -140,14 +130,17 @@ namespace Engine.Models
                 OnPropertyChanged();
             }
         }
-        protected LivingEntity(string name, int maxHitPoint, int currentHitPoints, int dexterity, int gold, int level = 1)
+        protected LivingEntity(string name, int maxHitPoint, int currentHitPoints, IEnumerable<PlayerAttribute> attributes, int gold, int level = 1)
         {
             Name = name;
             MaxHitPoints = maxHitPoint;
             CurrentHitPoints = currentHitPoints;
-            Dexterity = dexterity;
             Gold = gold;
             Level = level;
+            foreach(PlayerAttribute attribute in attributes)
+            {
+                Attributes.Add(attribute);
+            }
             Inventory = new Inventory();
         }
 

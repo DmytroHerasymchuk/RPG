@@ -20,47 +20,49 @@ namespace Engine.Services
         }
         public static GameSession LoadLastSaveOrCreateNew(string fileName)
         {
-            if (!File.Exists(fileName))
-            {
-                return new GameSession();
-            }
-            try
-            {
-                JObject data = JObject.Parse(File.ReadAllText(fileName));
-                Player player = CreatePlayer(data);
-                int x = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.XCoordinate)];
-                int y = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.YCoordinate)];
-                return new GameSession(player, x, y);
-            }
-            catch(Exception ex)
-            {
-                return new GameSession();
-            }
+            //if (!File.Exists(fileName))
+            //{
+            //    return new GameSession();
+            //}
+            //try
+            //{
+            //    JObject data = JObject.Parse(File.ReadAllText(fileName));
+            //    Player player = CreatePlayer(data);
+            //    int x = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.XCoordinate)];
+            //    int y = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.YCoordinate)];
+            //    return new GameSession(player, x, y);
+            //}
+            //catch(Exception ex)
+            //{
+            //    return new GameSession();
+            //}
+            return null;
         }
 
         private static Player CreatePlayer(JObject data)
         {
-            string fileVersion = FileVersion(data);
-            Player player;
-            switch (fileVersion)
-            {
-                case "0.1.000":
-                    player =
-                        new Player((string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Name)],
-                                   (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.MaxHitPoints)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CurrentHitPoints)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Dexterity)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.ExperiencePoints)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Gold)]);
-                    break;
-                default:
-                    throw new InvalidDataException($"File version '{fileVersion}' not recognized");
-            }
-            PopulatePlayerInventory(data, player);
-            PopulatePlayerQuests(data, player);
-            PopulatePlayerRecipe(data, player);
-            return player;
+            //string fileVersion = FileVersion(data);
+            //Player player;
+            //switch (fileVersion)
+            //{
+            //    case "0.1.000":
+            //        player =
+            //            new Player((string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Name)],
+            //                       (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)],
+            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.MaxHitPoints)],
+            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CurrentHitPoints)],
+            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Dexterity)],
+            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.ExperiencePoints)],
+            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Gold)]);
+            //        break;
+            //    default:
+            //        throw new InvalidDataException($"File version '{fileVersion}' not recognized");
+            //}
+            //PopulatePlayerInventory(data, player);
+            //PopulatePlayerQuests(data, player);
+            //PopulatePlayerRecipe(data, player);
+            //return player;
+            return null;
         }
         private static void PopulatePlayerInventory(JObject data, Player player)
         {

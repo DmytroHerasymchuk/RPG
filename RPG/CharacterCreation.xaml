@@ -5,26 +5,109 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
-        xmlns:viewModels="clr-namespace:Engine.Models;assembly=Engine"
-        d:DataContext="{d:DesignInstance viewModels:GameDetails}"
-        Title="Character Creation" Height="400" Width="400"
+        xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
+        d:DataContext="{d:DesignInstance viewModels:CharacterCreationViewModel}"
+        Title="Character Creation" Height="600" Width="400"
         Style="{StaticResource CustomFont}" FontSize="24">
-    <Grid Margin="10,10,10,10">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0"
-               Content="Character creation"
+               Grid.ColumnSpan="2"
+               FontWeight="Bold"
+               Content="Create a new character"
                HorizontalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="0"
+        <Label Grid.Row="1" Grid.Column="0"
+               FontWeight="Bold"
+               Content="Name:"/>
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Width="250"
+                 HorizontalAlignment="Left"
+                 Text="{Binding Name}"/>
+        <Label Grid.Row="2" Grid.Column="0"
+               FontWeight="Bold"
+               Content="Class:"
+               Visibility="{Binding HasClasses, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <ComboBox Grid.Row="2" Grid.Column="1"
+                  Width="250"
+                  HorizontalAlignment="Left"
+                  ItemsSource="{Binding GameDetails.Classes}"
+                  DisplayMemberPath="DisplayName"
+                  SelectedItem="{Binding SelectedClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  
+                  Visibility="{Binding HasClasses, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <DataGrid Grid.Row="3" Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  ItemsSource="{Binding PlayerAttributes}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Attribute"
+                                    Binding="{Binding DisplayName}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Value"
+                                    Binding="{Binding Value}"/>
+                <DataGridTemplateColumn MinWidth="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="40"
+                                    Content="+"
+                                    Click="OnClickIncrementAttribute"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn MinWidth="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="40"
+                                    Content="-"
+                                    Click="OnClickDecrementAttribute"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        <Grid Grid.Row="4" Grid.Column="0"
+              Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Margin="0,5,0,5"
+                    HorizontalAlignment="Center"
+                    Width="125"
+                    Content="Set defaut"
+                    Click="OnClickSetDefault"/>
+            <Button Grid.Column="2"
+                    Margin="0,5,0,5"
+                    HorizontalAlignment="Center"
+                    Width="125"
+                    Content="Start"
+                    Click="OnClickStart"/>
+        </Grid>
+        <!--<Button Grid.Row="1" Grid.Column="0"
                 Margin="0,5,0,5"
                 HorizontalAlignment="Center"
                 Width="125"
                 Content="Random Player"
-                Click="OnClickStartGame"/>
+                Click="OnClickStartGame"/>-->
     </Grid>
 </Window>

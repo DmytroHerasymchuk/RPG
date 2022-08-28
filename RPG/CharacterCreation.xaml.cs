@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Engine.Models;
 using Engine.Services;
+using Engine.ViewModels;
 
 namespace RPG
 {
@@ -21,19 +22,37 @@ namespace RPG
     /// </summary>
     public partial class CharacterCreation : Window
     {
-        private GameDetails _gameDetails;
+        private CharacterCreationViewModel ViewModel { get; set; }
         public CharacterCreation()
         {
             InitializeComponent();
-            _gameDetails = GameDetailsService.ReadGameDetails();
-            DataContext = _gameDetails;
+            ViewModel = new CharacterCreationViewModel();
+            DataContext = ViewModel;
         }
 
-        private void OnClickStartGame(object sender, RoutedEventArgs e)
+        private void OnClickStart(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(ViewModel.GetPlayer());
             mainWindow.Show();
             Close();
         }
+
+        private void OnClickIncrementAttribute(object sender, RoutedEventArgs e)
+        {
+            PlayerAttribute playerAttribute = ((FrameworkElement)sender).DataContext as PlayerAttribute;
+            playerAttribute.Increment();
+        }
+
+        private void OnClickDecrementAttribute(object sender, RoutedEventArgs e)
+        {
+            PlayerAttribute playerAttribute = ((FrameworkElement)sender).DataContext as PlayerAttribute;
+            playerAttribute.Decrement();
+        }
+
+        private void OnClickSetDefault(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CreateNewCharacter();
+        }
+        
     }
 }

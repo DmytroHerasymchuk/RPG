@@ -6,19 +6,38 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    public class PlayerAttribute
+    public class PlayerAttribute : BaseNotificationClass
     {
+        private int _value;
         public string Key { get; set; }
         public string DisplayName { get; set; }
-        public int BaseValue { get; set; }
-        public int ModifiedValue { get; set; }
-
+        public int Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public PlayerAttribute(string key, string displayName)
         {
             Key = key;
-            DisplayName = displayName;
-            BaseValue = 5;
-            ModifiedValue = 5;
+            DisplayName = displayName;           
+        }
+
+        public void SetBaseValue()
+        {
+            Value = 5;
+        }
+        public void Increment()
+        {
+            Value++;
+        }
+        public void Decrement()
+        {
+            Value--;
         }
     }
 }

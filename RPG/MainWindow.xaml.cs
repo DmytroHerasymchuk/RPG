@@ -28,13 +28,12 @@ namespace RPG
         private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
         private GameSession _gameSession;
         private readonly Dictionary<Key, Action> _userInputActions = new Dictionary<Key, Action>();
-        public MainWindow()
+        public MainWindow(Player player)
         {
             InitializeComponent();
             InitializeUserInputActions();
-            SetActiveGameSessionTo(new GameSession());
+            SetActiveGameSessionTo(new GameSession(player,0,0));
         }   
-
         private void OnClickGoNorth(object sender, RoutedEventArgs e)
         {
             _gameSession.GoToNorth();
@@ -147,7 +146,7 @@ namespace RPG
 
         private void OnClickStartNewGame(object sender, RoutedEventArgs e)
         {
-            SetActiveGameSessionTo(new GameSession());
+            //SetActiveGameSessionTo(new GameSession());
         }
 
         private void OnClickSaveGame(object sender, RoutedEventArgs e)
@@ -156,15 +155,15 @@ namespace RPG
         }
         private void OnClickLoadGame(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory,
-                Filter = $"Saved games (*.{SAVE_GAME_FILE_EXTENSION})|*.{SAVE_GAME_FILE_EXTENSION}"
-            };
-            if(openFileDialog.ShowDialog() == true)
-            {
-                SetActiveGameSessionTo(SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName));
-            }
+            //OpenFileDialog openFileDialog = new OpenFileDialog
+            //{
+            //    InitialDirectory = AppDomain.CurrentDomain.BaseDirectory,
+            //    Filter = $"Saved games (*.{SAVE_GAME_FILE_EXTENSION})|*.{SAVE_GAME_FILE_EXTENSION}"
+            //};
+            //if(openFileDialog.ShowDialog() == true)
+            //{
+            //    SetActiveGameSessionTo(SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName));
+            //}
         }
         private void OnClickExit(object sender, RoutedEventArgs e)
         {
@@ -180,7 +179,7 @@ namespace RPG
             };
             if (saveFileDialog.ShowDialog() == true)
             {
-                SaveGameService.Save(_gameSession, saveFileDialog.FileName);
+                //SaveGameService.Save(_gameSession, saveFileDialog.FileName);
             }
         }
     }

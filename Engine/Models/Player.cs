@@ -9,11 +9,11 @@ namespace Engine.Models
 {
     public class Player : LivingEntity
     {        
-        private string _characterClass;
+        private PlayerClass _characterClass;
         private int _experiencePoints;
 
         public event EventHandler OnLeveledUp;
-        public string CharacterClass
+        public PlayerClass CharacterClass
         {
             get => _characterClass;
 
@@ -38,8 +38,8 @@ namespace Engine.Models
         
         public ObservableCollection<QuestStatus> Quests { get; } = new ObservableCollection<QuestStatus>();
         public ObservableCollection<Recipe> Recipes { get; } = new ObservableCollection<Recipe>();
-        public Player(string name, string characterClass, int maxHitPoints, int currentHitPoints, int dexterity, int experiencePoints, int gold) : 
-            base(name, maxHitPoints, currentHitPoints, dexterity, gold)
+        public Player(string name, PlayerClass characterClass, int maxHitPoints, int currentHitPoints, IEnumerable<PlayerAttribute> attributes, int experiencePoints, int gold) : 
+            base(name, maxHitPoints, currentHitPoints, attributes, gold)
         {           
             this.CharacterClass = characterClass;            
             this.ExperiencePoints = experiencePoints; 
