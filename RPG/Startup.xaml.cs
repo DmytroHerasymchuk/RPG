@@ -40,5 +40,13 @@ namespace RPG
         {
             Close();
         }
+
+        private void OnClickHelp(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            
+            helpWindow.Show();
+        }
+
     }
 }

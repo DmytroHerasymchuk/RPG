@@ -1,6 +1,7 @@
 ﻿{
   "Name": "My First Game",
   "Version": "0.1.000",
+  "RootImagePath": "/Images/Classes/",
   "PlayerAttributes": [
     {
       "Key": "STR",
@@ -30,15 +31,18 @@
   "Classes": [
     {
       "Key": "WARRIOR",
-      "DisplayName": "Warrior"
+      "DisplayName": "Warrior",
+      "ImageName": "Warrior.png"
     },
     {
       "Key": "MAGE",
-      "DisplayName": "Mage"
+      "DisplayName": "Mage",
+      "ImageName": "Mage.png"
     },
     {
       "Key": "THIEF",
-      "DisplayName": "Thief"
+      "DisplayName": "Thief",
+      "ImageName": "Thief.png"
     }
   ]
 

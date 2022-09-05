@@ -12,9 +12,11 @@ namespace Engine.ViewModels
 {
     public class CharacterCreationViewModel : BaseNotificationClass
     {
+        private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
         private PlayerClass _playerClass;
         private int _attributePoints;
         public GameDetails GameDetails { get; }
+
         public PlayerClass SelectedClass
         {
             get => _playerClass;
@@ -64,13 +66,44 @@ namespace Engine.ViewModels
         public Player GetPlayer()
         {
             Player player = new Player(Name, SelectedClass, 10, 10, PlayerAttributes, 0, 100, AttributePoints);
-            player.AddItemToInventory(GameItemFactory.CreateGameItem(10004));
+            player.AddItemToInventory(SelectedClass.GetClassItem(SelectedClass.Key));
             player.LearnRecipe(RecipeFactory.RecipeById(1));
-            if (!player.Inventory.Weapons.Any())
-            {
-                player.AddItemToInventory(GameItemFactory.CreateGameItem(10003));
-            }
+
             return player;
+        }
+
+        public void GetClassInfo(string key)
+        {
+            switch (key)
+            {
+                case "WARRIOR":
+                    _messageBroker.RaiseMessage("   Warrior");
+                    _messageBroker.RaiseMessage("Items you get: ");
+                    _messageBroker.RaiseMessage("   " + SelectedClass.GetClassItem(key).Name);
+                    _messageBroker.RaiseMessage("");
+                    _messageBroker.RaiseMessage("Skills you get: ");                 
+                    _messageBroker.RaiseMessage("   " + "Stan enemy");
+                    break;
+                case "THIEF":
+                    _messageBroker.RaiseMessage("   Thief");
+                    _messageBroker.RaiseMessage("Items you get: ");
+                    _messageBroker.RaiseMessage("   " + SelectedClass.GetClassItem(key).Name);
+                    _messageBroker.RaiseMessage("");
+                    _messageBroker.RaiseMessage("Skills you get: ");              
+                    _messageBroker.RaiseMessage("   " + "Steal");
+                    break;
+                case "MAGE":
+                    _messageBroker.RaiseMessage("   Mage");
+                    _messageBroker.RaiseMessage("Items you get: ");
+                    _messageBroker.RaiseMessage("   " + SelectedClass.GetClassItem(key).Name);
+                    _messageBroker.RaiseMessage("");
+                    _messageBroker.RaiseMessage("Skills you get: ");
+                    _messageBroker.RaiseMessage("   " + "Fireball");
+                    break;
+                default:
+                    _messageBroker.RaiseMessage("Error");
+                    break;
+            }
         }
     }
 }

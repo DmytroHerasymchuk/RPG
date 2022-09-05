@@ -14,7 +14,9 @@ namespace Engine.Services
     {
         public static GameDetails ReadGameDetails()
         {
+            
             JObject gameDetailsJson = JObject.Parse(File.ReadAllText(".\\GameData\\GameDetails.json"));
+            string rootImagePath = gameDetailsJson.StringValueOf("RootImagePath");
             GameDetails gameDetails = new GameDetails(gameDetailsJson.StringValueOf("Name"),
                                                       gameDetailsJson.StringValueOf("Version"));
             foreach (JToken token in gameDetailsJson["PlayerAttributes"])
@@ -29,7 +31,8 @@ namespace Engine.Services
                     PlayerClass playerClass = new PlayerClass
                     {
                         Key = token.StringValueOf("Key"),
-                        DisplayName = token.StringValueOf("DisplayName")
+                        DisplayName = token.StringValueOf("DisplayName"),
+                        ImageName = $"{rootImagePath}{token.StringValueOf("ImageName")}"
                     };
                     gameDetails.Classes.Add(playerClass);
                 }

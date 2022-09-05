@@ -1,0 +1,56 @@
+﻿<Window x:Class="RPG.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RPG"
+        mc:Ignorable="d"
+        Title="HelpWindow" Height="600" Width="800"
+        Style="{StaticResource CustomFont}" FontSize="30"  
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        AllowsTransparency="True"
+        Opacity="0.5"
+        Left="735" Top="0"
+        Background="Black"
+        Foreground="White">
+    <Border BorderThickness="5" BorderBrush="Goldenrod">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Foreground="White"
+                       Text="Moving: "/>
+            <TextBlock Grid.Row="0" Grid.Column="3"
+                       Foreground="White"
+                       Text="To move around the world, use 'W', 'A', 'S', 'D' or buttons in the game"/>
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       Foreground="White"
+                       Text="Attacking: "/>
+            <TextBlock Grid.Row="2" Grid.Column="3"
+                       Foreground="White"
+                       Text="To attack enemy, use 'Z' or button in the game"/>
+            <TextBlock Grid.Row="4" Grid.Column="0"
+                       Foreground="White"
+                       Text="Use consumable: "/>
+            <TextBlock Grid.Row="4" Grid.Column="3"
+                       Foreground="White"
+                       Text="To use consumable, use 'C' or button in the game"/>
+            
+        </Grid>
+    </Border>
+    
+</Window>

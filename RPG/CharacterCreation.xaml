@@ -7,102 +7,114 @@
         mc:Ignorable="d"
         xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
         d:DataContext="{d:DesignInstance viewModels:CharacterCreationViewModel}"
-        Title="Character Creation" Height="600" Width="400"
+        Title="Character Creation" Height="600" Width="1080"
         Style="{StaticResource CustomFont}" FontSize="24"
-        Background="SkyBlue"
-        WindowState="Maximized" WindowStyle="ThreeDBorderWindow"
+        WindowState="Maximized" WindowStyle="None"
         ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="/Engine;component/Images/Menu/BackgroundCharacterMenu.jpg"/>
+    </Window.Background>
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0"
-               Grid.ColumnSpan="2"
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0"
+               Grid.ColumnSpan="3"
                FontWeight="Bold"
                Content="Create a new character"
                HorizontalAlignment="Center"/>
-        <Label Grid.Row="1" Grid.Column="0"
+            <Label Grid.Row="1" Grid.Column="0"
                FontWeight="Bold"
                Content="Name:"
                Margin="0,10,0,10"/>
-        <TextBox Grid.Row="1" Grid.Column="1"
+            <TextBox Grid.Row="1" Grid.Column="1"
                  Width="250"
                  HorizontalAlignment="Left"
                  Text="{Binding Name}"
-                 Background="LightGray"
+                 Opacity="0.7"
                  Margin="0,10,0,10"/>
-        <Label Grid.Row="2" Grid.Column="0"
+            <Label Grid.Row="2" Grid.Column="0"
                FontWeight="Bold"
                Content="Class:"
                Margin="0,10,0,10"
                Visibility="{Binding HasClasses, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <Label Grid.Row="1" Grid.Column="1"
+            <Label Grid.Row="1" Grid.Column="3"
                Grid.RowSpan="2"
                Content="Attribute points: "
                FontWeight="Bold"
                HorizontalAlignment="Right"
                Margin="0,10,50,0"/>
-        <Label Grid.Row="1" Grid.Column="1"
+            <Label Grid.Row="1" Grid.Column="3"
                Grid.RowSpan="2"
                Content="{Binding AttributePoints}"
                FontWeight="Bold"
                HorizontalAlignment="Right"
                Margin="0,10,30,0"/>
-        <ComboBox Grid.Row="2" Grid.Column="1"
+            <ComboBox Grid.Row="2" Grid.Column="1"
                   Width="250"
                   HorizontalAlignment="Left"
                   ItemsSource="{Binding GameDetails.Classes}"
                   DisplayMemberPath="DisplayName"
                   SelectedItem="{Binding SelectedClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   Margin="0,10,0,10"
+                  SelectionChanged="ComboBox_SelectionChanged"
+                  Opacity="0.7"
                   Visibility="{Binding HasClasses, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <DataGrid Grid.Row="3" Grid.Column="0"
-                  Grid.ColumnSpan="2"
+            <DataGrid Grid.Row="3" Grid.Column="0"
+                  Grid.ColumnSpan="3"
                   ItemsSource="{Binding PlayerAttributes}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   HeadersVisibility="Column"
-                  >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Attribute"
+                  Opacity="0.9">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Attribute"
                                     Binding="{Binding DisplayName}"
                                     Width="*"/>
-                <DataGridTextColumn Header="Value"
+                    <DataGridTextColumn Header="Value"
                                     Binding="{Binding Value}"/>
-                <DataGridTemplateColumn MinWidth="40">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Width="40"
+                    <DataGridTemplateColumn MinWidth="40">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="40"
                                     Content="+"
                                     Click="OnClickIncrementAttribute"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn MinWidth="40">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Width="40"
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="40">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="40"
                                     Content="-"
                                     Click="OnClickDecrementAttribute"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-            
-        </DataGrid>
-        <Grid Grid.Row="4" Grid.Column="0"
-              Grid.ColumnSpan="2">
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -110,7 +122,6 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="*"/>
-                
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
                     Margin="0,5,0,5"
@@ -118,20 +129,31 @@
                     Width="125"
                     Content="Set defaut"
                     Click="OnClickSetDefault"
-                    Background="BlanchedAlmond"/>
+                    Opacity="0.7"
+                    FontWeight="Bold"/>
             <Button Grid.Column="2"
                     Margin="0,5,0,5"
                     HorizontalAlignment="Center"
                     Width="125"
                     Content="Start"
                     Click="OnClickStart"
-                    Background="BlanchedAlmond"/>
+                    Opacity="0.7"
+                    FontWeight="Bold"/>
         </Grid>
-        <!--<Button Grid.Row="1" Grid.Column="0"
-                Margin="0,5,0,5"
-                HorizontalAlignment="Center"
-                Width="125"
-                Content="Random Player"
-                Click="OnClickStartGame"/>-->
+        <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                BorderThickness="2" BorderBrush="Goldenrod" 
+                Margin="5,0,5,0">
+            <RichTextBox x:Name="CreationMessages" VerticalScrollBarVisibility="Auto" Opacity="0.7" 
+                             IsReadOnly="True" FontWeight="Bold">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
+        </Border>
+        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+            <Image Source="{Binding SelectedClass.ImageName, Converter={StaticResource FileToBitmapConverter}}"/>
+        </Grid>
     </Grid>
 </Window>

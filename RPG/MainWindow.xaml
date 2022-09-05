@@ -16,6 +16,8 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
+
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -115,7 +117,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border Grid.RowSpan="2" BorderBrush="DarkGoldenrod" BorderThickness="1">
-                <RichTextBox x:Name="GameMessages" Background="Wheat" VerticalScrollBarVisibility="Auto">
+                <RichTextBox x:Name="GameMessages" Background="Wheat" VerticalScrollBarVisibility="Auto"
+                             IsReadOnly="True">
                     <RichTextBox.Resources>
                         <Style TargetType="{x:Type Paragraph}">
                             <Setter Property="Margin" Value="0"/>
@@ -153,11 +156,16 @@
                 </Grid>
             </Border>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="0" Background="BurlyWood">
+        <Grid Grid.Row="2" Grid.Column="0" >
+            
             <TabControl x:Name="PlayerDataTabControl">
+                <TabControl.Background>
+                    <ImageBrush ImageSource="/Engine;component/Images/Menu/RecipesBackground.jpg"/>
+                </TabControl.Background>
                 <TabItem Header="Inventory" x:Name="InventoryTabItem">
                     <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory.GroupedInventory}"
                               HeadersVisibility="Column" AutoGenerateColumns="False">
+                        
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name"
                                                 Binding="{Binding Item.Name, Mode=OneWay}"
@@ -173,7 +181,6 @@
                                                 Width="*"/>
 
                         </DataGrid.Columns>
-                        
                     </DataGrid>
                 </TabItem>
                 <TabItem Header="Quests" x:Name="QuestsTabItem">
@@ -203,9 +210,11 @@
                               AutoGenerateColumns="False"
                               HeadersVisibility="Column">
                         <DataGrid.Columns>
+                            
                             <DataGridTextColumn Header="Name"
                                                 Binding="{Binding Name, Mode=OneWay}"
                                                 Width="*">
+                                
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="ToolTip" Value="{Binding ToolTipContents}"/>
@@ -213,8 +222,10 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTemplateColumn MinWidth="75">
+                                
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
+                                        
                                         <Button Click="OnCLickCraft"
                                                 Width="55"
                                                 Content="Craft"/>

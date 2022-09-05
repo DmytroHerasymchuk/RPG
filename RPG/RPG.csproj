@@ -59,6 +59,9 @@
       <DependentUpon>CharacterCreation.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomConverters\FileToBitmapConverter.cs" />
+    <Compile Include="HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Startup.xaml.cs">
       <DependentUpon>Startup.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,10 @@
       <DependentUpon>YesNo.xaml</DependentUpon>
     </Compile>
     <Page Include="CharacterCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

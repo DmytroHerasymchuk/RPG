@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Engine.Models;
 using Engine.Services;
 using Engine.ViewModels;
+using Engine.EventArgs;
 
 namespace RPG
 {
@@ -22,12 +23,14 @@ namespace RPG
     /// </summary>
     public partial class CharacterCreation : Window
     {
+        private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
         private CharacterCreationViewModel ViewModel { get; set; }
         public CharacterCreation()
         {
             InitializeComponent();
             ViewModel = new CharacterCreationViewModel();
             DataContext = ViewModel;
+            _messageBroker.OnMessageRaised += OnGameMessageRaised;
         }
 
         private void OnClickStart(object sender, RoutedEventArgs e)
@@ -44,7 +47,7 @@ namespace RPG
             {
                 playerAttribute.Increment();
                 ViewModel.AttributePoints--;
-            }          
+            }
         }
 
         private void OnClickDecrementAttribute(object sender, RoutedEventArgs e)
@@ -54,13 +57,24 @@ namespace RPG
             {
                 playerAttribute.Decrement();
                 ViewModel.AttributePoints++;
-            }           
+            }
         }
 
         private void OnClickSetDefault(object sender, RoutedEventArgs e)
         {
             ViewModel.CreateNewCharacter();
         }
-        
+
+        private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
+        {
+            CreationMessages.Document.Blocks.Add(new Paragraph(new Run(e.Message)));
+            CreationMessages.ScrollToEnd();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CreationMessages.Document.Blocks.Clear();
+            ViewModel.GetClassInfo(ViewModel.SelectedClass.Key);
+        }
     }
 }

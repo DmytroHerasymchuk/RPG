@@ -91,6 +91,18 @@
     <Content Include="GameData\GameDetails.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Menu\RecipesBackground.jpg" />
+    <None Include="Images\Classes\Mage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\Classes\Thief.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Images\Menu\BackgroundCharacterMenu.jpg" />
+    <None Include="Images\Classes\Warrior.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Images\Menu\BackgroundMenu.jpg" />
     <None Include="Images\Monsters\Troll.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

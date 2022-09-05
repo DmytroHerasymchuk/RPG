@@ -8,26 +8,87 @@
         xmlns:viewModels="clr-namespace:Engine.Models;assembly=Engine"
         d:DataContext="{d:DesignInstance viewModels:GameDetails}"
         Style="{StaticResource CustomFont}" FontSize="20"
-        Title="Menu" Height="400" Width="400">
+        Title="Menu" Height="400" Width="400"
+        WindowState="Maximized" WindowStyle="None"
+        ResizeMode="NoResize">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/Engine;component/Images/Menu/BackgroundMenu.jpg"/>
+    </Window.Background>
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="0" Grid.Column="0"
-                Margin="0,5,0,5"
-                HorizontalAlignment="Center"
-                Width="125"
+                Margin="15,5,0,5"
+                HorizontalAlignment="Left"
+                MaxHeight="50"
+                Width="250"
                 Content="Start New Game"
-                Click="OnClickStartNewGame"/>
+                Click="OnClickStartNewGame">
+            <Button.Background>
+                <ImageBrush ImageSource="/Engine;component/Images/Menu/RecipesBackground.jpg"
+                             Stretch="Fill"/>
+            </Button.Background>
+            
+        </Button>
         <Button Grid.Row="1" Grid.Column="0"
-                Margin="0,5,0,5"
-                HorizontalAlignment="Center"
-                Width="125"
+                Margin="15,5,0,5"
+                HorizontalAlignment="Left"
+                MaxHeight="50"
+                Width="250"
+                Content="Load Game"
+                Click="OnClickExit">
+            <Button.Background>
+                <ImageBrush ImageSource="/Engine;component/Images/Menu/RecipesBackground.jpg"
+                             Stretch="Fill"/>
+            </Button.Background>
+
+        </Button>
+        <Button Grid.Row="2" Grid.Column="0"
+                Margin="15,5,0,5"
+                HorizontalAlignment="Left"
+                MaxHeight="50"
+                Width="250"
+                Content="Options"
+                Click="OnClickExit">
+            <Button.Background>
+                <ImageBrush ImageSource="/Engine;component/Images/Menu/RecipesBackground.jpg"
+                             Stretch="Fill"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="0"
+                Margin="15,5,0,5"
+                HorizontalAlignment="Left"
+                MaxHeight="50"
+                Width="250"
+                Content="Help"
+                Click="OnClickHelp">
+            <Button.Background>
+                <ImageBrush ImageSource="/Engine;component/Images/Menu/RecipesBackground.jpg"
+                             Stretch="Fill"/>
+            </Button.Background>
+
+        </Button>
+        <Button Grid.Row="4" Grid.Column="0"
+                Margin="15,5,0,5"
+                HorizontalAlignment="Left"
+                MaxHeight="50"
+                Width="250"
                 Content="Exit"
-                Click="OnClickExit"/>
+                Click="OnClickExit">
+            <Button.Background>
+                <ImageBrush ImageSource="/Engine;component/Images/Menu/RecipesBackground.jpg"
+                             Stretch="Fill"/>
+            </Button.Background>
+
+        </Button>
     </Grid>
 </Window>
