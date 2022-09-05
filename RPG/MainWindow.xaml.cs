@@ -182,5 +182,16 @@ namespace RPG
                 //SaveGameService.Save(_gameSession, saveFileDialog.FileName);
             }
         }
+
+        private void OnMouseClickAddPoint(object sender, MouseButtonEventArgs e)
+        {
+            if(_gameSession.CurrentPlayer.IsLeveledUp)
+            {
+                PlayerAttribute playerAttribute = ((FrameworkElement)sender).DataContext as PlayerAttribute;
+                playerAttribute.Increment();
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+
+        }
     }
 }

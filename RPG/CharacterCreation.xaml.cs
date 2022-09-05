@@ -40,13 +40,21 @@ namespace RPG
         private void OnClickIncrementAttribute(object sender, RoutedEventArgs e)
         {
             PlayerAttribute playerAttribute = ((FrameworkElement)sender).DataContext as PlayerAttribute;
-            playerAttribute.Increment();
+            if (ViewModel.AttributePoints >= 1)
+            {
+                playerAttribute.Increment();
+                ViewModel.AttributePoints--;
+            }          
         }
 
         private void OnClickDecrementAttribute(object sender, RoutedEventArgs e)
         {
             PlayerAttribute playerAttribute = ((FrameworkElement)sender).DataContext as PlayerAttribute;
-            playerAttribute.Decrement();
+            if (playerAttribute.Value > 1)
+            {
+                playerAttribute.Decrement();
+                ViewModel.AttributePoints++;
+            }           
         }
 
         private void OnClickSetDefault(object sender, RoutedEventArgs e)

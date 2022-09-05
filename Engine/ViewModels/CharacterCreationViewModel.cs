@@ -13,6 +13,7 @@ namespace Engine.ViewModels
     public class CharacterCreationViewModel : BaseNotificationClass
     {
         private PlayerClass _playerClass;
+        private int _attributePoints;
         public GameDetails GameDetails { get; }
         public PlayerClass SelectedClass
         {
@@ -20,6 +21,15 @@ namespace Engine.ViewModels
             set
             {
                 _playerClass = value;
+                OnPropertyChanged();
+            }
+        }
+        public int AttributePoints
+        {
+            get => _attributePoints;
+            set
+            {
+                _attributePoints = value;
                 OnPropertyChanged();
             }
         }
@@ -37,6 +47,7 @@ namespace Engine.ViewModels
                 SelectedClass = GameDetails.Classes.First();
             }
             CreateNewCharacter();
+           
         }
 
         public void CreateNewCharacter()
@@ -47,12 +58,13 @@ namespace Engine.ViewModels
                 playerAttribute.SetBaseValue();
                 PlayerAttributes.Add(playerAttribute);
             }
+            AttributePoints = 5;
         }
 
         public Player GetPlayer()
         {
-            Player player = new Player(Name, SelectedClass, 10, 10, PlayerAttributes, 0, 100);
-            player.AddItemToInventory(GameItemFactory.CreateGameItem(10001));
+            Player player = new Player(Name, SelectedClass, 10, 10, PlayerAttributes, 0, 100, AttributePoints);
+            player.AddItemToInventory(GameItemFactory.CreateGameItem(10004));
             player.LearnRecipe(RecipeFactory.RecipeById(1));
             if (!player.Inventory.Weapons.Any())
             {

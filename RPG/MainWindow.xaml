@@ -59,6 +59,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Name:" />
             <Label Grid.Row="1" Grid.Column="0" Content="Class:" />
@@ -66,17 +67,19 @@
             <Label Grid.Row="3" Grid.Column="0" Content="Experience:" />
             <Label Grid.Row="4" Grid.Column="0" Content="Level:" />
             <Label Grid.Row="5" Grid.Column="0" Content="Gold:" />
+            <Label Grid.Row="8" Grid.Column="0" Content="Attribute points: "/>
             <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Name}"/>
             <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass.DisplayName}"/>
             <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.CurrentHitPoints}" />
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePoints}" />
             <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.Level}" />
             <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
+            <Label Grid.Row="8" Grid.Column="1" Content="{Binding CurrentPlayer.AttributePoints}"/>
             <ListBox Grid.Row="7" Grid.Column="0"
                      Grid.ColumnSpan="2"
                      Background="Crimson"
                      BorderThickness="0"
-                     Grid.IsSharedSizeScope="True"
+                     Grid.IsSharedSizeScope="True"  
                      ItemsSource="{Binding CurrentPlayer.Attributes}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -87,7 +90,8 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding DisplayName}"
                                            HorizontalAlignment="Left"
-                                           MinWidth="150"/>
+                                           MinWidth="150"
+                                           MouseLeftButtonDown="OnMouseClickAddPoint"/>
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -99,7 +103,6 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                
             </ListBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1" Background="Wheat">

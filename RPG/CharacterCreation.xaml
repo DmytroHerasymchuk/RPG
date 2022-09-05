@@ -8,7 +8,10 @@
         xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
         d:DataContext="{d:DesignInstance viewModels:CharacterCreationViewModel}"
         Title="Character Creation" Height="600" Width="400"
-        Style="{StaticResource CustomFont}" FontSize="24">
+        Style="{StaticResource CustomFont}" FontSize="24"
+        Background="SkyBlue"
+        WindowState="Maximized" WindowStyle="ThreeDBorderWindow"
+        ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,6 +23,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0"
                Grid.ColumnSpan="2"
@@ -28,22 +33,38 @@
                HorizontalAlignment="Center"/>
         <Label Grid.Row="1" Grid.Column="0"
                FontWeight="Bold"
-               Content="Name:"/>
+               Content="Name:"
+               Margin="0,10,0,10"/>
         <TextBox Grid.Row="1" Grid.Column="1"
                  Width="250"
                  HorizontalAlignment="Left"
-                 Text="{Binding Name}"/>
+                 Text="{Binding Name}"
+                 Background="LightGray"
+                 Margin="0,10,0,10"/>
         <Label Grid.Row="2" Grid.Column="0"
                FontWeight="Bold"
                Content="Class:"
+               Margin="0,10,0,10"
                Visibility="{Binding HasClasses, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Label Grid.Row="1" Grid.Column="1"
+               Grid.RowSpan="2"
+               Content="Attribute points: "
+               FontWeight="Bold"
+               HorizontalAlignment="Right"
+               Margin="0,10,50,0"/>
+        <Label Grid.Row="1" Grid.Column="1"
+               Grid.RowSpan="2"
+               Content="{Binding AttributePoints}"
+               FontWeight="Bold"
+               HorizontalAlignment="Right"
+               Margin="0,10,30,0"/>
         <ComboBox Grid.Row="2" Grid.Column="1"
                   Width="250"
                   HorizontalAlignment="Left"
                   ItemsSource="{Binding GameDetails.Classes}"
                   DisplayMemberPath="DisplayName"
                   SelectedItem="{Binding SelectedClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  
+                  Margin="0,10,0,10"
                   Visibility="{Binding HasClasses, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <DataGrid Grid.Row="3" Grid.Column="0"
                   Grid.ColumnSpan="2"
@@ -51,7 +72,8 @@
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
-                  HeadersVisibility="Column">
+                  HeadersVisibility="Column"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Attribute"
                                     Binding="{Binding DisplayName}"
@@ -95,13 +117,15 @@
                     HorizontalAlignment="Center"
                     Width="125"
                     Content="Set defaut"
-                    Click="OnClickSetDefault"/>
+                    Click="OnClickSetDefault"
+                    Background="BlanchedAlmond"/>
             <Button Grid.Column="2"
                     Margin="0,5,0,5"
                     HorizontalAlignment="Center"
                     Width="125"
                     Content="Start"
-                    Click="OnClickStart"/>
+                    Click="OnClickStart"
+                    Background="BlanchedAlmond"/>
         </Grid>
         <!--<Button Grid.Row="1" Grid.Column="0"
                 Margin="0,5,0,5"
