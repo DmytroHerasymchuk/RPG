@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="600" Width="800"
+        Title="HelpWindow" Height="600" Width="1000"
         Style="{StaticResource CustomFont}" FontSize="30"  
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="Manual"
         AllowsTransparency="True"
         Opacity="0.5"
-        Left="735" Top="0"
+        Left="535" Top="0"
         Background="Black"
         Foreground="White">
     <Border BorderThickness="5" BorderBrush="Goldenrod">
