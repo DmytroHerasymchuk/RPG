@@ -37,6 +37,7 @@ namespace RPG
         {
             MainWindow mainWindow = new MainWindow(ViewModel.GetPlayer());
             mainWindow.Show();
+            
             Close();
         }
 

@@ -8,7 +8,8 @@
         Title="YesNo" MinHeight="125" MinWidth="250"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource CustomFont}" FontSize="20">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

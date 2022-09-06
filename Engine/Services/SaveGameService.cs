@@ -20,50 +20,73 @@ namespace Engine.Services
         }
         public static GameSession LoadLastSaveOrCreateNew(string fileName)
         {
-            //if (!File.Exists(fileName))
-            //{
-            //    return new GameSession();
-            //}
-            //try
-            //{
-            //    JObject data = JObject.Parse(File.ReadAllText(fileName));
-            //    Player player = CreatePlayer(data);
-            //    int x = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.XCoordinate)];
-            //    int y = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.YCoordinate)];
-            //    return new GameSession(player, x, y);
-            //}
-            //catch(Exception ex)
-            //{
-            //    return new GameSession();
-            //}
-            return null;
+            if (!File.Exists(fileName))
+            {
+                throw new FileNotFoundException($"Filename: {fileName}");
+            }
+            try
+            {
+                JObject data = JObject.Parse(File.ReadAllText(fileName));
+                Player player = CreatePlayer(data);
+                int x = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.XCoordinate)];
+                int y = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.YCoordinate)];
+                return new GameSession(player, x, y);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"Error reading: {fileName}");
+            }
+
         }
 
         private static Player CreatePlayer(JObject data)
         {
-            //string fileVersion = FileVersion(data);
-            //Player player;
-            //switch (fileVersion)
-            //{
-            //    case "0.1.000":
-            //        player =
-            //            new Player((string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Name)],
-            //                       (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)],
-            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.MaxHitPoints)],
-            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CurrentHitPoints)],
-            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Dexterity)],
-            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.ExperiencePoints)],
-            //                       (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Gold)]);
-            //        break;
-            //    default:
-            //        throw new InvalidDataException($"File version '{fileVersion}' not recognized");
-            //}
-            //PopulatePlayerInventory(data, player);
-            //PopulatePlayerQuests(data, player);
-            //PopulatePlayerRecipe(data, player);
-            //return player;
-            return null;
+            string fileVersion = FileVersion(data);
+            Player player;
+            switch (fileVersion)
+            {
+                case "0.1.000":
+                    player =
+                        new Player((string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Name)],
+                                   GetPlayerClass(data),
+                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.MaxHitPoints)],
+                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CurrentHitPoints)],
+                                   GetPlayerAttributes(data),
+                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.ExperiencePoints)],
+                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Gold)],
+                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.AttributePoints)]);
+                    break;
+                default:
+                    throw new InvalidDataException($"File version '{fileVersion}' not recognized");
+            }
+            PopulatePlayerInventory(data, player);
+            PopulatePlayerQuests(data, player);
+            PopulatePlayerRecipe(data, player);
+            return player;
         }
+
+        private static PlayerClass GetPlayerClass(JObject data)
+        {
+            PlayerClass playerClass = new PlayerClass
+            {
+                Key = (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)][nameof(PlayerClass.Key)],
+                DisplayName = (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)][nameof(PlayerClass.DisplayName)],
+            };
+            return playerClass;
+
+        }
+        private static IEnumerable<PlayerAttribute> GetPlayerAttributes(JObject data)
+        {
+            List<PlayerAttribute> playerAttributes = new List<PlayerAttribute>();
+            foreach (JToken token in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Attributes)])
+            {
+                playerAttributes.Add(new PlayerAttribute((string)token[nameof(PlayerAttribute.Key)],
+                                                         (string)token[nameof(PlayerAttribute.DisplayName)],
+                                                         (int)token[nameof(PlayerAttribute.Value)]));
+            }
+            return playerAttributes;
+        }
+
         private static void PopulatePlayerInventory(JObject data, Player player)
         {
             string fileVersion = FileVersion(data);
@@ -105,6 +128,7 @@ namespace Engine.Services
             }
         }
 
+        
         private static void PopulatePlayerRecipe(JObject data, Player player)
         {
             string fileVersion = FileVersion(data);

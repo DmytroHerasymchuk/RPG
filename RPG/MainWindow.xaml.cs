@@ -28,11 +28,11 @@ namespace RPG
         private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
         private GameSession _gameSession;
         private readonly Dictionary<Key, Action> _userInputActions = new Dictionary<Key, Action>();
-        public MainWindow(Player player)
+        public MainWindow(Player player, int xLocation = 0, int yLocation = 0)
         {
             InitializeComponent();
             InitializeUserInputActions();
-            SetActiveGameSessionTo(new GameSession(player,0,0));
+            SetActiveGameSessionTo(new GameSession(player, xLocation, yLocation));
         }   
         private void OnClickGoNorth(object sender, RoutedEventArgs e)
         {
@@ -143,31 +143,9 @@ namespace RPG
                 SaveGame();
             }
         }
-
-        private void OnClickStartNewGame(object sender, RoutedEventArgs e)
-        {
-            //SetActiveGameSessionTo(new GameSession());
-        }
-
         private void OnClickSaveGame(object sender, RoutedEventArgs e)
         {
             SaveGame();
-        }
-        private void OnClickLoadGame(object sender, RoutedEventArgs e)
-        {
-            //OpenFileDialog openFileDialog = new OpenFileDialog
-            //{
-            //    InitialDirectory = AppDomain.CurrentDomain.BaseDirectory,
-            //    Filter = $"Saved games (*.{SAVE_GAME_FILE_EXTENSION})|*.{SAVE_GAME_FILE_EXTENSION}"
-            //};
-            //if(openFileDialog.ShowDialog() == true)
-            //{
-            //    SetActiveGameSessionTo(SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName));
-            //}
-        }
-        private void OnClickExit(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
 
         private void SaveGame()
@@ -179,7 +157,7 @@ namespace RPG
             };
             if (saveFileDialog.ShowDialog() == true)
             {
-                //SaveGameService.Save(_gameSession, saveFileDialog.FileName);
+                SaveGameService.Save(_gameSession, saveFileDialog.FileName);
             }
         }
 
@@ -192,6 +170,14 @@ namespace RPG
                 _gameSession.CurrentPlayer.AttributePoints--;
             }
 
+        }
+
+        private void OnCliclOpenMainMenu(object sender, RoutedEventArgs e)
+        {
+            Startup startup = new Startup();
+            startup.ContinueButton.IsEnabled = true;
+            startup.ShowDialog();
+            
         }
     }
 }

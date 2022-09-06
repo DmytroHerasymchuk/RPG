@@ -5,6 +5,7 @@
              StartupUri="Startup.xaml">
     <Application.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        
         <converters:FileToBitmapConverter x:Key="FileToBitmapConverter"/>
         <Style x:Key="CustomFont">
             <Setter Property="TextElement.FontFamily" Value="/Fonts/#Ancient Modern Tales"/>

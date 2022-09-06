@@ -27,6 +27,13 @@ namespace Engine.Models
             DisplayName = displayName;           
         }
 
+        public PlayerAttribute(string key, string displayName, int value)
+        {
+            Key = key;
+            DisplayName = displayName;
+            Value = value;
+        }
+
         public void SetBaseValue()
         {
             Value = 5;

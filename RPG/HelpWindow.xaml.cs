@@ -23,5 +23,10 @@ namespace RPG
         {
             InitializeComponent();
         }
+
+        private void OnClickCloseHelp(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

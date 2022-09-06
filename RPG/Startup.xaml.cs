@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Engine.Models;
+using Engine.ViewModels;
 using Engine.Services;
+using Microsoft.Win32;
+using RPG.Windows;
 
 namespace RPG
 {
@@ -21,6 +24,7 @@ namespace RPG
     /// </summary>
     public partial class Startup : Window
     {
+        private const string SAVE_GAME_FILE_EXTENSION = "save";
         private GameDetails _gameDetails;
         public Startup()
         {
@@ -31,6 +35,10 @@ namespace RPG
 
         private void OnClickStartNewGame(object sender, RoutedEventArgs e)
         {
+            if (App.Current.Windows.Count > 1)
+            {
+                App.Current.Windows[0].Close();
+            }
             CharacterCreation characterCreationWindow = new CharacterCreation();
             characterCreationWindow.Show();
             Close();
@@ -38,15 +46,55 @@ namespace RPG
 
         private void OnClickExit(object sender, RoutedEventArgs e)
         {
-            Close();
+            YesNo message = new YesNo("Exit Game", "Are you sure?");
+            message.Owner = GetWindow(this);
+            message.ShowDialog();
+            if (message.ClickedYes)
+            {
+                Close();
+                App.Current.Shutdown();
+            }           
         }
 
         private void OnClickHelp(object sender, RoutedEventArgs e)
         {
-            HelpWindow helpWindow = new HelpWindow();
-            
-            helpWindow.Show();
+            HelpWindow helpWindow = new HelpWindow();            
+            helpWindow.ShowDialog();
         }
+
+        private void OnClickLoadGame(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = AppDomain.CurrentDomain.BaseDirectory,
+                Filter = $"Saved games (*.{SAVE_GAME_FILE_EXTENSION})|*.{SAVE_GAME_FILE_EXTENSION}"
+            };
+            if (openFileDialog.ShowDialog() == true)
+            {
+                GameSession gameSession = SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName);
+                
+                
+                foreach(Window window in App.Current.Windows)
+                {
+                    if (!window.IsActive)
+                    {
+                        window.Close();
+                    }                   
+                }
+                MainWindow mainWindow = new MainWindow(gameSession.CurrentPlayer,
+                                                       gameSession.CurrentLocation.XCoordinate,
+                                                       gameSession.CurrentLocation.YCoordinate);
+                mainWindow.Show();
+                Close();
+            }
+        }
+
+        private void OnClickContinue(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+       
 
     }
 }

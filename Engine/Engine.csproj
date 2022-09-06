@@ -91,7 +91,8 @@
     <Content Include="GameData\GameDetails.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Menu\RecipesBackground.jpg" />
+    <Resource Include="Images\Menu\CharacterMenu.png" />
+    <Resource Include="Images\Menu\ButtonBackground.jpg" />
     <None Include="Images\Classes\Mage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
