@@ -51,8 +51,10 @@ namespace RPG
             message.ShowDialog();
             if (message.ClickedYes)
             {
-                Close();
-                App.Current.Shutdown();
+                foreach(Window w in App.Current.Windows)
+                {
+                    w.Close();
+                }
             }           
         }
 

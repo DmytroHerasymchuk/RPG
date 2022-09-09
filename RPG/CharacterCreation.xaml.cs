@@ -35,10 +35,16 @@ namespace RPG
 
         private void OnClickStart(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(ViewModel.GetPlayer());
-            mainWindow.Show();
-            
-            Close();
+            if (Name.Text != "")
+            {
+                MainWindow mainWindow = new MainWindow(ViewModel.GetPlayer());
+                mainWindow.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("You must choose a name", "Name");
+            }
         }
 
         private void OnClickIncrementAttribute(object sender, RoutedEventArgs e)
@@ -59,6 +65,13 @@ namespace RPG
                 playerAttribute.Decrement();
                 ViewModel.AttributePoints++;
             }
+        }
+
+        private void OnClickOpenMainMenu(object sender, RoutedEventArgs e)
+        {
+            Startup startup = new Startup();
+            startup.Show();
+            Close();
         }
 
         private void OnClickSetDefault(object sender, RoutedEventArgs e)
