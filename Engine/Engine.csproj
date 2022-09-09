@@ -48,6 +48,7 @@
     <Compile Include="Actions\BaseAction.cs" />
     <Compile Include="Actions\Heal.cs" />
     <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Actions\Poison.cs" />
     <Compile Include="BaseNotificationClass.cs" />
     <Compile Include="EventArgs\CombatVictoryEventArgs.cs" />
     <Compile Include="EventArgs\GameMessageEventArgs.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\MonsterEncounter.cs" />
     <Compile Include="Models\PlayerAttribute.cs" />
+    <Compile Include="Models\Potion.cs" />
     <Compile Include="Models\Quest.cs" />
     <Compile Include="Models\QuestStatus.cs" />
     <Compile Include="Models\Recipe.cs" />

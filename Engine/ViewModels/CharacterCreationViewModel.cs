@@ -67,6 +67,7 @@ namespace Engine.ViewModels
         {
             Player player = new Player(Name, SelectedClass, 10, 10, PlayerAttributes, 0, 100, AttributePoints);
             player.AddItemToInventory(SelectedClass.GetClassItem(SelectedClass.Key));
+            player.AddItemToInventory(GameItemFactory.CreateGameItem(41001));
             player.LearnRecipe(RecipeFactory.RecipeById(1));
 
             return player;

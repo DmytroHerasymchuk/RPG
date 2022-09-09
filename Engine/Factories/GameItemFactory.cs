@@ -23,7 +23,8 @@ namespace Engine.Factories
                 XmlDocument data = new XmlDocument();
                 data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/Weapons/Weapon"));
-                LoadItemsFromNodes(data.SelectNodes("/GameItems/HealingItems/HealingItem"));
+                LoadItemsFromNodes(data.SelectNodes("/GameItems/Potions/HealingPotions/HealingPotion"));
+                LoadItemsFromNodes(data.SelectNodes("/GameItems/Potions/PoisonPotions/PoisonPotion"));
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/Miscellaneous/MiscellaneousItem"));
             }
             else
@@ -65,11 +66,21 @@ namespace Engine.Factories
                                              node.AttributeAsInt("MinDamage"),
                                              node.AttributeAsInt("MaxDamage"));
                 }
-                if(itemCategory == GameItem.ItemCategory.Consumable)
+                if(itemCategory == GameItem.ItemCategory.Potion)
                 {
-                    gameItem.Action =
+                    Potion.PotionCategory potionCategory = DeterminePotionCategory(node.Name);
+                    if (potionCategory == Potion.PotionCategory.PoisonPotion)
+                    {
+                        gameItem.Action =
+                        new Poison(gameItem,
+                                   node.AttributeAsInt("DamageHitPoints"));
+                    }
+                    if (potionCategory == Potion.PotionCategory.HealingPotion)
+                    {
+                        gameItem.Action =
                         new Heal(gameItem,
                                  node.AttributeAsInt("HitPointsToHeal"));
+                    }                  
                 }
                 _standartGameItem.Add(gameItem);
             }
@@ -81,13 +92,28 @@ namespace Engine.Factories
             {
                 case "Weapon":
                     return GameItem.ItemCategory.Weapon;
-                case "HealingItem":
-                    return GameItem.ItemCategory.Consumable;
+                case "HealingPotion":
+                    return GameItem.ItemCategory.Potion;
+                case "PoisonPotion":
+                    return GameItem.ItemCategory.Potion;
                 default:
                     return GameItem.ItemCategory.Miscellaneous;
             }
         }
-       
+
+        private static Potion.PotionCategory DeterminePotionCategory(string itemType)
+        {
+            switch (itemType)
+            {
+                case "HealingPotion":
+                    return Potion.PotionCategory.HealingPotion;
+                case "PoisonPotion":
+                    return Potion.PotionCategory.PoisonPotion;
+                default:
+                    return Potion.PotionCategory.SimplePotion;
+            }
+        }
+
     }
 }
     

@@ -14,7 +14,7 @@ namespace Engine.Models
         {
             Miscellaneous,
             Weapon,
-            Consumable
+            Potion
         }
         [JsonIgnore]
         public ItemCategory Category { get; }
