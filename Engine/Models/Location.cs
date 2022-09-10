@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine.Factories;
 using Newtonsoft.Json;
 
 namespace Engine.Models
@@ -45,32 +44,6 @@ namespace Engine.Models
             {
                 MonstersHere.Add(new MonsterEncounter(monsterId, chanceOfEncountering));
             }
-        }
-
-        public Monster GetMonster()
-        {
-            if (!MonstersHere.Any())
-            {
-                return null;
-            }
-
-            int totalChances = MonstersHere.Sum(m => m.ChanceOfEncountering);
-
-            int randomNumber = RandomNumberGenerator.NumberBetween(1, totalChances);
-
-            int runningTotal = 0;
-
-            foreach(MonsterEncounter monsterEncounter in MonstersHere)
-            {
-                runningTotal+= monsterEncounter.ChanceOfEncountering;
-                if (randomNumber <= runningTotal)
-                {
-                    return MonsterFactory.GetMonster(monsterEncounter.MonsterId);
-                }
-            }
-
-            return null;
-            //MonsterFactory.GetMonster(MonstersHere.Last().MonsterId);
         }
     }
 }

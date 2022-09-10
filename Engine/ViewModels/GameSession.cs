@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.IO;
 using Engine.Models;
 using Engine.Factories;
-using Engine.EventArgs;
 using Engine.Actions;
 using Engine.Services;
 using Newtonsoft.Json;
@@ -60,7 +59,7 @@ namespace Engine.ViewModels
                 _currentLocation = value;
                 CompleteQuestsAtLocation();
                 GivePlayerQuestAtLocation();
-                CurrentMonster = CurrentLocation.GetMonster();
+                CurrentMonster = MonsterFactory.GetMonsterFromLocation(CurrentLocation);
                 CurrentTrader = CurrentLocation.TraderHere;
                 
             }
@@ -215,7 +214,7 @@ namespace Engine.ViewModels
                 _messageBroker.RaiseMessage("You do not have the requaired ingredients:");
                 foreach(ItemQuantity itemQuantity in recipe.Ingredients)
                 {
-                    _messageBroker.RaiseMessage($"     {itemQuantity.Quantity} {GameItemFactory.GetItemName(itemQuantity.ItemId)}");
+                    _messageBroker.RaiseMessage($"     {itemQuantity.QuantityItemDescription}");
                 }
             }
         }
@@ -241,7 +240,7 @@ namespace Engine.ViewModels
 
         private void OnCurrentMonsterKilled(object sender, System.EventArgs eventArgs)
         {
-            CurrentMonster = CurrentLocation.GetMonster();
+            CurrentMonster = MonsterFactory.GetMonsterFromLocation(CurrentLocation);
         }
 
         private void OnCurrentPlayerLeveledUp(object sender, System.EventArgs eventArgs)

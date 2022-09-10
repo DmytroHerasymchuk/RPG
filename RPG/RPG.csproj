@@ -136,6 +136,14 @@
       <Project>{e22e8e88-2c00-42fe-8903-71b5e4fd4c42}</Project>
       <Name>Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{b52a34af-68e9-4a5b-b299-00aa757d3434}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{6d373545-b544-4ce6-a161-16b0e1faff00}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MenuImages\Menu\BackgroundCharacterMenu.jpg" />

@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine.Factories;
 
 namespace Engine.Models
 {
     public class Monster : LivingEntity
     {
-        private readonly List<ItemPercentage> _lootTable = new List<ItemPercentage>();
+        public List<ItemPercentage> LootTable { get; } 
+            = new List<ItemPercentage>();
         public int Id { get; }  
         public string ImageName { get; }
         public int RewardExperiencePoints { get; }
@@ -26,22 +26,18 @@ namespace Engine.Models
 
         public void AddItemToLootTable(int id, int percentage)
         {
-            _lootTable.RemoveAll(ip => ip.Id == id);
-            _lootTable.Add(new ItemPercentage(id, percentage));
+            LootTable.RemoveAll(ip => ip.Id == id);
+            LootTable.Add(new ItemPercentage(id, percentage));
         }
 
-        public Monster GetNewInstance()
+        public Monster Clone()
         {
-            Monster newMonster = new Monster(Id, Name, ImageName, MaxHitPoints, Attributes, CurrentWeapon, RewardExperiencePoints, Gold);
-            foreach(ItemPercentage itemPercentage in _lootTable)
-            {
-                newMonster.AddItemToLootTable(itemPercentage.Id, itemPercentage.Percentage);
-                if (RandomNumberGenerator.NumberBetween(1, 100) <= itemPercentage.Percentage)
-                {
-                    newMonster.AddItemToInventory(GameItemFactory.CreateGameItem(itemPercentage.Id));
-                }
-            }
+            Monster newMonster =
+                new Monster(Id, Name, ImageName, MaxHitPoints, Attributes, CurrentWeapon, RewardExperiencePoints, Gold);
+            newMonster.LootTable.AddRange(LootTable);
             return newMonster;
         }
+
+
     }
 }

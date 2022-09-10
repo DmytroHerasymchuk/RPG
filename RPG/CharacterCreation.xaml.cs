@@ -13,8 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Engine.Models;
 using Engine.Services;
-using Engine.ViewModels;
-using Engine.EventArgs;
+using ViewModels.ViewModels;
+using Models.EventArgs;
 
 namespace RPG
 {

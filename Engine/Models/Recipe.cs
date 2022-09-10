@@ -13,9 +13,9 @@ namespace Engine.Models
         [JsonIgnore]
         public string Name { get; }
         [JsonIgnore]
-        public List<ItemQuantity> Ingredients { get; } = new List<ItemQuantity>();
+        public List<ItemQuantity> Ingredients { get; }
         [JsonIgnore]
-        public List<ItemQuantity> OutputItems { get; } = new List<ItemQuantity>();
+        public List<ItemQuantity> OutputItems { get; }
         [JsonIgnore]
         public string ToolTipContents =>
             "Ingredients" + Environment.NewLine +
@@ -26,26 +26,12 @@ namespace Engine.Models
             "===========================" + Environment.NewLine +
             string.Join(Environment.NewLine, OutputItems.Select(i => i.QuantityItemDescription));
       
-        public Recipe(int itemId, string name)
+        public Recipe(int itemId, string name, List<ItemQuantity> ingredients, List<ItemQuantity> outputItems)
         {
             Id = itemId;
             Name = name;
-        }
-
-        public void AddIngredient(int itemId, int quantity)
-        {
-            if(!Ingredients.Any(x => x.ItemId == itemId))
-            {
-                Ingredients.Add(new ItemQuantity(itemId, quantity));
-            }
-        }
-
-        public void AddOutputItem(int itemId, int quantity)
-        {
-            if (!OutputItems.Any(x => x.ItemId == itemId))
-            {
-                OutputItems.Add(new ItemQuantity(itemId, quantity));
-            }
+            Ingredients = ingredients;
+            OutputItems = outputItems;
         }
     }
 }

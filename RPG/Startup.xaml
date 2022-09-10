@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
-        xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
+        xmlns:viewModels="clr-namespace:ViewModels.ViewModels;assembly=ViewModels"
         d:DataContext="{d:DesignInstance viewModels:CharacterCreationViewModel}"
         Style="{StaticResource CustomFont}" FontSize="20"
         Title="Menu" Height="400" Width="400"

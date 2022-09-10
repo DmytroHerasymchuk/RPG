@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine.EventArgs;
+using Models.EventArgs;
 
 namespace Engine.Services
 {
@@ -19,7 +19,7 @@ namespace Engine.Services
         {
             return s_messageBroker;
         }
-        internal void RaiseMessage(string message)
+        public void RaiseMessage(string message)
         {
             OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }

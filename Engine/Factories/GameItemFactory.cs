@@ -38,10 +38,6 @@ namespace Engine.Factories
         {
             return _standartGameItem.FirstOrDefault(item => item.ItemTypeId == itemTypeId)?.Clone(); 
         }
-        public static string GetItemName(int itemId)
-        {
-            return _standartGameItem.FirstOrDefault(i => i.ItemTypeId == itemId)?.Name ?? "";
-        }
 
         private static void LoadItemsFromNodes(XmlNodeList nodes)
         {

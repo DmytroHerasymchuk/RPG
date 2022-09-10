@@ -9,7 +9,7 @@ using Engine.Services;
 using Engine.Factories;
 using System.ComponentModel;
 
-namespace Engine.ViewModels
+namespace ViewModels.ViewModels
 {
     public class CharacterCreationViewModel : INotifyPropertyChanged
     {
