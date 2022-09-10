@@ -3,24 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Engine.Models
 {
-    public class PlayerAttribute : BaseNotificationClass
+    public class PlayerAttribute : INotifyPropertyChanged
     {
-        private int _value;
-        public string Key { get; set; }
-        public string DisplayName { get; set; }
-        public int Value
-        {
-            get => _value;
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
-        }
-        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string Key { get; }
+        public string DisplayName { get; }
+        public int Value { get; set; }
+
         public PlayerAttribute(string key, string displayName)
         {
             Key = key;

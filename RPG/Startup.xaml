@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
-        xmlns:viewModels="clr-namespace:Engine.Models;assembly=Engine"
-        d:DataContext="{d:DesignInstance viewModels:GameDetails}"
+        xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
+        d:DataContext="{d:DesignInstance viewModels:CharacterCreationViewModel}"
         Style="{StaticResource CustomFont}" FontSize="20"
         Title="Menu" Height="400" Width="400"
         WindowState="Maximized" WindowStyle="None"
         ResizeMode="NoResize">
     <Window.Background>
-        <ImageBrush ImageSource="/Engine;component/Images/Menu/BackgroundMenu.jpg"/>
+        <ImageBrush ImageSource="MenuImages/Menu/BackgroundMenu.jpg" />
     </Window.Background>
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
@@ -35,7 +35,7 @@
                 Content="Continue"
                 Click="OnClickContinue" IsEnabled="False">
             <Button.Background>
-                <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
             </Button.Background>
 
@@ -48,7 +48,7 @@
                 Content="Start New Game"
                 Click="OnClickStartNewGame">
             <Button.Background>
-                <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                              Stretch="Fill"/>
             </Button.Background>
             
@@ -62,7 +62,7 @@
                 Content="Load Game"
                 Click="OnClickLoadGame">
             <Button.Background>
-                <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                              Stretch="Fill"/>
             </Button.Background>
 
@@ -75,7 +75,7 @@
                 Content="Options"
                 Click="OnClickExit">
             <Button.Background>
-                <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                              Stretch="Fill"/>
             </Button.Background>
         </Button>
@@ -87,7 +87,7 @@
                 Content="Help"
                 Click="OnClickHelp">
             <Button.Background>
-                <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                              Stretch="Fill"/>
             </Button.Background>
 
@@ -100,7 +100,7 @@
                 Content="Exit"
                 Click="OnClickExit">
             <Button.Background>
-                <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                              Stretch="Fill"/>
             </Button.Background>
 

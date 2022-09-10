@@ -33,14 +33,14 @@
             <Button Grid.Row="0" Grid.Column="0" Content="Menu" Width="135"
                 Click="OnCliclOpenMainMenu" Height="30" >
                 <Button.Background>
-                    <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
             <Button Grid.Row="0" Grid.Column="0" Content="Save" Width="135"
                  Click="OnClickSaveGame" Height="30" >
                 <Button.Background>
-                    <ImageBrush ImageSource="/Engine;component/Images/Menu/ButtonBackground.jpg"
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>

@@ -8,16 +8,14 @@ namespace Engine.Models
 {
     public class GameDetails
     {
-        public string Name { get; set; }
-        public string Version { get; set; }
-        public List<PlayerAttribute> PlayerAttributes { get; set; } = new List<PlayerAttribute>();
+        public string Name { get; }
+        public string Version { get; }
+        public List<PlayerAttribute> PlayerAttributes { get; } = new List<PlayerAttribute>();
         public List<PlayerClass> Classes { get; } = new List<PlayerClass>();
         public GameDetails(string name, string version)
         {
             Name = name;
-            Version = version;
-
-           
+            Version = version;          
         }
     }
 }

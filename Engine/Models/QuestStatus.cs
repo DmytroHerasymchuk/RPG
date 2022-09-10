@@ -3,25 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Engine.Models
 {
-    public class QuestStatus : BaseNotificationClass
+    public class QuestStatus : INotifyPropertyChanged
     {
-        private bool _isCompleted;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Quest PlayerQuest { get; }
-        public bool IsCompleted 
-        {
-            get 
-            { 
-                return _isCompleted; 
-            }
-            set 
-            { 
-                _isCompleted = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool IsCompleted { get; set; }
 
         public QuestStatus(Quest playerQuest)
         {

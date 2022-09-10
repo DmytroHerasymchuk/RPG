@@ -7,36 +7,20 @@ using System.Threading.Tasks;
 using Engine.Models;
 using Engine.Services;
 using Engine.Factories;
+using System.ComponentModel;
 
 namespace Engine.ViewModels
 {
-    public class CharacterCreationViewModel : BaseNotificationClass
+    public class CharacterCreationViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
-        private PlayerClass _playerClass;
-        private int _attributePoints;
-        public GameDetails GameDetails { get; }
 
-        public PlayerClass SelectedClass
-        {
-            get => _playerClass;
-            set
-            {
-                _playerClass = value;
-                OnPropertyChanged();
-            }
-        }
-        public int AttributePoints
-        {
-            get => _attributePoints;
-            set
-            {
-                _attributePoints = value;
-                OnPropertyChanged();
-            }
-        }
+        public GameDetails GameDetails { get; }
+        public PlayerClass SelectedClass { get; set; }
+        public int AttributePoints { get; set; }
         public string Name { get; set; }
-        public ObservableCollection<PlayerAttribute> PlayerAttributes { get; set; } = 
+        public ObservableCollection<PlayerAttribute> PlayerAttributes { get; } = 
             new ObservableCollection<PlayerAttribute>();
         public bool HasClasses =>
             GameDetails.Classes.Any();

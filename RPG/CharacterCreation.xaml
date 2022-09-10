@@ -12,7 +12,7 @@
         WindowState="Maximized" WindowStyle="None"
         ResizeMode="NoResize">
     <Window.Background>
-        <ImageBrush ImageSource="/Engine;component/Images/Menu/BackgroundCharacterMenu.jpg"/>
+        <ImageBrush ImageSource="MenuImages/Menu/BackgroundCharacterMenu.jpg"/>
     </Window.Background>
     <Grid Margin="10">
         <Grid.RowDefinitions>

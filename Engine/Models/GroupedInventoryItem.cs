@@ -3,37 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Engine.Models
 {
-    public class GroupedInventoryItem : BaseNotificationClass
+    public class GroupedInventoryItem : INotifyPropertyChanged
     {
-        private GameItem _item;
-        private int _quantity;
-        public GameItem Item
-        {
-            get 
-            { 
-                return _item; 
-            }
-            set 
-            {
-                _item = value;
-                OnPropertyChanged();
-            }
-        }
-        public int Quantity
-        {
-            get
-            {
-                return _quantity;
-            }
-            set
-            {
-                _quantity = value;
-                OnPropertyChanged();
-            }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public GameItem Item { get; set; }
+        public int Quantity { get; set; }
 
         public GroupedInventoryItem(GameItem item, int quantity)
         {

@@ -137,5 +137,14 @@
       <Name>Engine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MenuImages\Menu\BackgroundCharacterMenu.jpg" />
+    <Resource Include="MenuImages\Menu\BackgroundMenu.jpg" />
+    <Resource Include="MenuImages\Menu\ButtonBackground.jpg" />
+    <Resource Include="MenuImages\Menu\CharacterMenu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)GameFiles\"."" "$(ProjectDir)$(OutDir)" /s /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

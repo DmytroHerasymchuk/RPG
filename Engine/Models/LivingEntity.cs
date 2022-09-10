@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Engine.Services;
 using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace Engine.Models
 {
-    public abstract class LivingEntity : BaseNotificationClass
+    public abstract class LivingEntity : INotifyPropertyChanged
     {
-        private string _name;
-        private int _maxHitPoints;
-        private int _currentHitPoints;
-        private int _gold;
-        private int _level;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private GameItem _currentWeapon;
         private GameItem _currentConsumable;
         private Inventory _inventory;
@@ -27,60 +25,15 @@ namespace Engine.Models
         public event EventHandler OnKilled;
         public event EventHandler<string> OnActionPerformed;
 
-        public string Name
-        {
-            get => _name;
- 
-            private set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Name { get; }
 
-        public int MaxHitPoints
-        {
-            get => _maxHitPoints;
+        public int MaxHitPoints { get; protected set; }
 
-            protected set
-            {
-                _maxHitPoints = value;
-                OnPropertyChanged();
-            }
-        }
+        public int CurrentHitPoints { get; private set; }
 
-        public int CurrentHitPoints
-        {
-            get => _currentHitPoints;
+        public int Gold { get; private set; }
 
-            private set
-            {
-                _currentHitPoints = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int Gold
-        {
-            get => _gold;
-
-            private set
-            {
-                _gold = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int Level
-        {
-            get => _level;
-
-            set
-            {
-                _level = value;
-                OnPropertyChanged();
-            }
-        }
+        public int Level { get; protected set; }
 
         public Inventory Inventory
         {
@@ -88,7 +41,6 @@ namespace Engine.Models
             private set
             {
                 _inventory = value;
-                OnPropertyChanged();
             }
         }
         public GameItem CurrentWeapon
@@ -107,7 +59,6 @@ namespace Engine.Models
                 {
                     _currentWeapon.Action.OnActionPerformed += RaiseActionPerformedEvent;
                 }
-                OnPropertyChanged();
             }
         }
 
@@ -127,7 +78,6 @@ namespace Engine.Models
                 {
                     _currentConsumable.Action.OnActionPerformed += RaiseActionPerformedEvent;
                 }
-                OnPropertyChanged();
             }
         }
         protected LivingEntity(string name, int maxHitPoint, int currentHitPoints, IEnumerable<PlayerAttribute> attributes, int gold, int level = 1)

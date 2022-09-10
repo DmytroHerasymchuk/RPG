@@ -21,7 +21,6 @@ namespace Engine.Models
             set
             {
                 _attributePoints = value;
-                OnPropertyChanged();
             }
         }
         public PlayerClass CharacterClass
@@ -31,7 +30,6 @@ namespace Engine.Models
             set
             {
                 _characterClass = value;
-                OnPropertyChanged();
             }
         }
 
@@ -42,7 +40,6 @@ namespace Engine.Models
             private set
             {
                 _experiencePoints = value;
-                OnPropertyChanged();
                 SetLevelAndMaxHitPoints();
             }
         }

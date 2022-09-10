@@ -11,31 +11,24 @@ using Engine.Actions;
 using Engine.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel;
 
 namespace Engine.ViewModels
 {
-    public class GameSession : BaseNotificationClass
+    public class GameSession : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
         private Battle _currentBattle;
         private Player _currentPlayer;
         private Location _currentLocation;
         private Monster _currentMonster;
-        private Trader _currentTrader;
-        private GameDetails _gameDetails;
+
         public string Version { get; } = "0.1.000";
         [JsonIgnore]
         public World CurrentWorld { get; }
         [JsonIgnore]
-        public GameDetails GameDetails
-        {
-            get => _gameDetails;
-            set
-            {
-                _gameDetails = value;
-                OnPropertyChanged();
-            }
-        }
+        public GameDetails GameDetails { get; private set; }
         public Player CurrentPlayer 
         {
             get 
@@ -65,11 +58,6 @@ namespace Engine.ViewModels
             set
             {
                 _currentLocation = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(HasLocationToNorth));
-                OnPropertyChanged(nameof(HasLocationToSouth));
-                OnPropertyChanged(nameof(HasLocationToWest));
-                OnPropertyChanged(nameof(HasLocationToEast));
                 CompleteQuestsAtLocation();
                 GivePlayerQuestAtLocation();
                 CurrentMonster = CurrentLocation.GetMonster();
@@ -101,25 +89,10 @@ namespace Engine.ViewModels
                     _currentBattle = new Battle(CurrentPlayer, CurrentMonster);
                     _currentBattle.OnCombatVictory += OnCurrentMonsterKilled; 
                 }
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(HasMonster));
             }
         }
         [JsonIgnore]
-        public Trader CurrentTrader 
-        {
-            get
-            {
-                return _currentTrader;
-            }
-            set
-            {
-                _currentTrader = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(HasTrader));
-                
-            }
-        }
+        public Trader CurrentTrader { get; private set; }
         [JsonIgnore]
         public bool HasLocationToNorth => 
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
