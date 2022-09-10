@@ -35,10 +35,10 @@ namespace RPG
 
         private void OnClickStartNewGame(object sender, RoutedEventArgs e)
         {
-            //if (App.Current.Windows.Count > 1)
-            //{
-            //    App.Current.Windows[0].Close();
-            //}
+            if (App.Current.Windows.Count > 1)
+            {
+                App.Current.Windows[0].Close();
+            }
             CharacterCreation characterCreationWindow = new CharacterCreation();
             characterCreationWindow.Show();
             Close();
@@ -73,7 +73,7 @@ namespace RPG
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                GameSession gameSession = SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName);
+                GameState gameState = SaveGameService.LoadLastSaveOrCreateNew(openFileDialog.FileName);
                 
                 
                 foreach(Window window in App.Current.Windows)
@@ -83,9 +83,9 @@ namespace RPG
                         window.Close();
                     }                   
                 }
-                MainWindow mainWindow = new MainWindow(gameSession.CurrentPlayer,
-                                                       gameSession.CurrentLocation.XCoordinate,
-                                                       gameSession.CurrentLocation.YCoordinate);
+                MainWindow mainWindow = new MainWindow(gameState.Player,
+                                                       gameState.XCoordinate,
+                                                       gameState.YCoordinate);
                 mainWindow.Show();
                 Close();
             }

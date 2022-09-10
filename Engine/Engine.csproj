@@ -62,6 +62,7 @@
     <Compile Include="Factories\TraderFactory.cs" />
     <Compile Include="Factories\WorldFactory.cs" />
     <Compile Include="Models\Battle.cs" />
+    <Compile Include="Models\GameState.cs" />
     <Compile Include="Models\PlayerClass.cs" />
     <Compile Include="Models\GameDetails.cs" />
     <Compile Include="Models\GameItem.cs" />

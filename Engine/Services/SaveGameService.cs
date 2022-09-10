@@ -8,17 +8,16 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using Engine.Factories;
 using Engine.Models;
-using Engine.ViewModels;
 
 namespace Engine.Services
 {
     public static class SaveGameService
     {
-        public static void Save(GameSession gameSession, string fileName)
+        public static void Save(GameState gameState, string fileName)
         {
-            File.WriteAllText(fileName, JsonConvert.SerializeObject(gameSession, Formatting.Indented));
+            File.WriteAllText(fileName, JsonConvert.SerializeObject(gameState, Formatting.Indented));
         }
-        public static GameSession LoadLastSaveOrCreateNew(string fileName)
+        public static GameState LoadLastSaveOrCreateNew(string fileName)
         {
             if (!File.Exists(fileName))
             {
@@ -28,9 +27,9 @@ namespace Engine.Services
             {
                 JObject data = JObject.Parse(File.ReadAllText(fileName));
                 Player player = CreatePlayer(data);
-                int x = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.XCoordinate)];
-                int y = (int)data[nameof(GameSession.CurrentLocation)][nameof(Location.YCoordinate)];
-                return new GameSession(player, x, y);
+                int x = (int)data[nameof(GameState.XCoordinate)];
+                int y = (int)data[nameof(GameState.YCoordinate)];
+                return new GameState(player, x, y, FileVersion(data));
             }
             catch (Exception ex)
             {
@@ -47,14 +46,14 @@ namespace Engine.Services
             {
                 case "0.1.000":
                     player =
-                        new Player((string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Name)],
+                        new Player((string)data[nameof(GameState.Player)][nameof(Player.Name)],
                                    GetPlayerClass(data),
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.MaxHitPoints)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CurrentHitPoints)],
+                                   (int)data[nameof(GameState.Player)][nameof(Player.MaxHitPoints)],
+                                   (int)data[nameof(GameState.Player)][nameof(Player.CurrentHitPoints)],
                                    GetPlayerAttributes(data),
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.ExperiencePoints)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Gold)],
-                                   (int)data[nameof(GameSession.CurrentPlayer)][nameof(Player.AttributePoints)]);
+                                   (int)data[nameof(GameState.Player)][nameof(Player.ExperiencePoints)],
+                                   (int)data[nameof(GameState.Player)][nameof(Player.Gold)],
+                                   (int)data[nameof(GameState.Player)][nameof(Player.AttributePoints)]);
                     break;
                 default:
                     throw new InvalidDataException($"File version '{fileVersion}' not recognized");
@@ -69,8 +68,8 @@ namespace Engine.Services
         {
             PlayerClass playerClass = new PlayerClass
             {
-                Key = (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)][nameof(PlayerClass.Key)],
-                DisplayName = (string)data[nameof(GameSession.CurrentPlayer)][nameof(Player.CharacterClass)][nameof(PlayerClass.DisplayName)],
+                Key = (string)data[nameof(GameState.Player)][nameof(Player.CharacterClass)][nameof(PlayerClass.Key)],
+                DisplayName = (string)data[nameof(GameState.Player)][nameof(Player.CharacterClass)][nameof(PlayerClass.DisplayName)],
             };
             return playerClass;
 
@@ -78,7 +77,7 @@ namespace Engine.Services
         private static IEnumerable<PlayerAttribute> GetPlayerAttributes(JObject data)
         {
             List<PlayerAttribute> playerAttributes = new List<PlayerAttribute>();
-            foreach (JToken token in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Attributes)])
+            foreach (JToken token in (JArray)data[nameof(GameState.Player)][nameof(Player.Attributes)])
             {
                 playerAttributes.Add(new PlayerAttribute((string)token[nameof(PlayerAttribute.Key)],
                                                          (string)token[nameof(PlayerAttribute.DisplayName)],
@@ -93,7 +92,7 @@ namespace Engine.Services
             switch (fileVersion)
             {
                 case "0.1.000":
-                    foreach (JToken itemToken in (JArray)data[nameof(GameSession.CurrentPlayer)]
+                    foreach (JToken itemToken in (JArray)data[nameof(GameState.Player)]
                                                              [nameof(Player.Inventory)]
                                                              [nameof(Inventory.Items)])
                     {
@@ -112,7 +111,7 @@ namespace Engine.Services
             switch (fileVersion)
             {
                 case "0.1.000":
-                    foreach (JToken questToken in (JArray)data[nameof(GameSession.CurrentPlayer)]
+                    foreach (JToken questToken in (JArray)data[nameof(GameState.Player)]
                                                              [nameof(Player.Quests)])
                                                              
                     {
@@ -135,7 +134,7 @@ namespace Engine.Services
             switch (fileVersion)
             {
                 case "0.1.000":
-                    foreach (JToken recipeToken in (JArray)data[nameof(GameSession.CurrentPlayer)][nameof(Player.Recipes)])                                                             
+                    foreach (JToken recipeToken in (JArray)data[nameof(GameState.Player)][nameof(Player.Recipes)])                                                             
                     {
                         int recipeId = (int)recipeToken[nameof(Recipe.Id)];
                         Recipe recipe = RecipeFactory.RecipeById(recipeId);
@@ -149,7 +148,7 @@ namespace Engine.Services
 
         private static string FileVersion(JObject data)
         {
-            return (string)data[nameof(GameSession.GameDetails.Version)];
+            return (string)data[nameof(GameDetails.Version)];
         }
     }
 }
