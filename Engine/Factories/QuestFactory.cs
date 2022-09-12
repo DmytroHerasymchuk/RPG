@@ -35,6 +35,7 @@ namespace Engine.Factories
             {
                 List<ItemQuantity> itemsToComplete = new List<ItemQuantity>();
                 List<ItemQuantity> rewardItems = new List<ItemQuantity>();
+                List<Recipe> recipes = new List<Recipe>();
                 foreach (XmlNode childNode in node.SelectNodes("./ItemsToComplete/Item"))
                 {
                     GameItem item = GameItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
@@ -45,17 +46,34 @@ namespace Engine.Factories
                     GameItem item = GameItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
                     rewardItems.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
                 }
-                _quests.Add(new Quest(node.AttributeAsInt("ID"),
-                                      node.SelectSingleNode("./Name")?.InnerText ?? "",
-                                      node.SelectSingleNode("./Description")?.InnerText ?? "",
-                                      itemsToComplete,
-                                      node.AttributeAsInt("RewardXP"),
-                                      node.AttributeAsInt("RewardGold"),
-                                      rewardItems));
-                                      
+                foreach (XmlNode childNode in node.SelectNodes("./RewardRecipes/Recipe"))
+                {
+                    recipes.Add(RecipeFactory.RecipeById(childNode.AttributeAsInt("ID")));
+                }
+                Quest quest = new Quest(node.AttributeAsInt("ID"),
+                                        node.SelectSingleNode("./Name")?.InnerText ?? "",
+                                        node.SelectSingleNode("./Description")?.InnerText ?? "",
+                                        itemsToComplete,
+                                        node.AttributeAsInt("RewardXP"),
+                                        node.AttributeAsInt("RewardGold"),
+                                        rewardItems, 
+                                        recipes);
+                _quests.Add(quest);
+
             }
         }
 
+        //private static void AddRecipes(Quest quest, XmlNodeList recipes)
+        //{
+        //    if (recipes == null)
+        //    {
+        //        return;
+        //    }
+        //    foreach (XmlNode recipeNode in recipes)
+        //    {
+        //        quest.RewardRecipes.Add(RecipeFactory.RecipeById(recipeNode.AttributeAsInt("ID")));                                   
+        //    }
+        //}
         internal static Quest GetQuestById(int id)
         {
             return _quests.FirstOrDefault(quest => quest.Id == id);

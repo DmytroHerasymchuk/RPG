@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.EventArgs
+namespace Core
 {
     public class GameMessageEventArgs : System.EventArgs
     {

@@ -117,8 +117,10 @@ namespace Engine.Services
                     {
                         int questId = (int)questToken[nameof(QuestStatus.PlayerQuest)][nameof(QuestStatus.PlayerQuest.Id)];
                         Quest quest = QuestFactory.GetQuestById(questId);
-                        QuestStatus questStatus = new QuestStatus(quest);
-                        questStatus.IsCompleted = (bool)questToken[nameof(QuestStatus.IsCompleted)];
+                        QuestStatus questStatus = new QuestStatus(quest)
+                        {
+                            IsCompleted = (bool)questToken[nameof(QuestStatus.IsCompleted)]
+                        };
                         player.Quests.Add(questStatus);                       
                     }
                     break;

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Engine.ViewModels;
-using Models.EventArgs;
+using Core;
 using Engine.Models;
 using Engine.Services;
 using System.ComponentModel;

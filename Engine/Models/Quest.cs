@@ -23,6 +23,8 @@ namespace Engine.Models
         [JsonIgnore]
         public List<ItemQuantity> RewardItems { get; }
         [JsonIgnore]
+        public List<Recipe> RewardRecipes { get; }
+        [JsonIgnore]
         public string ToolTipContents =>
             Description + Environment.NewLine + Environment.NewLine +
             "Items to complete the quest" + Environment.NewLine +
@@ -31,10 +33,15 @@ namespace Engine.Models
             Environment.NewLine + Environment.NewLine +
             "Rewards\r\n" +
             "===========================" + Environment.NewLine +
-            string.Join(Environment.NewLine, RewardItems.Select(i => i.QuantityItemDescription));
+            string.Join(Environment.NewLine, RewardItems.Select(i => i.QuantityItemDescription)) +
+            Environment.NewLine + Environment.NewLine +
+            "Recipes\r\n" +
+            "===========================" + Environment.NewLine +
+            string.Join(Environment.NewLine, RewardRecipes.Select(i => i.Name));
+            
 
         public Quest(int id, string name, string description, List<ItemQuantity> itemsToComplete,
-                     int rewardExperiencePoints, int rewardGold, List<ItemQuantity> rewardItems)
+                     int rewardExperiencePoints, int rewardGold, List<ItemQuantity> rewardItems, List<Recipe> rewardRecipes)
         {
             Id = id;
             Name = name;
@@ -43,6 +50,7 @@ namespace Engine.Models
             RewardExperiencePoints = rewardExperiencePoints;
             RewardGold = rewardGold;
             RewardItems = rewardItems;
+            RewardRecipes = rewardRecipes;
         }
     }
 }

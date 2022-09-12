@@ -41,5 +41,10 @@ namespace Engine.Shared
         {
             return entity.Attributes.First(p =>p.Key.Equals(attributeKey, StringComparison.CurrentCultureIgnoreCase));
         }
+
+        public static List<GameItem> ItemsThatAre(this IEnumerable<GameItem> inventory, GameItem.ItemCategory category)
+        {
+            return inventory.Where(item => item.Category == category).ToList();
+        }
     }
 }

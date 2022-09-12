@@ -86,7 +86,6 @@
     <Compile Include="Services\CombatService.cs" />
     <Compile Include="Services\GameDetailsService.cs" />
     <Compile Include="Services\InventoryService.cs" />
-    <Compile Include="Services\MessageBroker.cs" />
     <Compile Include="Services\SaveGameService.cs" />
     <Compile Include="Shared\ExtensionMethods.cs" />
     <Compile Include="ViewModels\GameSession.cs" />

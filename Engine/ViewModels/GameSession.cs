@@ -11,6 +11,7 @@ using Engine.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
+using Core;
 
 namespace Engine.ViewModels
 {
@@ -158,12 +159,17 @@ namespace Engine.ViewModels
                         CurrentPlayer.AddExperience(quest.RewardExperiencePoints);
                         _messageBroker.RaiseMessage($"You receive {quest.RewardGold} gold.");
                         CurrentPlayer.ReceiveGold(quest.RewardGold);
-                        foreach(ItemQuantity itemQuantity in quest.RewardItems)
+                        foreach (ItemQuantity itemQuantity in quest.RewardItems)
                         {
                             GameItem rewardItem = GameItemFactory.CreateGameItem(itemQuantity.ItemId);
                             _messageBroker.RaiseMessage($"You receive {rewardItem.Name} ({rewardItem.Rarity})");
                             CurrentPlayer.AddItemToInventory(rewardItem);                            
                         }
+                        foreach (Recipe recipe in quest.RewardRecipes)
+                        {
+                            CurrentPlayer.LearnRecipe(recipe);
+                        }
+
                         questToComplete.IsCompleted = true;
                     }
                 }

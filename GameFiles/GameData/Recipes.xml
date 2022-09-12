@@ -11,4 +11,15 @@
       <Item ID="40001" Quantity="1"/>
     </OutputItems>
   </Recipe>
+  <Recipe ID="2">
+    <Name><![CDATA["Needle"]]></Name>
+    <Ingredients>
+      <Item ID="10002" Quantity="1"/>
+      <Item ID="20018" Quantity="5"/>
+      <Item ID="20019" Quantity="1"/>
+    </Ingredients>
+    <OutputItems>
+      <Item ID="11001" Quantity="1"/>
+    </OutputItems>
+  </Recipe>
 </Recipes>

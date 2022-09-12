@@ -12,6 +12,8 @@
     <Weapon ID="10008" Name="Bow" Price="10" Rarity="Common" MinDamage="1" MaxDamage="7"/>
     <Weapon ID="10009" Name="Crossbow" Price="20" Rarity="Common" MinDamage="1" MaxDamage="11"/>
     <Weapon ID="10010" Name="Staff" Price="10" Rarity="Common" MinDamage="2" MaxDamage="4"/>
+    <!--Craftable weapons-->
+    <Weapon ID="11001" Name="'Needle'" Price="50" Rarity="Rare" MinDamage="7" MaxDamage="15"/>
     <!--Enemy weapons-->
     <Weapon ID="30001" Name="Troll club" Price="0" Rarity="Common" MinDamage="7" MaxDamage="9"/>
     <Weapon ID="30002" Name="Zombie claws" Price="0" Rarity="Common" MinDamage="5" MaxDamage="7"/>
@@ -34,6 +36,8 @@
     <MiscellaneousItem ID="20015" Name="Butterfly" Price="2" Rarity="Common"/>
     <MiscellaneousItem ID="20016" Name="Hop" Price="2" Rarity="Common"/>
     <MiscellaneousItem ID="20017" Name="Rotten flesh" Price="1" Rarity="Common"/>
+    <MiscellaneousItem ID="20018" Name="Blood" Price="1" Rarity="Common"/>
+    <MiscellaneousItem ID="20019" Name="Fire bug" Price="10" Rarity="Rare"/>
   </Miscellaneous>
   <Potions>
     <HealingPotions>

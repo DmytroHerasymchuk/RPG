@@ -8,6 +8,7 @@ using Engine.Models;
 using Engine.Services;
 using Engine.Factories;
 using System.ComponentModel;
+using Core;
 
 namespace ViewModels.ViewModels
 {
@@ -49,7 +50,7 @@ namespace ViewModels.ViewModels
 
         public Player GetPlayer()
         {
-            Player player = new Player(Name, SelectedClass, 10, 10, PlayerAttributes, 0, 100, AttributePoints);
+            Player player = new Player(Name, SelectedClass, 100, 100, PlayerAttributes, 0, 100, AttributePoints);
             player.AddItemToInventory(SelectedClass.GetClassItem(SelectedClass.Key));
             player.AddItemToInventory(GameItemFactory.CreateGameItem(41001));
             player.LearnRecipe(RecipeFactory.RecipeById(1));

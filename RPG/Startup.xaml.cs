@@ -35,10 +35,10 @@ namespace RPG
 
         private void OnClickStartNewGame(object sender, RoutedEventArgs e)
         {
-            if (App.Current.Windows.Count > 1)
-            {
-                App.Current.Windows[0].Close();
-            }
+            //if (App.Current.Windows.Count > 1)
+            //{
+            //    App.Current.Windows[0].Close();
+            //}
             CharacterCreation characterCreationWindow = new CharacterCreation();
             characterCreationWindow.Show();
             Close();

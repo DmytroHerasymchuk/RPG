@@ -4,11 +4,14 @@
     <Name><![CDATA[Strange Voices]]></Name>
     <Description><![CDATA[Kill the monsters in the depths of the mine and bring back the evidence]]></Description>
     <ItemsToComplete>
-      <Item ID="20001" Quantity="3"/>
-      <Item ID="20017" Quantity="3"/>
+      <Item ID="20001" Quantity="1"/>
+      <Item ID="20017" Quantity="1"/>
     </ItemsToComplete>
     <RewardItems>
       <Item ID="10009" Quantity="1"/>
     </RewardItems>
+    <RewardRecipes>
+      <Recipe ID="2"/>
+    </RewardRecipes>
   </Quest>
 </Quests>
