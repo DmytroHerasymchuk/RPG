@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core;
 using Models.EventArgs;
 using Engine.Services;
+using Engine.Shared;
 
 namespace Engine.Models
 {
@@ -25,7 +26,7 @@ namespace Engine.Models
             _opponent.OnKilled += OnOpponentKilled;
             _messageBroker.RaiseMessage("");
             _messageBroker.RaiseMessage($"You see a {_opponent.Name} here!");
-            if (CombatService.FirstAttacker(_player,_opponent) == CombatService.Combatant.Opponent)
+            if (FirstAttacker(_player,_opponent) == Combatant.Opponent)
             {
                 AttackPlayer();
             }
@@ -74,6 +75,24 @@ namespace Engine.Models
         private void OnCombatantActionPerformed(object sender, string result)
         {
             _messageBroker.RaiseMessage(result);
+        }
+
+        private enum Combatant
+        {
+            Player,
+            Opponent
+        }
+        private Combatant FirstAttacker(Player player, Monster opponent)
+        {
+            // Formula: ((Dex(player)^2 - Dex(monster)^2)/10) + Random(-10/10)
+            int playerDexterity = player.GetAttribute("DEX").Value * player.GetAttribute("DEX").Value;
+            int opponentDexterity = opponent.GetAttribute("DEX").Value * opponent.GetAttribute("DEX").Value;
+            decimal dexterityOffset = (playerDexterity - opponentDexterity) / 10m;
+            int randomOffset = RandomNumberGenerator.NumberBetween(-10, 10);
+            decimal totalOffset = dexterityOffset + randomOffset;
+            return RandomNumberGenerator.NumberBetween(0, 100) <= 50 + totalOffset
+                                                              ? Combatant.Player
+                                                              : Combatant.Opponent;
         }
     }
 }

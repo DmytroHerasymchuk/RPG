@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Engine.Models;
 using Engine.Services;
+using Engine.Shared;
 using Core;
 
 namespace Engine.Actions
@@ -36,7 +37,7 @@ namespace Engine.Actions
         {
             string actorName = (actor is Player) ? "You" : $"The {actor.Name.ToLower()}";
             string targetName = (target is Player) ? "you" : $"the {target.Name.ToLower()}";
-            if (CombatService.AttackSucceded(actor,target))
+            if (AttackSucceded(actor,target))
             {
                 int damage = RandomNumberGenerator.NumberBetween(_minDamage, _maxDamage);
                 ReportResult($"{actorName} hit {targetName} for {damage} point{(damage > 1 ? "s" : "")}.");
@@ -48,6 +49,17 @@ namespace Engine.Actions
                 ReportResult($"{actorName} missed {targetName}.");
                 
             }
+        }
+
+
+        private bool AttackSucceded(LivingEntity attacker, LivingEntity target)
+        {
+            int playerDexterity = attacker.GetAttribute("DEX").Value * attacker.GetAttribute("DEX").Value;
+            int opponentDexterity = target.GetAttribute("DEX").Value * target.GetAttribute("DEX").Value;
+            decimal dexterityOffset = (playerDexterity - opponentDexterity) / 10m;
+            int randomOffset = RandomNumberGenerator.NumberBetween(-10, 10);
+            decimal totalOffset = dexterityOffset + randomOffset;
+            return RandomNumberGenerator.NumberBetween(0, 100) <= 50 + totalOffset;
         }
     }
 }

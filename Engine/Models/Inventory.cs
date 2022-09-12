@@ -66,5 +66,45 @@ namespace Engine.Models
                 _backingGroupedInventoryItems.First(gi => gi.Item.ItemTypeId == item.ItemTypeId).Quantity++;
             }
         }
+
+        public Inventory AddItem(GameItem item)
+        {
+            return AddItems(new List<GameItem> { item });
+        }
+
+        public Inventory AddItems(IEnumerable<GameItem> items)
+        {
+            return new Inventory(Items.Concat(items));
+        }
+        public Inventory RemoveItem(GameItem item)
+        {
+            return RemoveItems(new List<GameItem> { item });
+        }
+        public Inventory RemoveItems(IEnumerable<GameItem> items)
+        {
+            List<GameItem> workingInventory = Items.ToList();
+            IEnumerable<GameItem> itemsToRemove = items.ToList();
+            foreach (GameItem gameItem in itemsToRemove)
+            {
+                workingInventory.Remove(gameItem);
+            }
+            return new Inventory(workingInventory);
+        }
+        public Inventory RemoveItems(IEnumerable<ItemQuantity> itemQuantities)
+        {
+            Inventory workingInventory = new Inventory(Items);
+            foreach (ItemQuantity itemQuantity in itemQuantities)
+            {
+                for (int i = 0; i < itemQuantity.Quantity; ++i)
+                {
+                    workingInventory =
+                        workingInventory.
+                            RemoveItem(workingInventory
+                                .Items
+                                .First(item => item.ItemTypeId == itemQuantity.ItemId));
+                }
+            }
+            return workingInventory;
+        }
     }
 }

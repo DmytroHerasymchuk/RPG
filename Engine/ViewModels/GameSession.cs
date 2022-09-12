@@ -167,6 +167,7 @@ namespace Engine.ViewModels
                         }
                         foreach (Recipe recipe in quest.RewardRecipes)
                         {
+                            _messageBroker.RaiseMessage($"You learned {recipe.Name} recipe.");
                             CurrentPlayer.LearnRecipe(recipe);
                         }
 
@@ -192,10 +193,14 @@ namespace Engine.ViewModels
                     }
                     _messageBroker.RaiseMessage("And you will receive:");
                     _messageBroker.RaiseMessage($"     {quest.RewardExperiencePoints} experience points.");
-                    _messageBroker.RaiseMessage($"     {quest.RewardGold} gold.");
+                    _messageBroker.RaiseMessage($"     {quest.RewardGold} gold.");                   
                     foreach (ItemQuantity itemQuantity in quest.RewardItems)
                     {
                         _messageBroker.RaiseMessage($"     {itemQuantity.Quantity} {GameItemFactory.CreateGameItem(itemQuantity.ItemId).Name} ({GameItemFactory.CreateGameItem(itemQuantity.ItemId).Rarity})");
+                    }
+                    foreach (Recipe recipe in quest.RewardRecipes)
+                    {
+                        _messageBroker.RaiseMessage($"     Recipe: {recipe.Name}");
                     }
                 }
             }
