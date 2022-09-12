@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
-        xmlns:viewModels="clr-namespace:ViewModels.ViewModels;assembly=ViewModels"
+        xmlns:viewModels="clr-namespace:ViewModels;assembly=ViewModels"
         d:DataContext="{d:DesignInstance viewModels:CharacterCreationViewModel}"
         Title="Character Creation" Height="600" Width="1080"
         Style="{StaticResource CustomFont}" FontSize="24"

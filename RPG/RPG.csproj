@@ -136,13 +136,13 @@
       <Project>{416ac262-505b-4bb6-a9e0-5d3900bb339e}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Engine\Engine.csproj">
-      <Project>{e22e8e88-2c00-42fe-8903-71b5e4fd4c42}</Project>
-      <Name>Engine</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{b52a34af-68e9-4a5b-b299-00aa757d3434}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{fb27d73d-0c2b-4c81-a539-a0adf1f2cfad}</Project>
+      <Name>Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{6d373545-b544-4ce6-a161-16b0e1faff00}</Project>

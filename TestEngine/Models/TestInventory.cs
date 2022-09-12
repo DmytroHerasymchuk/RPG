@@ -1,11 +1,11 @@
 ﻿//using System;
 //using System.Collections.Generic;
 //using System.Linq;
-//using Engine.Factories;
-//using Engine.Models;
-//using Engine.Services;
+//using Services.Factories;
+//using Models;
+//using Services;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
-//namespace TestEngine.Models
+//namespace TestModels
 //{
 //    [TestClass]
 //    public class TestInventory

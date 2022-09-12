@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine.Models;
-using Engine.Services;
-using Engine.Factories;
+using Models;
+using Services;
+using Services.Factories;
 using System.ComponentModel;
 using Core;
 
-namespace ViewModels.ViewModels
+namespace ViewModels
 {
     public class CharacterCreationViewModel : INotifyPropertyChanged
     {
@@ -51,11 +51,26 @@ namespace ViewModels.ViewModels
         public Player GetPlayer()
         {
             Player player = new Player(Name, SelectedClass, 100, 100, PlayerAttributes, 0, 100, AttributePoints);
-            player.AddItemToInventory(SelectedClass.GetClassItem(SelectedClass.Key));
+            player.AddItemToInventory(GetClassItem(SelectedClass.Key));
             player.AddItemToInventory(GameItemFactory.CreateGameItem(41001));
             player.LearnRecipe(RecipeFactory.RecipeById(1));
 
             return player;
+        }
+
+        public GameItem GetClassItem(string key)
+        {
+            switch (key)
+            {
+                case "WARRIOR":
+                    return GameItemFactory.CreateGameItem(10003);
+                case "THIEF":
+                    return GameItemFactory.CreateGameItem(10005);
+                case "MAGE":
+                    return GameItemFactory.CreateGameItem(10010);
+                default:
+                    return GameItemFactory.CreateGameItem(10001);
+            }
         }
 
         public void GetClassInfo(string key)
@@ -65,7 +80,7 @@ namespace ViewModels.ViewModels
                 case "WARRIOR":
                     _messageBroker.RaiseMessage("   Warrior");
                     _messageBroker.RaiseMessage("Items you get: ");
-                    _messageBroker.RaiseMessage("   " + SelectedClass.GetClassItem(key).Name);
+                    _messageBroker.RaiseMessage("   " + GetClassItem(key).Name);
                     _messageBroker.RaiseMessage("");
                     _messageBroker.RaiseMessage("Skills you get: ");                 
                     _messageBroker.RaiseMessage("   " + "Stan enemy");
@@ -73,7 +88,7 @@ namespace ViewModels.ViewModels
                 case "THIEF":
                     _messageBroker.RaiseMessage("   Thief");
                     _messageBroker.RaiseMessage("Items you get: ");
-                    _messageBroker.RaiseMessage("   " + SelectedClass.GetClassItem(key).Name);
+                    _messageBroker.RaiseMessage("   " + GetClassItem(key).Name);
                     _messageBroker.RaiseMessage("");
                     _messageBroker.RaiseMessage("Skills you get: ");              
                     _messageBroker.RaiseMessage("   " + "Steal");
@@ -81,7 +96,7 @@ namespace ViewModels.ViewModels
                 case "MAGE":
                     _messageBroker.RaiseMessage("   Mage");
                     _messageBroker.RaiseMessage("Items you get: ");
-                    _messageBroker.RaiseMessage("   " + SelectedClass.GetClassItem(key).Name);
+                    _messageBroker.RaiseMessage("   " + GetClassItem(key).Name);
                     _messageBroker.RaiseMessage("");
                     _messageBroker.RaiseMessage("Skills you get: ");
                     _messageBroker.RaiseMessage("   " + "Fireball");

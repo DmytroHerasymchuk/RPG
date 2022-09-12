@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PropertyChanged, Version=4.0.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.4.0.1\lib\net40\PropertyChanged.dll</HintPath>
     </Reference>
@@ -48,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterCreationViewModel.cs" />
+    <Compile Include="GameSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,10 +64,6 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{416ac262-505b-4bb6-a9e0-5d3900bb339e}</Project>
       <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Engine\Engine.csproj">
-      <Project>{e22e8e88-2c00-42fe-8903-71b5e4fd4c42}</Project>
-      <Name>Engine</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{b52a34af-68e9-4a5b-b299-00aa757d3434}</Project>
