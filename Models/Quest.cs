@@ -37,7 +37,8 @@ namespace Models
             Environment.NewLine + Environment.NewLine +
             "Recipes\r\n" +
             "===========================" + Environment.NewLine +
-            string.Join(Environment.NewLine, RewardRecipes.Select(i => i.Name));
+            string.Join(Environment.NewLine, RewardRecipes.Select(i => i.Name)) + 
+            Environment.NewLine;
             
 
         public Quest(int id, string name, string description, List<ItemQuantity> itemsToComplete,
