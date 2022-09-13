@@ -14,6 +14,10 @@ namespace Models.Actions
         public Poison(GameItem itemInUse, int damageHitPoints):
             base(itemInUse)
         {
+            if (itemInUse.Category != GameItem.ItemCategory.Consumable)
+            {
+                throw new ArgumentException($"{itemInUse.Name} is not consumable");
+            }
             _damageHitPoints = damageHitPoints;
         }
 

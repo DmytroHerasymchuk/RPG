@@ -21,7 +21,8 @@ namespace Models
         [JsonIgnore]
         public IReadOnlyCollection<GameItem> Weapons => _backingInventory.ItemsThatAre(GameItem.ItemCategory.Weapon).AsReadOnly();
         [JsonIgnore]
-        public IReadOnlyCollection<GameItem> Consumables => _backingInventory.ItemsThatAre(GameItem.ItemCategory.Potion).AsReadOnly();
+        public IReadOnlyCollection<GameItem> Consumables => _backingInventory.ItemsThatAre(GameItem.ItemCategory.Consumable).AsReadOnly();
+
         [JsonIgnore]
         public bool HasConsumable => Consumables.Any();
 

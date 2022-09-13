@@ -22,4 +22,14 @@
       <Item ID="11001" Quantity="1"/>
     </OutputItems>
   </Recipe>
+  <Recipe ID="3">
+    <Name><![CDATA["Strength potion"]]></Name>
+    <Ingredients>
+      <Item ID="20016" Quantity="2"/>
+      <Item ID="20001" Quantity="2"/>
+    </Ingredients>
+    <OutputItems>
+      <Item ID="20020" Quantity="1"/>
+    </OutputItems>
+  </Recipe>
 </Recipes>

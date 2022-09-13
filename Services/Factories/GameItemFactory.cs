@@ -26,6 +26,7 @@ namespace Services.Factories
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/Potions/HealingPotions/HealingPotion"));
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/Potions/PoisonPotions/PoisonPotion"));
                 LoadItemsFromNodes(data.SelectNodes("/GameItems/Miscellaneous/MiscellaneousItem"));
+                LoadItemsFromNodes(data.SelectNodes("/GameItems/RecipeLists/RecipeList"));
             }
             else
             {
@@ -62,21 +63,29 @@ namespace Services.Factories
                                              node.AttributeAsInt("MinDamage"),
                                              node.AttributeAsInt("MaxDamage"));
                 }
-                if(itemCategory == GameItem.ItemCategory.Potion)
+                
+                if(itemCategory == GameItem.ItemCategory.Consumable)
                 {
-                    Potion.PotionCategory potionCategory = DeterminePotionCategory(node.Name);
-                    if (potionCategory == Potion.PotionCategory.PoisonPotion)
+                    Consumable.ConsumableCategory consumableCategory = DeterminePotionCategory(node.Name);
+                    if (consumableCategory == Consumable.ConsumableCategory.PoisonPotion)
                     {
                         gameItem.Action =
                         new Poison(gameItem,
                                    node.AttributeAsInt("DamageHitPoints"));
+                        
                     }
-                    if (potionCategory == Potion.PotionCategory.HealingPotion)
+                    if (consumableCategory == Consumable.ConsumableCategory.HealingPotion)
                     {
                         gameItem.Action =
                         new Heal(gameItem,
                                  node.AttributeAsInt("HitPointsToHeal"));
-                    }                  
+                    }
+                    if (consumableCategory == Consumable.ConsumableCategory.RecipeList)
+                    {
+                        gameItem.Action =
+                            new LearnRecipe(gameItem,
+                                            RecipeFactory.RecipeById(node.AttributeAsInt("RecipeID")));
+                    }
                 }
                 _standartGameItem.Add(gameItem);
             }
@@ -89,24 +98,28 @@ namespace Services.Factories
                 case "Weapon":
                     return GameItem.ItemCategory.Weapon;
                 case "HealingPotion":
-                    return GameItem.ItemCategory.Potion;
+                    return GameItem.ItemCategory.Consumable;
                 case "PoisonPotion":
-                    return GameItem.ItemCategory.Potion;
+                    return GameItem.ItemCategory.Consumable;
+                case "RecipeList":
+                    return GameItem.ItemCategory.Consumable;
                 default:
                     return GameItem.ItemCategory.Miscellaneous;
             }
         }
 
-        private static Potion.PotionCategory DeterminePotionCategory(string itemType)
+        private static Consumable.ConsumableCategory DeterminePotionCategory(string itemType)
         {
             switch (itemType)
             {
                 case "HealingPotion":
-                    return Potion.PotionCategory.HealingPotion;
+                    return Consumable.ConsumableCategory.HealingPotion;
                 case "PoisonPotion":
-                    return Potion.PotionCategory.PoisonPotion;
+                    return Consumable.ConsumableCategory.PoisonPotion;
+                case "RecipeList":
+                    return Consumable.ConsumableCategory.RecipeList;
                 default:
-                    return Potion.PotionCategory.SimplePotion;
+                    return Consumable.ConsumableCategory.SimplePotion;
             }
         }
 

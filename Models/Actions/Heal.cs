@@ -13,7 +13,7 @@ namespace Models.Actions
         public Heal(GameItem itemInUse, int pointsToHeal) :
             base(itemInUse)
         {
-            if (itemInUse.Category != GameItem.ItemCategory.Potion)
+            if (itemInUse.Category != GameItem.ItemCategory.Consumable)
             {
                 throw new ArgumentException($"{itemInUse.Name} is not consumable");
             }

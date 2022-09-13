@@ -38,6 +38,7 @@
     <MiscellaneousItem ID="20017" Name="Rotten flesh" Price="1" Rarity="Common"/>
     <MiscellaneousItem ID="20018" Name="Blood" Price="1" Rarity="Common"/>
     <MiscellaneousItem ID="20019" Name="Fire bug" Price="10" Rarity="Rare"/>
+    <MiscellaneousItem ID="20020" Name="Strength Potion" Price="100" Rarity="Rare"/>
   </Miscellaneous>
   <Potions>
     <HealingPotions>
@@ -50,4 +51,7 @@
       <PoisonPotion ID="41001" Name="Strange Potion" Price="5" Rarity="Common" DamageHitPoints="5"/>
     </PoisonPotions>
   </Potions>
+  <RecipeLists>
+    <RecipeList ID="50001" Name="Strength potion recipe" Price="5" Rarity="Uncommon" RecipeID="3"/>
+  </RecipeLists>
 </GameItems>

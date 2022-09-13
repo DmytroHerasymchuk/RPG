@@ -26,12 +26,13 @@ namespace Models
             "===========================" + Environment.NewLine +
             string.Join(Environment.NewLine, OutputItems.Select(i => i.QuantityItemDescription));
       
-        public Recipe(int itemId, string name, List<ItemQuantity> ingredients, List<ItemQuantity> outputItems)
+        public Recipe(int id, string name, List<ItemQuantity> ingredients, List<ItemQuantity> outputItems)
         {
-            Id = itemId;
+            Id = id;
             Name = name;
             Ingredients = ingredients;
             OutputItems = outputItems;
         }
+
     }
 }
