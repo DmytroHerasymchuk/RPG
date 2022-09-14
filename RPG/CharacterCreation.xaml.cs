@@ -37,9 +37,16 @@ namespace RPG
         {
             if (Name.Text != "")
             {
-                MainWindow mainWindow = new MainWindow(ViewModel.GetPlayer());
-                mainWindow.Show();
-                Close();
+                if(ViewModel.AttributePoints <= 0)
+                {
+                    MainWindow mainWindow = new MainWindow(ViewModel.GetPlayer());
+                    mainWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("You must use all points", "Attributes");
+                }               
             }
             else
             {
@@ -76,7 +83,7 @@ namespace RPG
 
         private void OnClickSetDefault(object sender, RoutedEventArgs e)
         {
-            ViewModel.CreateNewCharacter();
+            ViewModel.SetBaseAttributes();
         }
 
         private void OnGameMessageRaised(object sender, GameMessageEventArgs e)

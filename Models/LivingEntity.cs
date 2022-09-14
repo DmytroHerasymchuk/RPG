@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using System.ComponentModel;
+using Models.Shared;
 
 namespace Models
 {
@@ -28,7 +29,7 @@ namespace Models
 
         public int MaxHitPoints { get; protected set; }
 
-        public int CurrentHitPoints { get; private set; }
+        public int CurrentHitPoints { get; protected set; }
 
         public int Gold { get; private set; }
 

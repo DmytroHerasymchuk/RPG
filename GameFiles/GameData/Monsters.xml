@@ -2,6 +2,7 @@
 <Monsters RootImagePath="/Images/Monsters/">
   <Monster ID="1" Name="Troll" MaxHitPoints="20" WeaponId="30001" RewardXP="50" Gold="10" ImageName="Troll.png">
     <Dexterity>9</Dexterity>
+    <Constitution>11</Constitution>
     <LootItems>
       <LootItem ID="20001" Percentage="85"/>
       <LootItem ID="10007" Percentage="15"/>
@@ -9,6 +10,7 @@
   </Monster>
   <Monster ID="2" Name="Zombie" MaxHitPoints="10" WeaponId="30002" RewardXP="30" Gold="5" ImageName="Zombie.png">
     <Dexterity>7</Dexterity>
+    <Constitution>5</Constitution>
     <LootItems>
       <LootItem ID="20014" Percentage="65"/>
       <LootItem ID="20017" Percentage="25"/>

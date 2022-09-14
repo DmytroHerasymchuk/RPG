@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Models.Shared;
 
 namespace Models
 {
@@ -69,12 +70,14 @@ namespace Models
 
         private void SetLevelAndMaxHitPoints()
         {
-            int originalLevel = Level;
-            Level = (ExperiencePoints / 100) + 1;
-            if (Level != originalLevel)
+            int lvlUpExp = (int)(100 * Math.Pow(1.2, Level));
+            if (ExperiencePoints>=lvlUpExp)
             {
+                Level++;
                 AttributePoints++;
-                MaxHitPoints = Level * 10;
+                MaxHitPoints = this.GetAttribute("CON").Value * Level + 5;
+                this.FullHeal();
+                ExperiencePoints -= lvlUpExp;
                 OnLeveledUp?.Invoke(this, System.EventArgs.Empty);
             }
         }

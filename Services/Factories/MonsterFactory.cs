@@ -46,6 +46,7 @@ namespace Services.Factories
             {
                 var attributes = gameDetails.PlayerAttributes;
                 attributes.First(a => a.Key.Equals("DEX")).Value = Convert.ToInt32(node.SelectSingleNode("./Dexterity").InnerText);
+                attributes.First(a => a.Key.Equals("CON")).Value = Convert.ToInt32(node.SelectSingleNode("./Constitution").InnerText);
                 Monster monster = new Monster(
                     node.AttributeAsInt("ID"),
                     node.AttributeAsString("Name"),

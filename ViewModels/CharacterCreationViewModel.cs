@@ -33,11 +33,11 @@ namespace ViewModels
             {
                 SelectedClass = GameDetails.Classes.First();
             }
-            CreateNewCharacter();
+            SetBaseAttributes();
            
         }
 
-        public void CreateNewCharacter()
+        public void SetBaseAttributes()
         {
             PlayerAttributes.Clear();
             foreach(PlayerAttribute playerAttribute in GameDetails.PlayerAttributes)
@@ -50,7 +50,9 @@ namespace ViewModels
 
         public Player GetPlayer()
         {
-            Player player = new Player(Name, SelectedClass, 100, 100, PlayerAttributes, 0, 100, AttributePoints);
+            int hitPoints = PlayerAttributes.First(k => k.Key == "CON").Value + 5;
+            
+            Player player = new Player(Name, SelectedClass, hitPoints, hitPoints, PlayerAttributes, 0, 100, AttributePoints);
             player.AddItemToInventory(GetClassItem(SelectedClass.Key));
             player.AddItemToInventory(GameItemFactory.CreateGameItem(41001));
             player.AddItemToInventory(GameItemFactory.CreateGameItem(50001));
