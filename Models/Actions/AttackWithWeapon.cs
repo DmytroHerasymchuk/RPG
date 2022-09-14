@@ -38,9 +38,11 @@ namespace Models.Actions
             string targetName = (target is Player) ? "you" : $"the {target.Name.ToLower()}";
             if (AttackSucceded(actor,target))
             {
-                int damage = RandomNumberGenerator.NumberBetween(_minDamage, _maxDamage);
-                ReportResult($"{actorName} hit {targetName} for {damage} point{(damage > 1 ? "s" : "")}.");
-                target.TakeDamage(damage);
+                int weaponDamage = RandomNumberGenerator.NumberBetween(_minDamage, _maxDamage);
+                int strengthDamage = (actor.GetAttribute("STR").Value * 2) / ((_minDamage + _maxDamage) / 2);
+                int totalDamage = weaponDamage + strengthDamage;
+                ReportResult($"{actorName} hit {targetName} for {totalDamage} point{(totalDamage > 1 ? "s" : "")}.");
+                target.TakeDamage(totalDamage);
 
             }
             else
