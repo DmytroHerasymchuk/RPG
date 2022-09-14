@@ -54,6 +54,7 @@ namespace Services.Factories
                                  node.AttributeAsInt("ID"),
                                  node.AttributeAsString("Name"),
                                  node.AttributeAsInt("Price"),
+                                 node.AttributeAsInt("ModifiedPrice"),
                                  node.AttributeAsString("Rarity"),
                                  itemCategory == GameItem.ItemCategory.Weapon); ;
                 if(itemCategory == GameItem.ItemCategory.Weapon)

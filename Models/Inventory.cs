@@ -38,7 +38,32 @@ namespace Models
                 AddItemToGroupedInventory(item);
             }
         }
+        public void UpdateModifiedPricePlayer(LivingEntity livingEntity)
+        {
+            int charisma = livingEntity.GetAttribute("CHA").Value;
+            foreach(GameItem item in Items)
+            {
 
+                item.ModifiedPrice = item.Price + charisma - 10;
+                if (item.ModifiedPrice <= 0)
+                {
+                    item.ModifiedPrice = 1;
+                }
+            }
+        }
+        public void UpdateModifiedPriceTrader(LivingEntity livingEntity)
+        {
+            int charisma = livingEntity.GetAttribute("CHA").Value;
+            foreach (GameItem item in Items)
+            {
+
+                item.ModifiedPrice = item.Price - charisma + 10;
+                if(item.ModifiedPrice <= 0)
+                {
+                    item.ModifiedPrice = 1;
+                }
+            }
+        }
         public bool HasAllTheseItems(IEnumerable<ItemQuantity> items)
         {
             foreach(ItemQuantity item in items)

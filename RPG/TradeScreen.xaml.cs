@@ -32,9 +32,12 @@ namespace RPG
             GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
             if(groupedInventoryItem != null)
             {
-                Session.CurrentPlayer.ReceiveGold(groupedInventoryItem.Item.Price);
+                Session.CurrentPlayer.ReceiveGold(groupedInventoryItem.Item.ModifiedPrice);
                 Session.CurrentTrader.AddItemToInventory(groupedInventoryItem.Item);
                 Session.CurrentPlayer.RemoveItemFromInventory(groupedInventoryItem.Item);
+                Session.CurrentPlayer.Inventory.UpdateModifiedPricePlayer(Session.CurrentPlayer);
+                Session.CurrentTrader.Inventory.UpdateModifiedPriceTrader(Session.CurrentPlayer);
+
             }
         }
 
@@ -43,15 +46,17 @@ namespace RPG
             GroupedInventoryItem groupedInventoryItem = ((FrameworkElement)sender).DataContext as GroupedInventoryItem;
             if (groupedInventoryItem != null)
             {
-                if (Session.CurrentPlayer.Gold < groupedInventoryItem.Item.Price)
+                if (Session.CurrentPlayer.Gold < groupedInventoryItem.Item.ModifiedPrice)
                 {
                     MessageBox.Show("You don't have enough gold");
                 }
                 else
                 {
-                    Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.Price);
+                    Session.CurrentPlayer.SpendGold(groupedInventoryItem.Item.ModifiedPrice);
                     Session.CurrentTrader.RemoveItemFromInventory(groupedInventoryItem.Item);
                     Session.CurrentPlayer.AddItemToInventory(groupedInventoryItem.Item);
+                    Session.CurrentTrader.Inventory.UpdateModifiedPriceTrader(Session.CurrentPlayer);
+                    Session.CurrentPlayer.Inventory.UpdateModifiedPricePlayer(Session.CurrentPlayer);
                 }   
             }
         }

@@ -83,6 +83,8 @@ namespace RPG
                 TradeScreen tradeScreen = new TradeScreen();
                 tradeScreen.Owner = this;
                 tradeScreen.DataContext = _gameSession;
+                _gameSession.CurrentPlayer.Inventory.UpdateModifiedPricePlayer(_gameSession.CurrentPlayer);
+                _gameSession.CurrentTrader.Inventory.UpdateModifiedPriceTrader(_gameSession.CurrentPlayer);
                 tradeScreen.ShowDialog();
             }
         }

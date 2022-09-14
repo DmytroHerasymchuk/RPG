@@ -30,7 +30,7 @@ namespace Models
 
         public void SetBaseValue()
         {
-            Value = 5;
+            Value = 10;
         }
         public void Increment()
         {

@@ -21,10 +21,9 @@ namespace Models.Actions
 
         public void Execute(LivingEntity actor, LivingEntity target)
         {
-            ReportResult("You learned new recipe!");
+            _messageBroker.RaiseMessage("You learned new recipe!");
             Player targetPlayet = (target as Player);
-            targetPlayet.LearnRecipe(_recipe);
-            target = targetPlayet;
+            targetPlayet.LearnRecipe(_recipe);           
         }
     }
 }

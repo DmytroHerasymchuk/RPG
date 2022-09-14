@@ -18,8 +18,8 @@ namespace Models
         }
 
         public ConsumableCategory ConsumableType { get; }
-        public Consumable(ConsumableCategory consumableCategory,ItemCategory category, int itemTypeId, string name, int price, string rarity, bool isUnique = false, IAction action = null) : 
-            base(category, itemTypeId, name, price, rarity, isUnique, action)
+        public Consumable(ConsumableCategory consumableCategory,ItemCategory category, int itemTypeId, string name, int price, int modifiedPrice, string rarity, bool isUnique = false, IAction action = null) : 
+            base(category, itemTypeId, name, price, modifiedPrice, rarity, isUnique, action)
         {
             ConsumableType = consumableCategory;
         }

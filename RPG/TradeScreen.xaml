@@ -58,7 +58,7 @@
                 <DataGridTextColumn Header="Price"
                                     IsReadOnly="True"
                                     Width="1.2*"
-                                    Binding="{Binding Item.Price}"/>
+                                    Binding="{Binding Item.ModifiedPrice}"/>
                 <DataGridTemplateColumn MinWidth="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -95,7 +95,7 @@
                 <DataGridTextColumn Header="Price"
                                     IsReadOnly="True"
                                     Width="1.2*"
-                                    Binding="{Binding Item.Price}"/>
+                                    Binding="{Binding Item.ModifiedPrice}"/>
                 <DataGridTemplateColumn MinWidth="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

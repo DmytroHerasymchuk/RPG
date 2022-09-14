@@ -25,7 +25,7 @@ namespace Models.Actions
         {
             string actorName = (actor is Player) ? "You" : $"The {actor.Name.ToLower()}";
             string targetName = (target is Player) ? "yourself" : $"the {target.Name.ToLower()}";
-            ReportResult($"{actorName} poisoned {targetName} for {_damageHitPoints} point{(_damageHitPoints > 1 ? "s" : "")}.");
+            _messageBroker.RaiseMessage($"{actorName} poisoned {targetName} for {_damageHitPoints} point{(_damageHitPoints > 1 ? "s" : "")}.");
             target.TakeDamage(_damageHitPoints);
         }
     }

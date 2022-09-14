@@ -72,7 +72,6 @@ namespace Services
                 DisplayName = (string)data[nameof(GameState.Player)][nameof(Player.CharacterClass)][nameof(PlayerClass.DisplayName)],
             };
             return playerClass;
-
         }
         private static IEnumerable<PlayerAttribute> GetPlayerAttributes(JObject data)
         {
