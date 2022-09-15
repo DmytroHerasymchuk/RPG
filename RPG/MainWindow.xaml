@@ -29,6 +29,8 @@
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!--Menu-->
+        
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
             <Button Grid.Row="0" Grid.Column="0" Content="Menu" Width="135"
                 Click="OnCliclOpenMainMenu" Height="30" >
@@ -45,7 +47,80 @@
                 </Button.Background>
             </Button>
         </StackPanel>
-        
+
+        <!--Canvas-->
+        <Canvas Grid.Row="1" Grid.Column="0"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                x:Name="GameCanvas"
+                ZIndex="99">
+            <Canvas Canvas.Top="{Binding InventoryDetails.Top}" Canvas.Left="{Binding InventoryDetails.Left}"
+                    Width="Auto"
+                    Height="Auto"
+                    x:Name="PlayerInventoryDetailsPopup"
+                    MinHeight="{Binding InventoryDetails.MinHeight}"
+                    MinWidth="{Binding InventoryDetails.MinWidth}"
+                    MaxHeight="{Binding InventoryDetails.MaxHeight}"
+                    MaxWidth="{Binding InventoryDetails.MaxWidth}"
+                    Visibility="{Binding InventoryDetails.IsVisible, Converter={StaticResource BooleanToVisibility}}">
+                <Border BorderBrush="Crimson" BorderThickness="5" Background="DarkGoldenrod">
+                    <Grid Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               FontWeight="Bold"
+                               Content="Inventory"/>
+                        <Button Grid.Row="0" Grid.Column="1"
+                                Width="25"
+                                FontWeight="Bold"
+                                Content="X"
+                                Click="OnClickCloseInventory">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                            
+                        </Button>
+                        <DataGrid Grid.Row="2" Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  ItemsSource="{Binding CurrentPlayer.Inventory.GroupedInventory}"
+                                  HeadersVisibility="Column" AutoGenerateColumns="False"
+                                  VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=MaxHeight}"
+                                  Width="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=ActualWidth}">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Item.Name, Mode=OneWay}"
+                                                Width="2*"/>
+                                <DataGridTextColumn Header="Rarity"
+                                                Binding="{Binding Item.Rarity, Mode=OneWay}"
+                                                Width="2*"/>
+                                <DataGridTextColumn Header="Quantity"
+                                                Binding="{Binding Quantity, Mode=OneWay}"
+                                                Width="1.3*"/>
+                                <DataGridTextColumn Header="Price"
+                                                Binding="{Binding Item.Price, Mode=OneWay}"
+                                                Width="*"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Canvas>
+        </Canvas>
+        <!--PlayerInfo-->
         
         <Grid Grid.Row="1" Grid.Column="0" Background="Crimson">
             <Grid.ColumnDefinitions>
@@ -78,7 +153,6 @@
             <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.Level}" />
             <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
             <Label Grid.Row="8" Grid.Column="1" Content="{Binding CurrentPlayer.AttributePoints}"/>
-            <!--<Image Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Source="/Engine;component/Images/Menu/CharacterMenu.png"/>-->
             <ListBox Grid.Row="7" Grid.Column="0"
                      Grid.ColumnSpan="2"
                      Background="Crimson"
@@ -109,6 +183,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
+        
+        <!--GameInfo-->
+        
         <Grid Grid.Row="1" Grid.Column="1" Background="Wheat">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
@@ -149,40 +226,29 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding CurrentMonster.Name}"/>
                     <Image Grid.Row="1" Source ="{Binding CurrentMonster.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
+                    <Image Grid.Row="1" Source ="{Binding CurrentNPC.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
                     <StackPanel Grid.Row="2" Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal">
                         <TextBlock>Hit Points:</TextBlock>
                         <TextBlock Text="{Binding CurrentMonster.CurrentHitPoints}"/>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Visibility="{Binding HasNPC, Converter={StaticResource BooleanToVisibility}}"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                        
+                        <TextBlock Text="{Binding CurrentNPC.Name}"/>
+                    </StackPanel>
                 </Grid>
             </Border>
         </Grid>
+        
+        <!--Inventory-->
+        
         <Grid Grid.Row="2" Grid.Column="0" >
 
             <TabControl x:Name="PlayerDataTabControl">
-                
-                <TabItem Header="Inventory" x:Name="InventoryTabItem">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory.GroupedInventory}"
-                              HeadersVisibility="Column" AutoGenerateColumns="False">
 
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Item.Name, Mode=OneWay}"
-                                                Width="2*"/>
-                            <DataGridTextColumn Header="Rarity"
-                                                Binding="{Binding Item.Rarity, Mode=OneWay}"
-                                                Width="2*"/>
-                            <DataGridTextColumn Header="Quantity"
-                                                Binding="{Binding Quantity, Mode=OneWay}"
-                                                Width="1.3*"/>
-                            <DataGridTextColumn Header="Price"
-                                                Binding="{Binding Item.Price, Mode=OneWay}"
-                                                Width="*"/>
-
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
                 <TabItem Header="Quests" x:Name="QuestsTabItem">
                     <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}"
                               AutoGenerateColumns="False"
@@ -237,7 +303,9 @@
                 </TabItem>
             </TabControl>
         </Grid>
-
+        
+        <!--Controls-->
+        
         <Grid Grid.Row="2" Grid.Column="1" Background="Lavender">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>

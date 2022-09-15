@@ -49,6 +49,7 @@ namespace Services.Factories
                 AddMonsters(location, node.SelectNodes("./Monsters/Monster"));
                 AddQuests(location, node.SelectNodes("./Quests/Quest"));
                 AddTrader(location, node.SelectSingleNode("./Trader"));
+                AddNPC(location, node.SelectSingleNode("./NPC"));
                 world.AddLocation(location);
             }
         }
@@ -89,6 +90,16 @@ namespace Services.Factories
             location.TraderHere =
                     TraderFactory.GetTraderById(trader.AttributeAsInt("ID"));
                     
+        }
+
+        private static void AddNPC(Location location, XmlNode npc)
+        {
+            if(npc == null)
+            {
+                return;
+            }
+            location.NPCHere = 
+                    NPCFactory.GetNPCById(npc.AttributeAsInt("ID"));
         }
     }
 }

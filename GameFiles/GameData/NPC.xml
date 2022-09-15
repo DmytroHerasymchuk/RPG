@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<NPCs RootImagePath="/Images/NPC/">
+  <NPC ID="1" Name="Bob" ImageName="Bob.jpg">
+    
+  </NPC>
+</NPCs>

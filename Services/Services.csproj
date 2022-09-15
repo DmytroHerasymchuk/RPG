@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\DialogFactory.cs" />
     <Compile Include="Factories\GameItemFactory.cs" />
     <Compile Include="Factories\MonsterFactory.cs" />
+    <Compile Include="Factories\NPCFactory.cs" />
     <Compile Include="Factories\QuestFactory.cs" />
     <Compile Include="Factories\RecipeFactory.cs" />
     <Compile Include="Factories\TraderFactory.cs" />

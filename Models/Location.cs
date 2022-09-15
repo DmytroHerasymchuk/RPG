@@ -23,6 +23,7 @@ namespace Models
         public List<MonsterEncounter> MonstersHere { get; }
         [JsonIgnore]
         public Trader TraderHere { get; set; }
+        public NPC NPCHere { get; set; }
         public Location(int xCoordinate, int yCoordinate, string name, string description, string imageName)
         {
             XCoordinate = xCoordinate;

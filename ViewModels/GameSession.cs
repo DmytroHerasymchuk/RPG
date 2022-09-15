@@ -62,13 +62,16 @@ namespace ViewModels
                 GivePlayerQuestAtLocation();
                 CurrentMonster = MonsterFactory.GetMonsterFromLocation(CurrentLocation);
                 CurrentTrader = CurrentLocation.TraderHere;
+                CurrentNPC = CurrentLocation.NPCHere;
                 
             }
         }
         [JsonIgnore]
-        public bool HasMonster => CurrentMonster!= null;
+        public bool HasMonster => CurrentMonster != null;
         [JsonIgnore]
-        public bool HasTrader => CurrentTrader!= null;
+        public bool HasTrader => CurrentTrader != null;
+        [JsonIgnore]
+        public bool HasNPC => CurrentNPC != null;
         [JsonIgnore]
         public Monster CurrentMonster
         {
@@ -95,6 +98,8 @@ namespace ViewModels
         [JsonIgnore]
         public Trader CurrentTrader { get; private set; }
         [JsonIgnore]
+        public NPC CurrentNPC { get; private set; }
+        [JsonIgnore]
         public bool HasLocationToNorth => 
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
         [JsonIgnore]
@@ -107,12 +112,24 @@ namespace ViewModels
         public bool HasLocationToEast =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null;
 
+        public PopupDetails InventoryDetails { get; set; }
         public GameSession(Player player, int xCoordinate, int yCoordinate)
         {
             PopulateGameDetails();
             CurrentWorld = WorldFactory.CreateWorld();
             CurrentPlayer = player;
             CurrentLocation = CurrentWorld.LocationAt(xCoordinate, yCoordinate);
+
+            InventoryDetails = new PopupDetails()
+            {
+                IsVisible = false,
+                Top = 0,
+                Left = 500,
+                MinHeight = 100,
+                MaxHeight = 200,
+                MinWidth = 400,
+                MaxWidth = 500
+            };
         }
 
         public void GoToNorth()

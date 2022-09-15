@@ -15,9 +15,7 @@
   </Location>
   <Location X="1" Y="2" Name="Storehouse" ImageName="Storehouse.jpg">
     <Description><![CDATA[Large place with rats]]></Description>
-    <!--<Monsters>
-      <Monster ID="2" Percent="50"/>
-    </Monsters>-->
+    <NPC ID="1"/>
   </Location>
   <Location X="0" Y="3" Name="Scaffold" ImageName="Execution.jpg">
     <Description><![CDATA[Place for last wish for all sorts of villains]]></Description>  

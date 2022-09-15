@@ -97,7 +97,7 @@ namespace RPG
             _userInputActions.Add(Key.D, () => _gameSession.GoToEast());
             _userInputActions.Add(Key.Z, () => _gameSession.AttackCurrentMonster());
             _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
-            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
+            _userInputActions.Add(Key.I, () => _gameSession.InventoryDetails.IsVisible = !_gameSession.InventoryDetails.IsVisible);
             _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
             _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
             _userInputActions.Add(Key.T, () => OnClickDisplayTradeScreen(this, new RoutedEventArgs()));
@@ -107,6 +107,7 @@ namespace RPG
         {
             if (_userInputActions.ContainsKey(e.Key)){
                 _userInputActions[e.Key].Invoke();
+                e.Handled = true;
             }
         }
 
@@ -183,6 +184,12 @@ namespace RPG
             startup.ContinueButton.IsEnabled = true;
             startup.ShowDialog();
             
+        }
+
+        private void OnClickCloseInventory(object sender, RoutedEventArgs e)
+        {
+            _gameSession.InventoryDetails.IsVisible = false;
+
         }
     }
 }
