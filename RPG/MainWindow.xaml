@@ -26,21 +26,50 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <!--Menu-->
         
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-            <Button Grid.Row="0" Grid.Column="0" Content="Menu" Width="135"
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal">
+            <Button  Content="Menu" Width="135"
                 Click="OnCliclOpenMainMenu" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button Grid.Row="0" Grid.Column="0" Content="Save" Width="135"
+            <Button  Content="Save" Width="135"
                  Click="OnClickSaveGame" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
+                            Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button  Content="Inventory" Width="135"
+                 Click="OnClickOpenInventory" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
+                            Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button  Content="Quests" Width="135"
+                 Click="OnClickOpenQuests" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
+                            Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button  Content="Recipes" Width="135"
+                 Click="OnClickOpenRecipes" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
+                            Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button  Content="Player Info" Width="135"
+                 Click="OnClickOpenPlayerDetails" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
@@ -54,6 +83,134 @@
                 Grid.ColumnSpan="2"
                 x:Name="GameCanvas"
                 ZIndex="99">
+            <Canvas Canvas.Top="{Binding PlayerDetails.Top}" Canvas.Left="{Binding PlayerDetails.Left}"
+                    Width="Auto"
+                    Height="Auto"
+                    x:Name="PlayerDetailsPopup"
+                    MinHeight="{Binding PlayerDetails.MinHeight}"
+                    MinWidth="{Binding PlayerDetails.MinWidth}"
+                    MaxHeight="{Binding PlayerDetails.MaxHeight}"
+                    MaxWidth="{Binding PlayerDetails.MaxWidth}"
+                    Visibility="{Binding PlayerDetails.IsVisible, Converter={StaticResource BooleanToVisibility}}">
+                <Border BorderBrush="Navy" BorderThickness="5" Background="DarkGoldenrod">
+                    <Grid Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               FontWeight="Bold"
+                               Content="Player Info"/>
+                        <Button Grid.Row="0" Grid.Column="1"
+                                Width="25"
+                                FontWeight="Bold"
+                                Content="X"
+                                Click="OnClickClosePlayerDetails"
+                                HorizontalAlignment="Right">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+
+                        </Button>
+                        <Border Grid.Row="2" Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Grid.RowSpan="2"
+                                Background="WhiteSmoke">
+                        </Border>
+                        <Canvas Grid.Row="2" Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                HorizontalAlignment="Left"
+                                MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=MaxHeight}"
+                                Width="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=ActualWidth}">
+                            <Ellipse Canvas.Top="3" Canvas.Left="3"
+                                     Width="50"
+                                     Height="50"
+                                     StrokeThickness="1"
+                                     Stroke="SteelBlue"/>
+                            <Ellipse Canvas.Top="5" Canvas.Left="5"
+                                     Width="46"
+                                     Height="46"
+                                     StrokeThickness="1"
+                                     Stroke="SteelBlue"/>
+                            <Label Canvas.Top="7" Canvas.Left="5"
+                                   Width="46"
+                                   HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"
+                                   FontSize="20pt"
+                                   FontWeight="Bold"
+                                   Content="{Binding CurrentPlayer.Level}"/>
+                            <Label Canvas.Top="7" Canvas.Left="55"
+                                   Width="200"
+                                   FontSize="18pt"
+                                   FontWeight="Bold"
+                                   Content="{Binding CurrentPlayer.Name}"/>
+
+                        </Canvas>
+                        <Grid Grid.Row="3" Grid.Column="0"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" Content="Class:" />
+                            <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Content="Health:" />
+                            <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold" Content="Experience:" />
+                            <Label Grid.Row="3" Grid.Column="0" FontWeight="Bold" Content="Gold:" />
+                            <Label Grid.Row="4" Grid.Column="0" FontWeight="Bold" Content="Attribute points: "/>
+                            <Label Grid.Row="0" Grid.Column="1" FontWeight="Bold" Content="{Binding CurrentPlayer.CharacterClass.DisplayName}"/>
+                            <Label Grid.Row="1" Grid.Column="1" FontWeight="Bold" Content="{Binding CurrentPlayer.HitPoint}" />
+                            <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" Content="{Binding CurrentPlayer.ExperiencePoints}" />
+                            <Label Grid.Row="3" Grid.Column="1" FontWeight="Bold" Content="{Binding CurrentPlayer.Gold}"/>
+                            <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="{Binding CurrentPlayer.AttributePoints}"/>
+                        </Grid>
+                        <ListBox Grid.Row="3" Grid.Column="1"  
+                                 ItemsSource="{Binding CurrentPlayer.Attributes}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="Description"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding DisplayName}"
+                                           HorizontalAlignment="Left"
+                                           MinWidth="150"
+                                           MouseLeftButtonDown="OnMouseClickAddPoint"/>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="Value"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Value}"
+                                           HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </Canvas>
             <Canvas Canvas.Top="{Binding InventoryDetails.Top}" Canvas.Left="{Binding InventoryDetails.Left}"
                     Width="Auto"
                     Height="Auto"
@@ -63,7 +220,7 @@
                     MaxHeight="{Binding InventoryDetails.MaxHeight}"
                     MaxWidth="{Binding InventoryDetails.MaxWidth}"
                     Visibility="{Binding InventoryDetails.IsVisible, Converter={StaticResource BooleanToVisibility}}">
-                <Border BorderBrush="Crimson" BorderThickness="5" Background="DarkGoldenrod">
+                <Border BorderBrush="Navy" BorderThickness="5" Background="DarkGoldenrod">
                     <Grid Margin="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -88,7 +245,7 @@
                                     <Setter Property="CornerRadius" Value="3"/>
                                 </Style>
                             </Button.Resources>
-                            
+
                         </Button>
                         <DataGrid Grid.Row="2" Grid.Column="0"
                                   Grid.ColumnSpan="2"
@@ -119,71 +276,148 @@
                     </Grid>
                 </Border>
             </Canvas>
+            <Canvas Canvas.Top="{Binding QuestsDetails.Top}" Canvas.Left="{Binding QuestsDetails.Left}"
+                    Width="Auto"
+                    Height="Auto"
+                    x:Name="PlayerQuestsDetailsPopup"
+                    MinHeight="{Binding QuestsDetails.MinHeight}"
+                    MinWidth="{Binding QuestsDetails.MinWidth}"
+                    MaxHeight="{Binding QuestsDetails.MaxHeight}"
+                    MaxWidth="{Binding QuestsDetails.MaxWidth}"
+                    Visibility="{Binding QuestsDetails.IsVisible, Converter={StaticResource BooleanToVisibility}}">
+                <Border BorderBrush="Navy" BorderThickness="5" Background="DarkGoldenrod">
+                    <Grid Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               FontWeight="Bold"
+                               Content="Quests"/>
+                        <Button Grid.Row="0" Grid.Column="1"
+                                Width="25"
+                                FontWeight="Bold"
+                                Content="X"
+                                Click="OnClickCloseQuests">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+
+                        </Button>
+                        <DataGrid Grid.Row="2" Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  ItemsSource="{Binding CurrentPlayer.Quests}"
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="Column"
+                                  VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=MaxHeight}"
+                                  Width="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=ActualWidth}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name"
+                                                Binding="{Binding PlayerQuest.Name, Mode=OneWay}"
+                                                Width="*">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip" Value="{Binding PlayerQuest.ToolTipContents}"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Completed"
+                                                Binding="{Binding IsCompleted, Mode=OneWay}"
+                                                Width="Auto"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Canvas>
+            <Canvas Canvas.Top="{Binding RecipesDetails.Top}" Canvas.Left="{Binding RecipesDetails.Left}"
+                    Width="Auto"
+                    Height="Auto"
+                    x:Name="PlayerRecipesDetailsPopup"
+                    MinHeight="{Binding RecipesDetails.MinHeight}"
+                    MinWidth="{Binding RecipesDetails.MinWidth}"
+                    MaxHeight="{Binding RecipesDetails.MaxHeight}"
+                    MaxWidth="{Binding RecipesDetails.MaxWidth}"
+                    Visibility="{Binding RecipesDetails.IsVisible, Converter={StaticResource BooleanToVisibility}}">
+                <Border BorderBrush="Navy" BorderThickness="5" Background="DarkGoldenrod">
+                    <Grid Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               FontWeight="Bold"
+                               Content="Recipes"/>
+                        <Button Grid.Row="0" Grid.Column="1"
+                                Width="25"
+                                FontWeight="Bold"
+                                Content="X"
+                                Click="OnClickCloseRecipes">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+
+                        </Button>
+                        <DataGrid Grid.Row="2" Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  ItemsSource="{Binding CurrentPlayer.Recipes}"
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="Column"
+                                  VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=MaxHeight}"
+                                  Width="{Binding RelativeSource={RelativeSource FindAncestor,
+                                          AncestorType={x:Type Canvas}},Path=ActualWidth}">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="Name"
+                                                Binding="{Binding Name, Mode=OneWay}"
+                                                Width="*">
+
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip" Value="{Binding ToolTipContents}"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn MinWidth="75">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+
+                                            <Button Click="OnCLickCraft"
+                                                Width="55"
+                                                Content="Craft"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Canvas>
         </Canvas>
-        <!--PlayerInfo-->
-        
-        <Grid Grid.Row="1" Grid.Column="0" Background="Crimson">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Name:" />
-            <Label Grid.Row="1" Grid.Column="0" Content="Class:" />
-            <Label Grid.Row="2" Grid.Column="0" Content="Health:" />
-            <Label Grid.Row="3" Grid.Column="0" Content="Experience:" />
-            <Label Grid.Row="4" Grid.Column="0" Content="Level:" />
-            <Label Grid.Row="5" Grid.Column="0" Content="Gold:" />
-            <Label Grid.Row="8" Grid.Column="0" Content="Attribute points: "/>
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Name}"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass.DisplayName}"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.CurrentHitPoints}" />
-            <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePoints}" />
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.Level}" />
-            <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
-            <Label Grid.Row="8" Grid.Column="1" Content="{Binding CurrentPlayer.AttributePoints}"/>
-            <ListBox Grid.Row="7" Grid.Column="0"
-                     Grid.ColumnSpan="2"
-                     Background="Crimson"
-                     BorderThickness="0"
-                     Grid.IsSharedSizeScope="True"  
-                     ItemsSource="{Binding CurrentPlayer.Attributes}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition SharedSizeGroup="Description"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding DisplayName}"
-                                           HorizontalAlignment="Left"
-                                           MinWidth="150"
-                                           MouseLeftButtonDown="OnMouseClickAddPoint"/>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition SharedSizeGroup="Value"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Value}"
-                                           HorizontalAlignment="Right"/>
-                            </Grid>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-        
+
         <!--GameInfo-->
         
         <Grid Grid.Row="1" Grid.Column="1" Background="Wheat">
@@ -243,66 +477,6 @@
             </Border>
         </Grid>
         
-        <!--Inventory-->
-        
-        <Grid Grid.Row="2" Grid.Column="0" >
-
-            <TabControl x:Name="PlayerDataTabControl">
-
-                <TabItem Header="Quests" x:Name="QuestsTabItem">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding PlayerQuest.Name, Mode=OneWay}"
-                                                Width="*">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="ToolTip" Value="{Binding PlayerQuest.ToolTipContents}"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="Completed"
-                                                Binding="{Binding IsCompleted, Mode=OneWay}"
-                                                Width="Auto"/>
-
-                        </DataGrid.Columns>
-
-                    </DataGrid>
-                </TabItem>
-                <TabItem Header="Recipes" x:Name="RecipesTabItem">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Recipes}"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-
-                            <DataGridTextColumn Header="Name"
-                                                Binding="{Binding Name, Mode=OneWay}"
-                                                Width="*">
-
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="ToolTip" Value="{Binding ToolTipContents}"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
-                            <DataGridTemplateColumn MinWidth="75">
-
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-
-                                        <Button Click="OnCLickCraft"
-                                                Width="55"
-                                                Content="Craft"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-            </TabControl>
-        </Grid>
         
         <!--Controls-->
         

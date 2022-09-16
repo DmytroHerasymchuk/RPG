@@ -30,7 +30,8 @@ namespace Models
         public int MaxHitPoints { get; protected set; }
 
         public int CurrentHitPoints { get; protected set; }
-
+        [JsonIgnore]
+        public string HitPoint => $"{CurrentHitPoints}/{MaxHitPoints}";
         public int Gold { get; private set; }
 
         public int Level { get; protected set; }

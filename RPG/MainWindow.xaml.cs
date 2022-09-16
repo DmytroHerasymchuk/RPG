@@ -97,9 +97,34 @@ namespace RPG
             _userInputActions.Add(Key.D, () => _gameSession.GoToEast());
             _userInputActions.Add(Key.Z, () => _gameSession.AttackCurrentMonster());
             _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
-            _userInputActions.Add(Key.I, () => _gameSession.InventoryDetails.IsVisible = !_gameSession.InventoryDetails.IsVisible);
-            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
-            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
+            _userInputActions.Add(Key.P, () =>
+            {
+                _gameSession.PlayerDetails.IsVisible = !_gameSession.PlayerDetails.IsVisible;
+                _gameSession.QuestsDetails.IsVisible = false;
+                _gameSession.RecipesDetails.IsVisible = false;
+                _gameSession.InventoryDetails.IsVisible = false;
+            });
+            _userInputActions.Add(Key.I, () => 
+            {
+                _gameSession.InventoryDetails.IsVisible = !_gameSession.InventoryDetails.IsVisible;
+                _gameSession.QuestsDetails.IsVisible = false;
+                _gameSession.RecipesDetails.IsVisible = false;
+                _gameSession.PlayerDetails.IsVisible = false;
+            });
+            _userInputActions.Add(Key.Q, () => 
+            {
+                _gameSession.QuestsDetails.IsVisible = !_gameSession.QuestsDetails.IsVisible;
+                _gameSession.InventoryDetails.IsVisible = false;
+                _gameSession.RecipesDetails.IsVisible = false;
+                _gameSession.PlayerDetails.IsVisible = false;
+            });
+            _userInputActions.Add(Key.R, () => 
+            {
+                _gameSession.RecipesDetails.IsVisible = !_gameSession.RecipesDetails.IsVisible;
+                _gameSession.QuestsDetails.IsVisible = false;
+                _gameSession.InventoryDetails.IsVisible = false;
+                _gameSession.PlayerDetails.IsVisible = false;
+            });
             _userInputActions.Add(Key.T, () => OnClickDisplayTradeScreen(this, new RoutedEventArgs()));
 
         }
@@ -108,21 +133,6 @@ namespace RPG
             if (_userInputActions.ContainsKey(e.Key)){
                 _userInputActions[e.Key].Invoke();
                 e.Handled = true;
-            }
-        }
-
-        private void SetTabFocusTo(string tabName)
-        {
-            foreach(object item in PlayerDataTabControl.Items)
-            {
-                if(item is TabItem tabItem)
-                {
-                    if(tabItem.Name == tabName)
-                    {
-                        tabItem.IsSelected = true;
-                        return;
-                    }
-                }
             }
         }
 
@@ -188,6 +198,52 @@ namespace RPG
 
         private void OnClickCloseInventory(object sender, RoutedEventArgs e)
         {
+            _gameSession.InventoryDetails.IsVisible = false;
+
+        }
+        private void OnClickOpenInventory(object sender, RoutedEventArgs e)
+        {
+            _gameSession.InventoryDetails.IsVisible = !_gameSession.InventoryDetails.IsVisible;
+            _gameSession.QuestsDetails.IsVisible = false;
+            _gameSession.RecipesDetails.IsVisible = false;
+            _gameSession.PlayerDetails.IsVisible = false;
+        }
+        private void OnClickCloseQuests(object sender, RoutedEventArgs e)
+        {
+            _gameSession.QuestsDetails.IsVisible = false;
+
+        }
+        private void OnClickOpenQuests(object sender, RoutedEventArgs e)
+        {
+            _gameSession.QuestsDetails.IsVisible = !_gameSession.QuestsDetails.IsVisible;
+            _gameSession.InventoryDetails.IsVisible = false;
+            _gameSession.RecipesDetails.IsVisible = false;
+            _gameSession.PlayerDetails.IsVisible = false;
+
+        }
+        private void OnClickCloseRecipes(object sender, RoutedEventArgs e)
+        {
+            _gameSession.RecipesDetails.IsVisible = false;
+
+        }
+        private void OnClickOpenRecipes(object sender, RoutedEventArgs e)
+        {
+            _gameSession.RecipesDetails.IsVisible = !_gameSession.RecipesDetails.IsVisible;
+            _gameSession.QuestsDetails.IsVisible = false;
+            _gameSession.InventoryDetails.IsVisible = false;
+            _gameSession.PlayerDetails.IsVisible = false;
+
+        }
+        private void OnClickClosePlayerDetails(object sender, RoutedEventArgs e)
+        {
+            _gameSession.PlayerDetails.IsVisible = false;
+
+        }
+        private void OnClickOpenPlayerDetails(object sender, RoutedEventArgs e)
+        {
+            _gameSession.PlayerDetails.IsVisible = !_gameSession.PlayerDetails.IsVisible;
+            _gameSession.QuestsDetails.IsVisible = false;
+            _gameSession.RecipesDetails.IsVisible = false;
             _gameSession.InventoryDetails.IsVisible = false;
 
         }

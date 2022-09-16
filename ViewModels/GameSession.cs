@@ -113,6 +113,9 @@ namespace ViewModels
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate + 1, CurrentLocation.YCoordinate) != null;
 
         public PopupDetails InventoryDetails { get; set; }
+        public PopupDetails QuestsDetails { get; set; }
+        public PopupDetails RecipesDetails { get; set; }
+        public PopupDetails PlayerDetails { get; set; }
         public GameSession(Player player, int xCoordinate, int yCoordinate)
         {
             PopulateGameDetails();
@@ -124,9 +127,39 @@ namespace ViewModels
             {
                 IsVisible = false,
                 Top = 0,
-                Left = 500,
+                Left = 400,
                 MinHeight = 100,
                 MaxHeight = 200,
+                MinWidth = 400,
+                MaxWidth = 500
+            };
+            QuestsDetails = new PopupDetails()
+            {
+                IsVisible = false,
+                Top = 0,
+                Left = 400,
+                MinHeight = 100,
+                MaxHeight = 200,
+                MinWidth = 400,
+                MaxWidth = 500
+            };
+            RecipesDetails = new PopupDetails()
+            {
+                IsVisible = false,
+                Top = 0,
+                Left = 400,
+                MinHeight = 100,
+                MaxHeight = 200,
+                MinWidth = 400,
+                MaxWidth = 500
+            };
+            PlayerDetails = new PopupDetails()
+            {
+                IsVisible = false,
+                Top = 0,
+                Left = 400,
+                MinHeight = 100,
+                MaxHeight = 425,
                 MinWidth = 400,
                 MaxWidth = 500
             };
