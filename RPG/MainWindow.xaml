@@ -26,49 +26,64 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.3*"/>
             <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.3*"/>
         </Grid.ColumnDefinitions>
         <!--Menu-->
         
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                     Orientation="Horizontal">
-            <Button  Content="Menu" Width="135"
+            <Button  Content="Menu" Width="191"
                 Click="OnCliclOpenMainMenu" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button  Content="Save" Width="135"
+            <Button  Content="Save" Width="191"
                  Click="OnClickSaveGame" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button  Content="Inventory" Width="135"
+            <Button  Content="Inventory" Width="191"
                  Click="OnClickOpenInventory" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button  Content="Quests" Width="135"
+            <Button  Content="Quests" Width="191"
                  Click="OnClickOpenQuests" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button  Content="Recipes" Width="135"
+            <Button  Content="Recipes" Width="191"
                  Click="OnClickOpenRecipes" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button  Content="Player Info" Width="135"
+            <Button  Content="Player Info" Width="191"
+                 Click="OnClickOpenPlayerDetails" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
+                            Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button  Content="Bestiary" Width="191"
+                 Click="OnClickOpenPlayerDetails" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
+                            Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button  Content="Game statistics" Width="191"
                  Click="OnClickOpenPlayerDetails" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
@@ -420,16 +435,9 @@
 
         <!--GameInfo-->
         
-        <Grid Grid.Row="1" Grid.Column="1" Background="Wheat">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Border Grid.RowSpan="2" BorderBrush="DarkGoldenrod" BorderThickness="1">
+        
+            <Border Grid.Column="1" Grid.Row="1" 
+                 BorderBrush="DarkGoldenrod" BorderThickness="1" Background="Wheat">
                 <RichTextBox x:Name="GameMessages" Background="Wheat" VerticalScrollBarVisibility="Auto"
                              IsReadOnly="True">
                     <RichTextBox.Resources>
@@ -439,44 +447,71 @@
                     </RichTextBox.Resources>
                 </RichTextBox>
             </Border>
-            <Border Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="1">
+            <Border Grid.Column="2" Grid.Row="1"  BorderBrush="DarkGoldenrod" BorderThickness="1" Background="BurlyWood">
                 <Grid Grid.Column="1" Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Name}"/>
-                    <Image Grid.Row="1" Source ="{Binding CurrentLocation.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}"/>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding CurrentLocation.Name}"/>
+                <Image  Grid.Row="1" Source ="{Binding CurrentLocation.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
+                <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding CurrentLocation.Description}"/>
                 </Grid>
             </Border>
-            <Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkGoldenrod" BorderThickness="1">
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="DarkGoldenrod" BorderThickness="1" Background="BurlyWood">
+
                 <Grid Grid.Column="1" Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding CurrentMonster.Name}"/>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding CurrentMonster.Name}"/>
                     <Image Grid.Row="1" Source ="{Binding CurrentMonster.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
                     <Image Grid.Row="1" Source ="{Binding CurrentNPC.ImageName, Converter={StaticResource FileToBitmapConverter}}" />
                     <StackPanel Grid.Row="2" Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal">
-                        <TextBlock>Hit Points:</TextBlock>
-                        <TextBlock Text="{Binding CurrentMonster.CurrentHitPoints}"/>
+                        <TextBlock VerticalAlignment="Center">Hit Points:</TextBlock>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding CurrentMonster.CurrentHitPoints}"/>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Visibility="{Binding HasNPC, Converter={StaticResource BooleanToVisibility}}"
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal">
-                        
-                        <TextBlock Text="{Binding CurrentNPC.Name}"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="{Binding CurrentNPC.Name}"/>
                     </StackPanel>
                 </Grid>
             </Border>
+
+        <!--DialogInfo-->
+
+        <Grid Grid.Row="2" Grid.Column="0" Background="PaleGoldenrod">
+            
         </Grid>
         
+        <!--ShortPlayerInfo-->
+
+        <Grid Grid.Row="2" Grid.Column="2" Background="PaleGoldenrod">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0"
+                   Content="Health: "/>
+            <Label Grid.Row="1" Grid.Column="0"
+                   Content="Attribute points: "/>
+            <Label Grid.Row="0" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.HitPoint}"/>
+            <Label Grid.Row="1" Grid.Column="1"
+                   Content="{Binding CurrentPlayer.AttributePoints}"/>
+        </Grid>
         
         <!--Controls-->
         
