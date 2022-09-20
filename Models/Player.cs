@@ -68,6 +68,12 @@ namespace Models
             }
         }
 
+        public void SetMaxHitPoints()
+        {
+            MaxHitPoints = this.GetAttribute("CON").Value * Level + 5;
+            this.FullHeal();
+        }
+
         private void SetLevelAndMaxHitPoints()
         {
             int lvlUpExp = (int)(100 * Math.Pow(1.2, Level));
@@ -81,5 +87,6 @@ namespace Models
                 OnLeveledUp?.Invoke(this, System.EventArgs.Empty);
             }
         }
+
     }
 }

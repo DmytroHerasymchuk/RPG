@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ViewModels;
 using Core;
 using Models;
+using Models.Shared;
 using Services;
 using System.ComponentModel;
 using Microsoft.Win32;
@@ -184,6 +185,10 @@ namespace RPG
                 PlayerAttribute playerAttribute = ((FrameworkElement)sender).DataContext as PlayerAttribute;
                 playerAttribute.Increment();
                 _gameSession.CurrentPlayer.AttributePoints--;
+                if (playerAttribute.Key == "CON")
+                {
+                    _gameSession.CurrentPlayer.SetMaxHitPoints();
+                }
             }
 
         }

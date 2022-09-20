@@ -153,7 +153,6 @@
     <Resource Include="MenuImages\Menu\BackgroundCharacterMenu.jpg" />
     <Resource Include="MenuImages\Menu\BackgroundMenu.jpg" />
     <Resource Include="MenuImages\Menu\ButtonBackground.jpg" />
-    <Resource Include="MenuImages\Menu\CharacterMenu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
