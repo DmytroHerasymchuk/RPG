@@ -72,6 +72,7 @@ namespace ViewModels
         public bool HasTrader => CurrentTrader != null;
         [JsonIgnore]
         public bool HasNPC => CurrentNPC != null;
+
         [JsonIgnore]
         public Monster CurrentMonster
         {

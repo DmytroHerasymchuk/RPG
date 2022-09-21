@@ -34,18 +34,30 @@ namespace Services.Factories
         {
             foreach (XmlNode node in nodes)
             {
+
                 NPC npc = new NPC(node.AttributeAsInt("ID"),
                                   node.AttributeAsString("Name"),
                                   $".{rootImagePath}{node.AttributeAsString("ImageName")}");
+                AddDialogs(npc, node.SelectNodes("./Dialog/TextValue"));
                 _npc.Add(npc);
             }
         }
+        private static void AddDialogs(NPC npc, XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                Dialog dialog = new Dialog(node.AttributeAsString("Key"),
+                                           node?.InnerText ?? "");
+                npc.Dialogs.Add(dialog);
+                
+            }
+        }
+
 
         public static NPC GetNPCById(int id)
         {
             return _npc.FirstOrDefault(n => n.Id == id);
         }
-
 
     }
 

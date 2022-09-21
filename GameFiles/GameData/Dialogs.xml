@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dialogs>
+  <Dialog ID="1">
+    <DialogList>
+      <TextValue Key="Who are you?"><![CDATA[My name is Bob, I am warehouse guard.]]></TextValue>
+      <TextValue Key="Where can I find a merchant?"><![CDATA[Look at the market, they are always there.]]></TextValue>
+    </DialogList>
+  </Dialog>
+  <Dialog ID="2">
+    <DialogList>
+      <TextValue Key="Whera am I?"><![CDATA[You are in the capital of kingdom.]]></TextValue>
+      <TextValue Key="Where can I find a king?"><![CDATA[At the castle.]]></TextValue>
+    </DialogList>
+  </Dialog>
+</Dialogs>

@@ -193,6 +193,12 @@ namespace RPG
 
         }
 
+        private void OnMouseClickDialogWithNPC(object sender, MouseButtonEventArgs e)
+        {
+            _messageBroker
+
+        }
+   
         private void OnCliclOpenMainMenu(object sender, RoutedEventArgs e)
         {
             Startup startup = new Startup();

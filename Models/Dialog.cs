@@ -8,11 +8,12 @@ namespace Models
 {
     public class Dialog
     {
-        public Dictionary<string, string> DialogCatalog = new Dictionary<string, string>();
-
-        public Dialog(Dictionary<string, string> dialogCatalog)
-        {
-            DialogCatalog = dialogCatalog;
+        public string ShortDialog { get; set; }
+        public string AnswerDialog { get; set; }
+        public Dialog(string shortDialog, string answerDialog)
+        { 
+            ShortDialog = shortDialog;
+            AnswerDialog = answerDialog;
         }
     }
 }

@@ -100,6 +100,7 @@ namespace Services.Factories
             }
             location.NPCHere = 
                     NPCFactory.GetNPCById(npc.AttributeAsInt("ID"));
+
         }
     }
 }

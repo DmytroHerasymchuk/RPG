@@ -491,10 +491,24 @@
         <!--DialogInfo-->
         <Border Grid.Row="2" Grid.Column="0" BorderThickness="2,1,1,2" BorderBrush="Black">
             <Grid Grid.Row="2" Grid.Column="0" Background="PaleGoldenrod">
-
-             </Grid>
+                <ListBox Visibility="{Binding HasNPC, Converter={StaticResource BooleanToVisibility}}"
+                         ItemsSource="{Binding CurrentNPC.Dialogs}"
+                         Background="PaleGoldenrod"
+                         MouseLeftButtonDown="">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="# "/>
+                                <TextBlock Text="{Binding ShortDialog}"
+                                       HorizontalAlignment="Left"
+                                       MouseLeftButtonDown="OnMouseClickDialogWithNPC"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </Border>
-    <!--ShortPlayerInfo-->
+        <!--ShortPlayerInfo-->
 
         <Border Grid.Row="2" Grid.Column="2" BorderThickness="1,1,2,2" BorderBrush="Black">
             

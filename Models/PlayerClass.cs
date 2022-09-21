@@ -16,6 +16,6 @@ namespace Models
         public string Key { get; set; }
         public string DisplayName { get; set; }
         public string ImageName { get; set; }
-        public List<PlayerAttribute> PlayerAttributes { get; } = new List<PlayerAttribute>();
+
     }
 }

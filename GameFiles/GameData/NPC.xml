@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <NPCs RootImagePath="/Images/NPC/">
-  <NPC ID="1" Name="Bob" ImageName="Bob.jpg">
-    
+  <NPC ID="1" Name="Bob" ImageName="Bob.jpg" DialogID="1">
+    <Dialog ID="1">
+        <TextValue Key="Who are you?"><![CDATA[My name is Bob, I am warehouse guard.]]></TextValue>
+        <TextValue Key="Where can I find a merchant?"><![CDATA[Look at the market, they are always there.]]></TextValue>
+    </Dialog>
   </NPC>
+  <!--<Dialogs>
+    
+    <Dialog ID="2">
+      <DialogList>
+        <TextValue Key="Whera am I?"><![CDATA[You are in the capital of kingdom.]]></TextValue>
+        <TextValue Key="Where can I find a king?"><![CDATA[At the castle.]]></TextValue>
+      </DialogList>
+    </Dialog>
+  </Dialogs>-->
 </NPCs>
