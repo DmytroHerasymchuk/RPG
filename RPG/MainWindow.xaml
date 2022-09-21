@@ -493,8 +493,7 @@
             <Grid Grid.Row="2" Grid.Column="0" Background="PaleGoldenrod">
                 <ListBox Visibility="{Binding HasNPC, Converter={StaticResource BooleanToVisibility}}"
                          ItemsSource="{Binding CurrentNPC.Dialogs}"
-                         Background="PaleGoldenrod"
-                         MouseLeftButtonDown="">
+                         Background="PaleGoldenrod">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

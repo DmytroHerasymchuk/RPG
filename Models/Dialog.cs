@@ -8,12 +8,16 @@ namespace Models
 {
     public class Dialog
     {
+        public int IDShort { get; set; }
+        public int IDAnswer { get; set; }
         public string ShortDialog { get; set; }
         public string AnswerDialog { get; set; }
-        public Dialog(string shortDialog, string answerDialog)
-        { 
+        public Dialog(string shortDialog, string answerDialog, int iDShort)
+        {
             ShortDialog = shortDialog;
             AnswerDialog = answerDialog;
+            IDShort = iDShort;
+            IDAnswer = iDShort;
         }
     }
 }

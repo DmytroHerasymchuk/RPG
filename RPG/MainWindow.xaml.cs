@@ -17,6 +17,7 @@ using Core;
 using Models;
 using Models.Shared;
 using Services;
+using Services.Factories;
 using System.ComponentModel;
 using Microsoft.Win32;
 using RPG.Windows;
@@ -195,10 +196,12 @@ namespace RPG
 
         private void OnMouseClickDialogWithNPC(object sender, MouseButtonEventArgs e)
         {
-            _messageBroker
-
+            Dialog dialog = ((FrameworkElement)sender).DataContext as Dialog;
+            string answer = NPCFactory.GetAnswerOfNPCDialog(_gameSession.CurrentNPC.Id, dialog.IDShort);
+            _messageBroker.RaiseMessage("");
+            _messageBroker.RaiseMessage(_gameSession.CurrentNPC.Name + ": " + answer);
         }
-   
+
         private void OnCliclOpenMainMenu(object sender, RoutedEventArgs e)
         {
             Startup startup = new Startup();

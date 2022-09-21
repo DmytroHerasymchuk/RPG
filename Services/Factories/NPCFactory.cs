@@ -46,8 +46,10 @@ namespace Services.Factories
         {
             foreach (XmlNode node in nodes)
             {
+
                 Dialog dialog = new Dialog(node.AttributeAsString("Key"),
-                                           node?.InnerText ?? "");
+                                           node?.InnerText ?? "",
+                                           node.AttributeAsInt("ID"));
                 npc.Dialogs.Add(dialog);
                 
             }
@@ -59,6 +61,10 @@ namespace Services.Factories
             return _npc.FirstOrDefault(n => n.Id == id);
         }
 
+        public static string GetAnswerOfNPCDialog(int idOfNPC, int idOFDialog)
+        {
+            return GetNPCById(idOfNPC).Dialogs.FirstOrDefault(d => d.IDShort == idOFDialog).AnswerDialog;
+        }
     }
 
 
