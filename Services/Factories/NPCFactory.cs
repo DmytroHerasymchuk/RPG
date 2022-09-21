@@ -64,6 +64,7 @@ namespace Services.Factories
         public static string GetAnswerOfNPCDialog(int idOfNPC, int idOFDialog)
         {
             return GetNPCById(idOfNPC).Dialogs.FirstOrDefault(d => d.IDShort == idOFDialog).AnswerDialog;
+
         }
     }
 
