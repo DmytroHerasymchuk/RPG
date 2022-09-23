@@ -76,8 +76,8 @@
                             Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Button  Content="Bestiary" Width="192"
-                 Click="OnClickOpenPlayerDetails" Height="30" >
+            <Button  Content="Map" Width="192"
+                 Click="OnClickDisplayMap" Height="30" >
                 <Button.Background>
                     <ImageBrush ImageSource="MenuImages/Menu/ButtonBackground.jpg"
                             Stretch="Fill"/>
@@ -575,7 +575,7 @@
                         Click="OnCLickUseCurrentConsumable"/>
             </Grid>
 
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Margin="13">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -588,19 +588,55 @@
                 </Grid.RowDefinitions>
                 <Button Grid.Column="1" Grid.Row="0" Click="OnClickGoNorth" 
                         Visibility="{Binding HasLocationToNorth, Converter={StaticResource BooleanToVisibility}}">
-                    <Path Stroke="Black" Fill="Goldenrod" Data="M 0 30 L 60 30 L 30 0 Z"/>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Background>
+                            <ImageBrush ImageSource="MenuImages/Menu/ControlsBackground.jpg"
+                            Stretch="Fill"/>
+                        </Button.Background>
+                        <Path Stroke="Black" Fill="Gold" Data="M 0 30 L 60 30 L 30 0 Z"/>
                 </Button>
                 <Button Grid.Column="0" Grid.Row="1"  Click="OnClickGoWest"
                         Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}">
-                    <Path Stroke="Black" Fill="Goldenrod" Data="M -10 30 L 24 60 L 24 0 Z"/>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Background>
+                            <ImageBrush ImageSource="MenuImages/Menu/ControlsBackground.jpg"
+                            Stretch="Fill"/>
+                        </Button.Background>
+                        <Path Stroke="Black" Fill="Gold" Data="M -10 30 L 24 60 L 24 0 Z"/>
                 </Button>
                 <Button Grid.Column="2" Grid.Row="1"  Click="OnClickGoEast"
                         Visibility="{Binding HasLocationToEast, Converter={StaticResource BooleanToVisibility}}">
-                    <Path Stroke="Black" Fill="Goldenrod" Data="M 10 60 L 45 30 L 10 0  Z"/>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Background>
+                            <ImageBrush ImageSource="MenuImages/Menu/ControlsBackground.jpg"
+                            Stretch="Fill"/>
+                        </Button.Background>
+                        <Path Stroke="Black" Fill="Gold" Data="M 10 60 L 45 30 L 10 0  Z"/>
                 </Button>
                 <Button Grid.Column="1" Grid.Row="2" Click="OnClickGoSouth"
                         Visibility="{Binding HasLocationToSouth, Converter={StaticResource BooleanToVisibility}}">
-                    <Path Stroke="Black" Fill="Goldenrod" Data="M 0 0 L 30 30 L 60 0 Z"/>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Background>
+                            <ImageBrush ImageSource="MenuImages/Menu/ControlsBackground.jpg"
+                            Stretch="Fill"/>
+                        </Button.Background>
+                        <Path Stroke="Black" Fill="Gold" Data="M 0 0 L 30 30 L 60 0 Z"/>
                 </Button>
                 <Button Grid.Column="1" Grid.Row="1" Content="Trade" Click="OnClickDisplayTradeScreen"
                         Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"

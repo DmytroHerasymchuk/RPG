@@ -18,19 +18,22 @@ namespace Models
         [JsonIgnore]
         public string ImageName { get; }
         [JsonIgnore]
+        public MapPiece Map { get; set; }
+        [JsonIgnore]
         public List<Quest>QuestsAvailableHere { get; }
         [JsonIgnore]
         public List<MonsterEncounter> MonstersHere { get; }
         [JsonIgnore]
         public Trader TraderHere { get; set; }
         public NPC NPCHere { get; set; } 
-        public Location(int xCoordinate, int yCoordinate, string name, string description, string imageName)
+        public Location(int xCoordinate, int yCoordinate, string name, string description, string imageName, bool mapStatus = false)
         {
             XCoordinate = xCoordinate;
             YCoordinate = yCoordinate;
             Name = name;
             Description = description;
             ImageName = imageName;
+            Map = new MapPiece(xCoordinate + 15, yCoordinate + 15, imageName, mapStatus);
             QuestsAvailableHere = new List<Quest>();
             MonstersHere = new List<MonsterEncounter>();
         }

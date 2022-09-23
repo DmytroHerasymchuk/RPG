@@ -68,6 +68,7 @@
     <Compile Include="ItemQuantity.cs" />
     <Compile Include="LivingEntity.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="MapPiece.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="MonsterEncounter.cs" />
     <Compile Include="NPC.cs" />

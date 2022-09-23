@@ -91,6 +91,14 @@ namespace RPG
             }
         }
 
+        private void OnClickDisplayMap(object sender, RoutedEventArgs e)
+        {
+            MapWindow mapWindow = new MapWindow(_gameSession);
+            mapWindow.Owner = this;
+
+            mapWindow.ShowDialog();
+        }
+
         private void InitializeUserInputActions()
         {
             _userInputActions.Add(Key.W, () => _gameSession.GoToNorth());
@@ -198,6 +206,9 @@ namespace RPG
         {
             Dialog dialog = ((FrameworkElement)sender).DataContext as Dialog;
             string answer = NPCFactory.GetAnswerOfNPCDialog(_gameSession.CurrentNPC.Id, dialog.IDShort);
+            string playerAnswer = NPCFactory.GetShortOfNPCDialog(_gameSession.CurrentNPC.Id, dialog.IDShort);
+            _messageBroker.RaiseMessage("");
+            _messageBroker.RaiseMessage(_gameSession.CurrentPlayer.Name + ": " + playerAnswer);
             _messageBroker.RaiseMessage("");
             _messageBroker.RaiseMessage(_gameSession.CurrentNPC.Name + ": " + answer);
         }

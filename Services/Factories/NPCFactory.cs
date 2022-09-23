@@ -66,6 +66,12 @@ namespace Services.Factories
             return GetNPCById(idOfNPC).Dialogs.FirstOrDefault(d => d.IDShort == idOFDialog).AnswerDialog;
 
         }
+
+        public static string GetShortOfNPCDialog(int idOfNPC, int idOFDialog)
+        {
+            return GetNPCById(idOfNPC).Dialogs.FirstOrDefault(d => d.IDShort == idOFDialog).ShortDialog;
+
+        }
     }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Models
 {
@@ -10,9 +11,12 @@ namespace Models
     {
         private readonly List<Location> _locations = new List<Location>();
 
+        public ObservableCollection<MapPiece> MapPieces { get; } = new ObservableCollection<MapPiece>();
+
         public void AddLocation(Location location)
         {
             _locations.Add(location);
+            MapPieces.Add(location.Map);
         }
 
         public Location LocationAt(int xCoordinate, int yCoordinate)

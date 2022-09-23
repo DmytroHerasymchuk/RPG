@@ -284,7 +284,6 @@ namespace ViewModels
         {
             _currentBattle?.AttackOpponent();
         }
-
         public void UseCurrentConsumable()
         {
             if (CurrentPlayer.CurrentConsumable != null)
@@ -299,17 +298,14 @@ namespace ViewModels
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
             CurrentPlayer.FullHeal();
         }
-
         private void OnCurrentMonsterKilled(object sender, System.EventArgs eventArgs)
         {
             CurrentMonster = MonsterFactory.GetMonsterFromLocation(CurrentLocation);
         }
-
         private void OnCurrentPlayerLeveledUp(object sender, System.EventArgs eventArgs)
         {
             _messageBroker.RaiseMessage($"You are now level {CurrentPlayer.Level}!");
         }
-
         private void PopulateGameDetails()
         {
             GameDetails = GameDetailsService.ReadGameDetails();
