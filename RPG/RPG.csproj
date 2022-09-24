@@ -164,6 +164,9 @@
   <ItemGroup>
     <Resource Include="MenuImages\Menu\ControlsBackground.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MenuImages\Menu\Compass.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)GameFiles\"."" "$(ProjectDir)$(OutDir)" /s /y</PostBuildEvent>

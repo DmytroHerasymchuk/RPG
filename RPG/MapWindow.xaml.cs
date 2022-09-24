@@ -22,13 +22,13 @@ namespace RPG
     /// </summary>
     public partial class MapWindow : Window
     {
-        public GameSession Session { get; set; }
+        public GameSession Session => DataContext as GameSession;
 
         public MapWindow(GameSession gameSession)
         {            
-            Session = gameSession;
+            
             InitializeComponent();
-            InitializeMap();
+            InitializeMap(gameSession);
         }
 
         private void OnClickClose(object sender, RoutedEventArgs e)
@@ -36,18 +36,58 @@ namespace RPG
             Close();
         }
 
-        private void InitializeMap()
+        private void InitializeMap(GameSession gameSession)
         {
-            foreach(MapPiece mapPiece in Session.CurrentWorld.MapPieces)
+            foreach(MapPiece mapPiece in gameSession.CurrentWorld.MapPieces)
             {
                 
                 Image image = new Image();
                 image.Source = new BitmapImage(new Uri($"{AppDomain.CurrentDomain.BaseDirectory}{mapPiece.ImageName}",
                                                        UriKind.Absolute));
-                Grid.SetColumn(image, mapPiece.XCoordinate);
-                Grid.SetRow(image, mapPiece.YCoordinate);
+                image.Stretch = Stretch.Fill;
+                if (mapPiece.YCoordinate > 0)
+                {
+                    Grid.SetColumn(image, mapPiece.XCoordinate + 11);
+                    Grid.SetRow(image, -mapPiece.YCoordinate + 11);
+                }
+                else
+                {
+                    Grid.SetColumn(image, mapPiece.XCoordinate + 11);
+                    Grid.SetRow(image, mapPiece.YCoordinate + 11);
+                }
+                if (mapPiece.Status)
+                {
+                    image.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    image.Visibility = Visibility.Hidden;
+                }
+                
                 map.Children.Add(image);
             }
+        }
+
+        private void OnClickShowPlayer(object sender, RoutedEventArgs e)
+        {
+            Rectangle rect = new Rectangle();
+            
+            rect.StrokeThickness = 4;
+            rect.Stroke = new SolidColorBrush(Color.FromRgb(246, 252, 70));
+            int x = Session.CurrentLocation.XCoordinate;
+            int y = Session.CurrentLocation.YCoordinate;
+            if (y > 0)
+            {
+                Grid.SetColumn(rect, x + 11);
+                Grid.SetRow(rect, -y + 11);
+            }
+            else
+            {
+                Grid.SetColumn(rect, x + 11);
+                Grid.SetRow(rect, y + 11);
+            }
+            
+            map.Children.Add(rect);
         }
     }
 }

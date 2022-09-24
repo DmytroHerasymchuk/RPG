@@ -95,7 +95,7 @@ namespace RPG
         {
             MapWindow mapWindow = new MapWindow(_gameSession);
             mapWindow.Owner = this;
-
+            mapWindow.DataContext = _gameSession;
             mapWindow.ShowDialog();
         }
 

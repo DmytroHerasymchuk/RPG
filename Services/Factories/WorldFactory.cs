@@ -39,13 +39,15 @@ namespace Services.Factories
             }
             foreach (XmlNode node in nodes)
             {
-                
+                MapPiece.LocationType locationType = DetermineLocationType(node.AttributeAsString("LocationType"));
                 Location location =
                     new Location(node.AttributeAsInt("X"),
                                  node.AttributeAsInt("Y"),
                                  node.AttributeAsString("Name"),
                                  node.SelectSingleNode("./Description")?.InnerText ?? "",
-                                 $".{rootImagePath}{node.AttributeAsString("ImageName")}");
+                                 $".{rootImagePath}{node.AttributeAsString("ImageName")}",
+                                 $".{rootImagePath}{node.AttributeAsString("MapImageName")}",
+                                 locationType);
                 AddMonsters(location, node.SelectNodes("./Monsters/Monster"));
                 AddQuests(location, node.SelectNodes("./Quests/Quest"));
                 AddTrader(location, node.SelectSingleNode("./Trader"));
@@ -101,6 +103,25 @@ namespace Services.Factories
             location.NPCHere = 
                     NPCFactory.GetNPCById(npc.AttributeAsInt("ID"));
 
+        }
+
+        private static MapPiece.LocationType DetermineLocationType(string location)
+        {
+            switch (location)
+            {
+                case "Town":
+                    return MapPiece.LocationType.Town;
+                case "Tavern":
+                    return MapPiece.LocationType.Tavern;
+                case "Cave":
+                    return MapPiece.LocationType.Cave;
+                case "Forest":
+                    return MapPiece.LocationType.Forest;
+                case "CaveEntrance":
+                    return MapPiece.LocationType.CaveEntrance;
+                default:
+                    return MapPiece.LocationType.Road;
+            }
         }
     }
 }

@@ -63,7 +63,9 @@ namespace ViewModels
                 CurrentMonster = MonsterFactory.GetMonsterFromLocation(CurrentLocation);
                 CurrentTrader = CurrentLocation.TraderHere;
                 CurrentNPC = CurrentLocation.NPCHere;
-                
+                CurrentWorld.MapPieces.First
+                    (m => m.XCoordinate == CurrentLocation.XCoordinate && m.YCoordinate == CurrentLocation.YCoordinate)
+                    .Status = true;            
             }
         }
         [JsonIgnore]
